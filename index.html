@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10141c" />
+    <title>輕量化人工智慧肝癌CT影像與病理分析之研究</title>
+    <meta
+      name="description"
+      content="朝陽科技大學資通碩一。自我介紹是一棵樹。"
+    />
+    
+    <link rel="stylesheet" href="site.css?v=26" />
+  <style>
+.liver-entry{text-decoration:none;cursor:pointer}.liver-entry:hover,.liver-entry:focus-visible{outline:3px solid #f3c879;outline-offset:4px}
+body.liver-doc:has(#liver-panel.active){background:#10141c;color:#f4f1ea}
+body:has(#liver-panel.active)>.top,body:has(#liver-panel.active) .liver-tabs{display:none}
+body:has(#liver-panel.active) .lang-switch{display:flex}
+.liver-doc #liver-panel .lc-slide{max-width:1440px;margin:0 auto;padding:18px 28px 24px;font-size:clamp(20px,1.65vw,28px);line-height:1.45}
+.lc-slide h1{font-size:clamp(30px,2.8vw,46px);margin:6px 0 16px;line-height:1.2}.lc-slide h2{font-size:clamp(23px,1.9vw,32px);margin:0 0 8px;color:#f1cb88}.lc-slide p{margin:0}.lc-back{display:inline-block;color:#dce8fa;font-size:20px;padding:8px 16px;border:1px solid #6b7d97;border-radius:10px;text-decoration:none}.lc-heading{margin-top:12px}.lc-heading>span{font-size:18px;color:#adc1da}.lc-discovery{border-left:4px solid #e4b567;padding:12px 20px;background:#1c2635;border-radius:0 12px 12px 0}.lc-objective{padding:16px 0}.lc-stages{display:grid;grid-template-columns:1fr 1fr;gap:20px}.lc-stages article{padding:18px 22px;background:#1b2532;border:1px solid #40536d;border-radius:14px}.lc-stages ul{margin:0;padding-left:1.3em}.lc-footer{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px;border-top:1px solid #40536d;padding-top:16px}.lc-slide .lc-footer h2{font-size:23px}.lc-slide .lc-footer p{font-size:clamp(20px,1.5vw,25px)}
+body:has(#liver-panel.active)>.top{display:flex;justify-content:flex-end;padding:8px 20px;margin:0;max-width:none}body:has(#liver-panel.active)>.top .to-cover{display:none}
+@media(max-width:760px){.lc-stages,.lc-footer{grid-template-columns:1fr}.liver-doc #liver-panel .lc-slide{padding:12px}.lc-slide h1{font-size:30px}}
+.lc-heading>span{display:none}.lc-heading{margin-top:8px}.liver-doc #liver-panel .lc-slide{padding-top:0;padding-bottom:10px}.lc-slide h1{margin-bottom:12px}.lc-objective{padding:12px 0}.lc-footer{margin-top:14px;padding-top:12px}.lc-stages article{padding:14px 20px}.lc-stages .lc-gain{margin-top:10px;padding-top:8px;border-top:1px solid #40536d;font-size:0.92em;line-height:1.4}
+body.liver-doc:has(#dr-panel.active){background:#10141c;color:#f4f1ea}body:has(#dr-panel.active) .liver-tabs,body:has(#dr-panel.active)>.top .to-cover{display:none}body:has(#dr-panel.active)>.top{display:flex;justify-content:flex-end;padding:8px 20px;margin:0;max-width:none}
+.dr-slide{max-width:1440px;margin:auto;padding:0 28px 16px;font-size:clamp(20px,1.55vw,26px);line-height:1.4}.dr-slide h1{font-size:clamp(30px,2.8vw,44px);margin:8px 0 14px}.dr-slide h2{font-size:clamp(23px,1.8vw,29px);color:#99d4ed;margin:0 0 6px}.dr-slide p{margin:0}.dr-top{display:grid;grid-template-columns:1fr 1fr;gap:20px}.dr-top article,.dr-models{padding:12px 18px;background:#1b2532;border:1px solid #40536d;border-radius:12px}.dr-models{margin-top:12px}.dr-results{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:16px;align-items:center;padding:14px 0}.dr-results strong{display:block;font-size:clamp(32px,3vw,48px);color:#c5f3df}.dr-results span{font-size:20px}.dr-analysis{padding:12px 18px;border-left:4px solid #e4b567;background:#252a31}.dr-analysis h2{color:#f1cb88}.dr-analysis p+p{margin-top:5px}.dr-analysis p:last-child{font-size:18px;color:#c7d0dd}.dr-slide footer{margin-top:10px;font-size:15px;color:#b8c6d6;line-height:1.4}.dr-slide footer p+p{margin-top:4px}
+@media(max-width:760px){.dr-top{grid-template-columns:1fr}.dr-slide{padding:0 12px 16px}.dr-results{grid-template-columns:1fr 1fr}.dr-results>div:first-child{grid-column:1/-1}}
+.dr-slide{line-height:1.3}.dr-slide h1{margin:6px 0 10px}.dr-top article,.dr-models{padding:10px 16px}.dr-models{margin-top:10px}.dr-results{padding:10px 0}.dr-analysis{padding:10px 16px}.dr-slide footer{font-size:14px;margin-top:8px}.dr-slide h2{margin-bottom:4px}.dr-top{grid-template-columns:1.45fr 1fr}.dr-top article:first-child p{font-size:20px}.dr-analysis p:last-child{font-size:18px}@media(max-width:760px){.dr-top{grid-template-columns:1fr}}.dr-analysis p:not(:last-child){font-size:clamp(19px,1.5vw,25px)}body.liver-doc:has(#prostate-panel.active){background:#10141c;color:#f4f1ea}body:has(#prostate-panel.active) .liver-tabs,body:has(#prostate-panel.active)>.top .to-cover{display:none}body:has(#prostate-panel.active)>.top{display:flex;justify-content:flex-end;padding:8px 20px;margin:0;max-width:none}.pc-slide .dr-top{grid-template-columns:1fr 1fr}.pc-slide .dr-results{grid-template-columns:1.4fr 1.1fr .65fr}.pc-slide .dr-results h2{font-size:24px}.pc-slide .dr-results p{font-size:20px}.pc-slide .dr-analysis p:last-child{font-size:clamp(19px,1.5vw,25px);color:#f4f1ea}@media(max-width:760px){.pc-slide .dr-top,.pc-slide .dr-results{grid-template-columns:1fr}}body.liver-doc:has(#dental-panel.active){background:#10141c;color:#f4f1ea}body:has(#dental-panel.active) .liver-tabs,body:has(#dental-panel.active)>.top .to-cover{display:none}body:has(#dental-panel.active)>.top{display:flex;justify-content:flex-end;padding:8px 20px;margin:0;max-width:none}.dt-slide h1{font-size:clamp(28px,2.5vw,40px)}.dt-slide .dr-top{grid-template-columns:1fr 1fr}.dt-slide .dr-models p,.dt-sim p{font-size:20px}.dt-sim{padding:10px 0 4px}.dt-sim h2{font-size:23px}.dt-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:4px 0 10px}.dt-metrics>div{border:1px solid #40536d;border-radius:10px;padding:6px 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.dt-metrics span{width:100%;font-size:18px}.dt-metrics strong{font-size:32px;color:#c5f3df}.dt-metrics small{font-size:17px}.dt-slide .dr-analysis p{font-size:19px;color:#f4f1ea}.dt-slide footer{font-size:14px}@media(max-width:760px){.dt-slide .dr-top{grid-template-columns:1fr}.dt-metrics{grid-template-columns:1fr}}
+.dt-slide .dr-top p{font-size:19px}.dt-slide .dr-top article{padding:8px 14px}.dt-slide .dr-models{margin-top:8px;padding:8px 14px}.dt-slide .dt-sim{padding:8px 0 2px}.dt-slide .dt-metrics{margin:2px 0 8px}.dt-slide .dt-metrics>div{padding:4px 12px}.dt-slide .dr-analysis{padding:8px 14px}.dt-slide footer{margin-top:6px;font-size:13px}body.liver-doc:has(#oral-panel.active){background:#10141c;color:#f4f1ea}body:has(#oral-panel.active) .liver-tabs,body:has(#oral-panel.active)>.top .to-cover{display:none}body:has(#oral-panel.active)>.top{display:flex;justify-content:flex-end;padding:8px 20px;margin:0;max-width:none}.oral-slide h1{margin:6px 0 8px}.oral-slide [data-i18n="or2"]{color:#f1cb88;border-left:4px solid #e4b567;background:#252a31;padding:8px 14px;font-size:22px;margin-bottom:12px}.oral-slide .dr-top{grid-template-columns:1fr 1fr}.oral-slide .dr-top p{font-size:20px}.oral-lights{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:12px 0}.oral-lights article{border:1px solid #40536d;border-radius:12px;padding:12px 16px;background:#1b2532}.oral-lights h2{font-size:23px}.oral-lights p,.oral-next p{font-size:20px}.oral-next{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:12px}.oral-next h2{font-size:23px}.oral-slide .dr-analysis p:last-child{font-size:20px;color:#f4f1ea}.oral-slide footer{font-size:14px}@media(max-width:760px){.oral-lights,.oral-slide .dr-top,.oral-next{grid-template-columns:1fr}}
+.oral-slide{line-height:1.25}.oral-slide .dr-top article{padding:8px 14px}.oral-slide [data-i18n="or2"]{margin-bottom:8px;padding:6px 12px}.oral-lights{margin:8px 0;gap:12px}.oral-lights article{padding:8px 12px}.oral-slide .dr-analysis{padding:8px 12px}.oral-next{margin-top:8px}.oral-slide footer{margin-top:6px}.oral-slide h2{margin-bottom:4px}
+.visual-slide{max-width:1500px;margin:auto;padding:0 22px 12px;color:#eef2f6;font-size:18px;line-height:1.3}.visual-header{display:flex;align-items:center;gap:20px;margin-bottom:12px}.visual-header h1{font-size:clamp(26px,2.5vw,40px);line-height:1.15;margin:0}.visual-header .lc-back{font-size:17px;white-space:nowrap}.visual-top{display:grid;grid-template-columns:.85fr 1.1fr 1.15fr;gap:14px}.visual-bottom{display:grid;grid-template-columns:1fr 1.7fr;gap:14px;margin-top:14px}.viz-card{background:#192331;border:1px solid #374b65;border-radius:14px;padding:14px 16px;min-width:0}.viz-card h2{font-size:23px;color:#97d5ef;margin:0 0 10px}.viz-card p{margin:6px 0}.viz-card small{font-size:13px;color:#b7c4d5}.hero-number{display:block;font-size:clamp(36px,4vw,62px);line-height:1.1;color:#b4f1db;margin:12px 0}.hero-number small{font-size:20px;margin-left:6px}.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}.photo-pair img{height:110px;width:100%;object-fit:contain;background:#06090d}.visual-slide figure{margin:0}.visual-slide figcaption{font-size:12px;color:#b7c4d5;margin-top:3px}.data-stamp{margin-top:6px}.data-stamp strong{font-size:28px;color:#c0f3df;margin-right:5px}.model-flow{display:flex;gap:7px;align-items:center;justify-content:center}.model-flow>div{border:1px solid #52758b;background:#213545;border-radius:9px;padding:8px;font-size:17px;text-align:center;flex:1}.model-flow .arrow{color:#e7be75}.model-list{font-size:16px}.number-pair{display:flex;justify-content:space-between;gap:12px}.number-pair>div{flex:1}.number-pair strong{display:block;font-size:30px;color:#b4f1db}.number-pair span{font-size:11px;color:#b7c4d5}.result-line{display:grid;grid-template-columns:1fr 1fr;gap:7px;align-items:center}.result-line strong{font-size:28px;color:#b4f1db}.result-line span{font-size:16px}.legend{display:flex;gap:14px;font-size:13px;margin-bottom:8px}.legend>span:before{content:'';display:inline-block;width:9px;height:9px;margin-right:5px;border-radius:50%;background:#65d9bb}.legend>.paper-dot:before{background:#a1acc2}.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.bar-group{margin-bottom:9px}.bar-group>b{font-size:15px;font-weight:500}.bar-line{height:21px;position:relative;display:flex;align-items:center;margin-top:3px;background:#101925;border-radius:4px;overflow:hidden}.bar-line i{height:100%;background:#3e907c;display:block;min-width:3px}.bar-line.paper i{background:#56657f}.bar-line strong{position:absolute;left:6px;font-size:14px;color:white;text-shadow:0 1px 2px #000}.takeaway{color:#f1cb88;font-size:19px}.dataset-total{font-size:40px;color:#b4f1db}.split-bar{display:flex;height:23px;margin:10px 0 5px;overflow:hidden;border-radius:6px}.split-bar i{width:70%;background:#328f7a;font-style:normal;text-align:center;font-size:15px}.split-bar i+i{width:30%;background:#526b8b}.split-label{font-size:14px}.grade-strip{display:flex;gap:6px;margin:8px 0}.grade-strip b{flex:1;background:#285064;text-align:center;border-radius:4px}.grade-strip b:nth-child(2){background:#38656b}.grade-strip b:nth-child(3){background:#787b53}.grade-strip b:nth-child(4){background:#987045}.grade-strip b:nth-child(5){background:#96535b}.selected{color:#b4f1db;font-size:21px;text-align:center}.data-duo>div{margin-bottom:7px}.data-duo b{font-size:17px}.data-duo strong{display:block;font-size:27px;color:#b4f1db}.data-duo small{display:block}.viz-card svg{height:88px;width:100%;display:block}.small-copy{font-size:15px}.sim-counts{display:grid;grid-template-columns:1.2fr 1fr;gap:4px;align-items:center}.sim-counts b{color:#b4f1db;font-size:21px}.sim-counts span{font-size:12px}.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}.metric-row b{display:block;font-size:25px;color:#b4f1db}.metric-row small{display:block;font-size:11px}.visual-foot{margin-top:10px;font-size:12px;color:#aebdd0;line-height:1.3}.visual-foot p{margin:2px 0}.oral-status{border-left:4px solid #e4b567;background:#252a31;padding:8px 14px;color:#f1cb88;font-size:22px}.oral-data-heading{font-size:25px;margin:12px 0}.oral-gallery{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:14px}.oral-gallery .viz-card{padding:12px}.oral-photo{width:100%;height:220px;object-fit:contain;background:#080e16;border-radius:8px}.oral-gallery p{font-size:19px}.nir-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}.nir-pair img{width:100%;height:220px;object-fit:contain;background:#080e16}.oral-filter{margin-top:14px;padding:12px;border:1px solid #40536d;border-radius:10px;color:#c9d7e8;font-size:20px}
+@media(min-width:1400px){.visual-slide{font-size:22px}.viz-card h2{font-size:27px}.photo-pair img{height:145px}.visual-slide .model-flow>div{font-size:21px}.model-list{font-size:20px}.viz-card{padding:18px}.bar-group>b{font-size:19px}.bar-line{height:25px}.bar-line strong{font-size:18px}.legend{font-size:16px}.number-pair strong{font-size:36px}.viz-card svg{height:110px}.result-line strong{font-size:34px}.visual-foot{font-size:14px}}
+@media(max-width:760px){.visual-header{flex-wrap:wrap}.visual-top,.visual-bottom,.oral-gallery{grid-template-columns:1fr}.visual-header h1{font-size:28px}.visual-slide{padding:0 12px 16px}.oral-photo,.nir-pair img{height:200px}.chart-grid{gap:10px}}
+
+@media(min-width:761px) and (max-width:1399px){.visual-slide{line-height:1.22}.viz-card{padding:11px 14px}.visual-top{gap:12px}.visual-bottom{gap:12px;margin-top:12px}.photo-pair img{height:90px}.viz-card h2{margin-bottom:8px}.hero-number{margin:8px 0}.visual-foot{margin-top:6px;font-size:11px}.model-flow>div{padding:6px;font-size:16px}.visual-header{margin-bottom:10px}.bar-group{margin-bottom:6px}.bar-line{height:18px;margin-top:2px}.takeaway{margin:5px 0!important}#dental-panel .viz-card svg{height:47px}#dental-panel .small-copy{font-size:13px}#dental-panel .data-duo strong{font-size:24px}#dental-panel .visual-top p{margin:4px 0}#dental-panel .visual-top .hero-number{font-size:40px}#dental-panel .model-flow>div{font-size:15px}#dental-panel .visual-bottom .viz-card{padding-top:10px;padding-bottom:10px}#dental-panel .visual-bottom .bar-group>b{font-size:14px}#dental-panel .visual-bottom .bar-line{height:17px}#dental-panel .visual-bottom .legend{margin-bottom:6px}#dental-panel .metric-row{gap:4px}#dental-panel .metric-row b{font-size:24px}}
+.oral-gallery .viz-card{padding:22px 20px;min-height:200px}.oral-gallery .viz-card h2{margin-bottom:18px}.oral-gallery .viz-card p{font-size:22px;line-height:1.55}.oral-gallery{margin:18px 0}.hero-number[data-i18n^="vpopulation"]{font-size:clamp(32px,3.5vw,54px)}html[lang="en"] .hero-number[data-i18n^="vpopulation"]{font-size:clamp(27px,2.7vw,44px)}.oral-count{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:18px 0}.oral-count strong{font-size:28px;color:#b4f1db}.oral-count span{font-size:20px;color:#d9e3ef}.oral-gallery .viz-card{min-height:180px}
+#dr-panel .dr-focus{display:grid;grid-template-columns:1fr 1.05fr;gap:8px;margin:0 0 8px}
+#dr-panel .dr-focus>div{background:#101925;border-radius:10px;padding:7px 10px 6px}
+#dr-panel .dr-focus>div>span{display:block;font-size:14px;font-weight:700;color:#f4f1ea}
+#dr-panel .dr-row{display:grid;grid-template-columns:4.6em auto 1fr;align-items:baseline;gap:8px;margin:5px 0 0}
+#dr-panel .dr-row i{font-style:normal;font-size:14px;font-weight:700;color:#d5dde8}
+#dr-panel .dr-point{margin:0 0 8px;font-size:clamp(20px,1.7vw,28px);font-weight:800;line-height:1.25;color:#f1cb88}
+#dr-panel .dr-row b{font-size:clamp(28px,2.4vw,40px);font-weight:800;letter-spacing:-0.03em;color:#5ef0c0;line-height:1}
+#dr-panel .dr-row em{font-style:normal;font-size:14px;font-weight:700;color:#f0b56a}
+#dr-panel .legend{display:flex;align-items:center;margin:2px 0 0;gap:22px;font-size:clamp(18px,1.45vw,24px);font-weight:800}
+#dr-panel .legend>span:before{width:16px;height:16px;margin-right:8px}
+#dr-panel .legend>span:before,#dr-panel .bar-line i{background:#2ee6a6}
+#dr-panel .legend>.paper-dot:before,#dr-panel .bar-line.paper i{background:#f0a04b}
+#dr-panel .bar-line{height:14px}
+#dr-panel .bar-group{margin-bottom:2px}
+#dr-panel .chart-grid{grid-template-columns:1fr;gap:4px}
+#dr-panel .photo-pair img{height:78px}
+#dr-panel .photo-pair figcaption{font-size:13px;font-weight:700;color:#f4f1ea;text-align:center}
+#dr-panel .dr-grades{display:flex;flex-wrap:wrap;gap:4px;margin:7px 0 0;padding:0;list-style:none}
+#dr-panel .dr-grades li{font-size:14px;font-weight:700;line-height:1.15;color:#f4f1ea;background:#101925;border-radius:999px;padding:3px 8px}
+#dr-panel .dr-switch{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+#dr-panel .dr-switch button{font:inherit;font-weight:800;font-size:16px;color:#d5dbe3;background:#192331;border:1px solid #374b65;border-radius:999px;padding:8px 14px;cursor:pointer}
+#dr-panel .dr-switch button[aria-selected="true"]{color:#1a2230;background:#f1cb88;border-color:#f1cb88}
+#dr-panel .dr-pane[hidden]{display:none}
+#dr-panel #dr-overview[hidden],#dr-panel #dr-detail[hidden]{display:none}
+#dr-panel .dr-open{font:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit;background:transparent;border:0;padding:0;cursor:pointer}
+#dr-panel #dr-overview h1{display:flex;align-items:baseline;flex-wrap:wrap}
+#dr-panel button.lc-back{font:inherit;cursor:pointer;background:transparent}
+#dr-panel .dr-spec{display:grid;gap:8px;margin-top:8px}
+#dr-panel .dr-spec b{display:block;color:#b4f1db;font-size:18px}
+#dr-panel .dr-spec span{display:block;color:#d5dde8;font-size:15px;line-height:1.35}
+#dr-panel .dr-pane .visual-top{grid-template-columns:1fr 1fr 1fr}
+#dr-panel .dr-tune{margin:0 0 14px;padding:16px 16px 12px;background:#141b27;border-radius:16px}
+#dr-panel .dr-tune h2{margin:0 0 6px;font-size:clamp(20px,1.5vw,26px)}
+#dr-panel .dr-tune>p{margin:0 0 10px;color:#d5dde8;line-height:1.45}
+#dr-panel .dr-tune-wrap{overflow-x:auto}
+#dr-panel .dr-tune table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.4}
+#dr-panel .dr-tune th,#dr-panel .dr-tune td{border-bottom:1px solid #31455f;padding:8px 10px;text-align:left;vertical-align:top;white-space:normal;background:transparent;color:#d5dde8}
+#dr-panel .dr-tune thead th{color:#f1cb88;font-weight:800;background:#1c2636}
+#dr-panel .dr-tune td:first-child{font-weight:800;color:#f4f1ea}
+#dr-panel .dr-chosen{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+#dr-panel .dr-chosen article{background:#101925;border-radius:12px;padding:12px 14px}
+#dr-panel .dr-tune h3{margin:14px 0 0;font-size:18px}
+#dr-panel .dr-facts{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:5px}
+#dr-panel .dr-facts li{display:grid;grid-template-columns:4.6em 1fr;gap:8px;align-items:baseline}
+#dr-panel .dr-facts b{color:#f1cb88}
+#dr-panel .dr-who{margin:0 0 8px;font-weight:700;color:#d5dde8}
+#dr-panel .dr-chosen b{display:block;color:#b4f1db;margin-bottom:4px}
+#dr-panel .dr-tune .note{color:#9aabbe;font-size:14px;margin:8px 0 0}
+@media(max-width:760px){#dr-panel .dr-chosen{grid-template-columns:1fr}}
+#dental-panel .dr-switch{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+#dental-panel .dr-switch button{font:inherit;font-weight:800;font-size:16px;color:#d5dbe3;background:#192331;border:1px solid #374b65;border-radius:999px;padding:8px 14px;cursor:pointer}
+#dental-panel .dr-switch button[aria-selected="true"]{color:#1a2230;background:#f1cb88;border-color:#f1cb88}
+#dental-panel .dr-pane[hidden],#dental-panel #dental-overview[hidden],#dental-panel #dental-detail[hidden]{display:none}
+#dental-panel .dr-open{font:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit;background:transparent;border:0;padding:0;cursor:pointer}
+#dental-panel #dental-overview h1{display:flex;align-items:baseline;flex-wrap:wrap}
+#dental-panel button.lc-back{font:inherit;cursor:pointer;background:transparent}
+#dental-panel .dr-facts{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:5px}
+#dental-panel .dr-facts li{display:grid;grid-template-columns:max-content 1fr;gap:10px;align-items:baseline}
+#dental-panel .dr-pane .dr-facts li{display:block}
+#dental-panel .dr-pane .dr-facts b{display:inline;margin-right:8px}
+#dental-panel .dr-facts b{color:#f1cb88;font-variant-numeric:tabular-nums}
+#dental-panel .opg-note{margin:8px 0 0;color:#d5dde8}
+#dental-panel .dr-pane .visual-top{grid-template-columns:1fr 1fr 1fr}
+#dental-panel .dr-pane .visual-top + .visual-top,#dental-panel .opg-wide{margin-top:12px}
+#dental-panel .viz-card h3{margin:10px 0 4px;font-size:16px;color:#f4f1ea}
+#dental-panel .opg-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+#dental-panel .opg-table th,#dental-panel .opg-table td{padding:4px 6px;border-bottom:1px solid #31445d;text-align:left;white-space:normal;background:transparent;color:#d5dde8}
+#dental-panel .opg-table th{color:#f1cb88}
+</style></head>
+  <body class="liver-doc show-cover">
+    <span id="cover" class="tab-anchor"></span>
+    <span id="intro" class="tab-anchor"></span>
+    <a class="skip" href="#content" data-i18n="skip">跳到內容</a>
+    <header class="wrap top">
+      <a class="back to-cover" href="#cover" data-liver-tab="cover" data-i18n="backCover">回封面</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="zh" aria-pressed="true" data-i18n="langZh">中文</button>
+        <button type="button" data-lang="zhHans" aria-pressed="false" data-i18n="langCn">簡中</button>
+        <button type="button" data-lang="en" aria-pressed="false" data-i18n="langEn">English</button>
+        <button type="button" data-lang="ja" aria-pressed="false" data-i18n="langJa">日本語</button>
+      </div>
+    </header>
+    <main id="content" class="wrap">
+      <div class="liver-tabs" role="tablist" data-i18n-aria="tabsLabel" aria-label="內容分頁">
+        <a role="tab" id="tab-intro" href="#intro" data-liver-tab="intro" aria-controls="intro-panel" aria-selected="false" data-i18n="tabIntro">自我介紹</a>
+      </div>
+
+      <section id="cover-panel" class="liver-panel active" aria-labelledby="cover-title" data-liver-page="cover">
+        <div class="cover" data-liver-tab="intro">
+          <h1 id="cover-title"><span data-i18n="coverTitleLead">輕量化人工智慧</span><button type="button" id="cover-stat-toggle" class="cover-stat-toggle" aria-expanded="false" aria-controls="cover-stat" data-i18n="coverHit">肝癌</button><span data-i18n="coverTitleTail">CT影像與病理分析之研究</span></h1>
+          <div id="cover-stat" class="cover-stat" hidden>
+            <p class="cover-stat-kicker" data-i18n="coverStatKicker">2024 · GLOBOCAN</p>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th data-i18n="coverStatCases">新病例</th>
+                  <th data-i18n="coverStatDeaths">死亡</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th data-i18n="coverStatWorld">全世界</th>
+                  <td><b>843,045</b> <span data-i18n="coverStatWorldCaseRank">第 7</span></td>
+                  <td><b>732,489</b> <span data-i18n="coverStatWorldDeathRank">第 3</span></td>
+                </tr>
+                <tr>
+                  <th data-i18n="coverStatJapan">日本</th>
+                  <td><b>44,878</b> <span data-i18n="coverStatJapanCaseRank">第 8</span></td>
+                  <td><b>29,842</b> <span data-i18n="coverStatJapanDeathRank">第 5</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cover-name" data-i18n="coverName">研究生：鍾勛名</p>
+          <p class="cover-advisor" data-i18n="coverAdvisor">指導教授：彭俊澄</p>
+          <p class="cover-line" data-i18n="coverLine">大三開始接觸人工智慧，目前在軟體面學習智慧醫療，希望有機會學習，請指導。</p>
+        </div>
+      </section>
+
+      <section id="intro-panel" class="liver-panel" role="tabpanel" aria-labelledby="tab-intro" data-liver-page="intro">
+        <div class="life-tree">
+          <div class="time-row">
+            <section class="time-col" aria-labelledby="past-title">
+              <h2 id="past-title" data-i18n="past">過去</h2>
+              <div class="time-frame">
+              <div class="trunks">
+                <div class="trunk topic-retina">
+                  <a class="node liver-entry" href="#dr" data-liver-tab="dr" data-i18n="retina">糖尿病視網膜病變</a>
+                  <div class="drop drop-two">
+                    <span class="node leaf leaf-wrap" data-i18n="contest">2026 全國專題競賽・生技醫農群第三名</span>
+                    <span class="node leaf leaf-code" data-i18n="iihmspDr">IIHMSP-2025 會議論文</span>
+                  </div>
+                </div>
+                <div class="trunk topic-prostate">
+                  <a class="node liver-entry" href="#prostate" data-liver-tab="prostate" data-i18n="prostate">攝護腺影像辨識</a>
+                  <div class="drop drop-two">
+                    <span class="node leaf" data-i18n="taichuang">台創比賽</span>
+                    <span class="node leaf leaf-code" data-i18n="iihmsp">IIHMSP-2025 會議論文</span>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </section>
+            <section class="time-col" aria-labelledby="now-title">
+              <h2 id="now-title" data-i18n="now">現在</h2>
+              <div class="time-frame">
+              <div class="trunks">
+                <div class="trunk topic-retina">
+                  <a class="node liver-entry" href="#dr" data-liver-tab="dr" data-i18n="retina">糖尿病視網膜病變</a>
+                  <div class="drop drop-two">
+                    <span class="node leaf leaf-survey" data-i18n="survey">撰寫 survey 論文</span>
+                    <span class="node leaf leaf-code" data-i18n="vtca">VTCA-2026 會議論文</span>
+                  </div>
+                </div>
+                <div class="trunk topic-tooth">
+                  <span class="node" data-i18n="tooth">彤心牙科</span>
+                  <div class="drop drop-two">
+                    <a class="node leaf liver-entry" href="#dental" data-liver-tab="dental" data-i18n="senior">大四專題</a>
+                    <span class="node leaf" data-i18n="site">網站建置</span>
+                  </div>
+                </div>
+                <div class="trunk topic-hand">
+                  <a class="node liver-entry" href="#oral" data-liver-tab="oral" data-i18n="hand">手持式口腔裝置</a>
+                </div>
+                <div class="trunk topic-liver">
+                  <a class="node liver-entry" href="#liver" data-liver-tab="liver" data-i18n="liver">肝癌</a>
+                  <div class="drop drop-two">
+                    <span class="node leaf" data-i18n="ct">CT影像偵測</span>
+                    <span class="node leaf leaf-survey" data-i18n="survey">撰寫 survey 論文</span>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </section>
+            <section class="time-col" aria-labelledby="next-title">
+              <h2 id="next-title" data-i18n="future">未來</h2>
+              <div class="time-frame">
+              <div class="trunks">
+                <div class="trunk topic-liver">
+                  <a class="node liver-entry" href="#liver" data-liver-tab="liver" data-i18n="liver">肝癌</a>
+                  <div class="drop">
+                    <button type="button" class="node leaf" id="path-toggle" aria-expanded="false" aria-controls="path-bubble" data-i18n="pathology">病理影像分級</button>
+                    <p id="path-bubble" class="path-bubble" hidden>
+                      <span data-i18n="pathNote">希望把前面的輕量化概念繼續用在這裡。</span>
+                      <span class="path-line" data-i18n="pathBase">要對比論文：PaSegNet 約 2,300 萬</span>
+                      <span class="path-line path-half" data-i18n="pathHalf">希望可以減少約一半</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <p class="tree-floor" data-i18n="japan">未來：希望去日本交換留學</p>
+            </section>
+          </div>
+        </div>
+      </section>
+    <section id="liver-panel" class="liver-panel" data-liver-page="liver" aria-labelledby="liver-detail-title"><div class="lc-slide"><a class="lc-back" href="#intro" data-liver-tab="intro" data-i18n="lc0">返回自我介紹</a><header class="lc-heading"><span data-i18n="lc16">研究規劃</span><h1 id="liver-detail-title" data-i18n="lc1">肝癌｜研究方向總覽</h1></header><div class="lc-discovery"><h2 data-i18n="lc2">文獻回顧與發現</h2><p data-i18n="lc3">整理 2013–2025 年間的 67 篇肝癌 AI 論文後，我發現研究多聚焦於個別任務，較少考量 CT 與病理分析在診療流程中的銜接。</p></div><div class="lc-objective"><h2 data-i18n="lc4">研究目標</h2><p data-i18n="lc5">以輕量化與模組化設計，探索 CT 與病理分析的互補性，並降低運算需求。</p></div><div class="lc-stages"><article><h2 data-i18n="lc6">第一階段｜CT 影像分析</h2><ul><li data-i18n="lc7">肝臟與腫瘤定位、分割</li><li data-i18n="lc8">體積測量與病灶分類</li></ul><p class="lc-gain" data-i18n="lc17">手動 CT 輪廓勾勒與體積計算：35 分鐘 → 2.1 分鐘</p></article><article><h2 data-i18n="lc9">第二階段｜病理影像分析</h2><ul><li data-i18n="lc10">組織特徵分析與病理分級</li><li data-i18n="lc11">探索預後與復發風險評估</li></ul><p class="lc-gain" data-i18n="lc18">對標 TCGA-LIHC，病理切片（WSI）審閱：10 分鐘 → 每區塊 7 秒</p></article></div><footer class="lc-footer"><div><h2 data-i18n="lc12">目前進度</h2><p data-i18n="lc13">撰寫 Survey 論文，規劃兩階段研究架構。</p></div><div><h2 data-i18n="lc14">未來規劃</h2><p data-i18n="lc15">希望赴日本交換留學，進一步學習病理影像分析與輕量化 AI。</p></div></footer></div></section><section id="dr-panel" class="liver-panel" data-liver-page="dr" aria-labelledby="dr-title"><div class="visual-slide"><div id="dr-overview"><header class="visual-header"><a class="lc-back" href="#intro" data-liver-tab="intro" data-i18n="dr0">返回自我介紹</a><h1 id="dr-title"><button type="button" class="dr-open" id="dr-open" aria-expanded="false" aria-controls="dr-detail" data-i18n="retina">糖尿病視網膜病變</button><span data-i18n="dr1tail">｜研究成果</span></h1></header><div class="visual-top"><article class="viz-card"><h2 data-i18n="vapp">01 應用</h2><strong class="hero-number" data-i18n="vpopulationdr">5.89 億</strong><p data-i18n="vpeople">全球糖尿病成人（20–79 歲，2024）</p><p data-i18n="vgoal">輔助眼底篩檢與嚴重度分級</p></article><article class="viz-card"><h2 data-i18n="vdata">02 資料</h2><div class="photo-pair"><figure><img src="assets/dr-9-0.jpg" alt="0 無病變"><figcaption data-i18n="drG0">0 無病變</figcaption></figure><figure><img src="assets/dr-9-4.jpg" alt="4 增殖性"><figcaption data-i18n="drG4">4 增殖性</figcaption></figure></div><div class="data-stamp"><strong>3,662</strong> APTOS 2019</div><ul class="dr-grades"><li data-i18n="drG0">0 無病變</li><li data-i18n="drG1">1 輕度</li><li data-i18n="drG2">2 中度</li><li data-i18n="drG3">3 重度</li><li data-i18n="drG4">4 增殖性</li></ul></article><article class="viz-card"><h2 data-i18n="vmodel">03 建模</h2><div class="model-flow"><div><span data-i18n="vfundus">眼底影像</span></div><span class="arrow">→</span><div><span data-i18n="vdrmodels">兩分類：SqueezeNet 1.1</span></div></div><b data-i18n="vdrfive">五分類</b><p class="model-list">Xception · GoogLeNet<br>EfficientNetB4 · EfficientNetV2S</p></article></div><div class="visual-bottom"><article class="viz-card"><h2 data-i18n="vsim">04 模擬</h2><div class="number-pair"><div><strong>1,098</strong><span>COMBINATIONS</span></div><div><strong>7,283</strong><span>RUNS</span></div></div><p data-i18n="v500">最佳參數 → 500 RUNS</p><div class="result-line"><span>SqueezeNet</span><strong>98.18%</strong><span>GoogLeNet</span><strong>83.65%</strong></div><small data-i18n="vmean">本研究｜500-RUN 平均</small></article><article class="viz-card"><h2 data-i18n="vanalysis">05 分析</h2><p class="dr-point" data-i18n="drPoint">準確率接近文獻，參數少 94.6%／71.1%</p><div class="dr-focus"><div><span data-i18n="drAcc">準確率</span><p class="dr-row"><i data-i18n="drBin">兩分類</i><b>98.18%</b><em data-i18n="drPaperBin">文獻 98.36%</em></p><p class="dr-row"><i data-i18n="drFive">五分類</i><b>83.65%</b><em data-i18n="drPaperFive">文獻 84.36%</em></p></div><div><span data-i18n="vreduction">參數減少</span><p class="dr-row"><i data-i18n="drBin">兩分類</i><b>94.6%</b><em>1.24M vs 22.8M</em></p><p class="dr-row"><i data-i18n="drFive">五分類</i><b>71.1%</b><em>6.6M vs 22.8M</em></p></div></div><div class="chart-grid"><div><div class="bar-group"><b data-i18n="drChartParBin">參數量 · 兩分類</b><div class="bar-line ours"><i style="width:5.438596491228069%"></i><strong>1.24M</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>22.8M</strong></div></div><div class="bar-group"><b data-i18n="drChartParFive">參數量 · 五分類</b><div class="bar-line ours"><i style="width:28.947368421052627%"></i><strong>6.6M</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>22.8M</strong></div></div></div></div><div class="legend"><span class="ours-dot"><span data-i18n="vmean">本研究｜500-RUN 平均</span></span><span class="paper-dot"><span data-i18n="vbest">文獻｜單次最高</span></span></div></article></div><footer class="visual-foot"><p data-i18n="dr19">[1] Islam et al., Computers in Biology and Medicine, 146, 105602 (2022)。人口：IDF Diabetes Atlas 2025。</p><p data-i18n="dr18">本研究為 500 次平均，文獻為單次最佳；依簡報所列數據對照，非相同實驗流程下的重跑比較。</p></footer></div><div id="dr-detail" hidden><header class="visual-header"><button type="button" class="lc-back" id="dr-detail-back" data-i18n="drBackOverview">返回研究成果</button><a class="lc-back" href="#intro" data-liver-tab="intro" data-i18n="dr0">返回自我介紹</a><h1><span data-i18n="dr1">糖尿病視網膜病變｜研究成果</span></h1></header><div class="dr-switch" role="tablist"><button type="button" role="tab" id="dr-tab-app" aria-selected="true" aria-controls="dr-pane-app" data-dr-pane="app" data-i18n="vapp">01 應用</button><button type="button" role="tab" id="dr-tab-data" aria-selected="false" aria-controls="dr-pane-data" data-dr-pane="data" data-i18n="vdata">02 資料</button><button type="button" role="tab" id="dr-tab-model" aria-selected="false" aria-controls="dr-pane-model" data-dr-pane="model" data-i18n="vmodel">03 建模</button><button type="button" role="tab" id="dr-tab-sim" aria-selected="false" aria-controls="dr-pane-sim" data-dr-pane="sim" data-i18n="vsim">04 模擬</button><button type="button" role="tab" id="dr-tab-analysis" aria-selected="false" aria-controls="dr-pane-analysis" data-dr-pane="analysis" data-i18n="vanalysis">05 分析</button></div><div id="dr-pane-app" class="dr-pane" role="tabpanel" aria-labelledby="dr-tab-app"><div class="visual-top"><article class="viz-card"><h2 data-i18n="vapp">01 應用</h2><strong class="hero-number" data-i18n="vpopulationdr">5.89 億</strong><p data-i18n="vpeople">全球糖尿病成人（20–79 歲，2024）</p><p data-i18n="drAppGoal">偵測是否有糖尿病視網膜病變，輔助眼底篩檢與五級分級。</p><ul class="dr-facts"><li><b data-i18n="drAppBin">兩分類</b><span data-i18n="drAppBinV">有沒有病變</span></li><li><b data-i18n="drAppFive">五分類</b><span data-i18n="drAppFiveV">0–4 嚴重度</span></li><li><b data-i18n="drAppHow">做法</b><span data-i18n="drAppHowV">輕量化模型，大規模篩檢</span></li></ul></article><article class="viz-card"><h2 data-i18n="drAppWhy">為什麼做</h2><p data-i18n="drAppDoc">一般眼科醫師準確率 46.3%，視網膜專科 62.3%。</p><p data-i18n="drAppTime">完全依專業知識判讀約 50.92 秒。</p><p data-i18n="drAppPrevent">簡報所寫：早期檢測可預防 95% 的嚴重視力喪失。</p></article><article class="viz-card"><h2 data-i18n="drAppScale">病變規模</h2><p data-i18n="drAppWorld">全球糖尿病視網膜病變患者約 1.03 億，2045 年預估 1.6 億。</p><p data-i18n="drAppAfrica">非洲盛行率 35.90%，2045 年患者推估約 5,500 萬。</p></article></div><footer class="visual-foot"><p data-i18n="drAppFoot">醫師判讀：Sayres et al., Ophthalmology, 2019。病變人口：Teo et al., Ophthalmology, 2021。糖尿病成人：IDF Diabetes Atlas 2025。</p></footer></div><div id="dr-pane-data" class="dr-pane" role="tabpanel" hidden aria-labelledby="dr-tab-data"><div class="visual-top"><article class="viz-card"><h2 data-i18n="vdata">02 資料</h2><div class="data-stamp"><strong>3,662</strong> APTOS 2019</div><ul class="dr-facts"><li><b data-i18n="drLabPlat">平台</b><span data-i18n="drDataPlat">Kaggle</span></li><li><b data-i18n="drLabPlace">場景</b><span data-i18n="drDataPlace">印度農村診所</span></li><li><b data-i18n="drLabPrep">處理</b><span data-i18n="drDataPrep">縮放對齊，加強對比</span></li><li><b data-i18n="drLabSmall">小規模</b><span data-i18n="drDataSmall">每類平均約 150 張</span></li><li><b data-i18n="drLabFull">完整</b><span data-i18n="drDataFull">3,662 張</span></li></ul></article><article class="viz-card"><h2 data-i18n="drDataGrades">五級</h2><div class="photo-pair"><figure><img src="assets/dr-9-0.jpg" alt="0 無病變"><figcaption data-i18n="drG0">0 無病變</figcaption></figure><figure><img src="assets/dr-9-4.jpg" alt="4 增殖性"><figcaption data-i18n="drG4">4 增殖性</figcaption></figure></div><ul class="dr-grades"><li data-i18n="drG0">0 無病變</li><li data-i18n="drG1">1 輕度</li><li data-i18n="drG2">2 中度</li><li data-i18n="drG3">3 重度</li><li data-i18n="drG4">4 增殖性</li></ul><p data-i18n="drDataBalance">無病變約 49.3%，重度約 5.3%。</p></article><article class="viz-card"><h2 data-i18n="drDataWhy">為什麼用這份</h2><ul class="dr-facts"><li><b data-i18n="drLabOrg">發起</b><span data-i18n="drDataOrg">亞太遠程眼科學會</span></li><li><b data-i18n="drLabStd">標準</b><span data-i18n="drDataStdS">國際臨床 DR 嚴重度</span></li><li><b data-i18n="drLabMark">標註</b><span data-i18n="drDataMark">醫師團隊</span></li></ul></article></div></div><div id="dr-pane-model" class="dr-pane" role="tabpanel" hidden aria-labelledby="dr-tab-model"><div class="visual-top"><article class="viz-card"><h2 data-i18n="vmodel">03 建模</h2><div class="model-flow"><div><span data-i18n="vfundus">眼底影像</span></div><span class="arrow">→</span><div><span data-i18n="vdrmodels">兩分類：SqueezeNet 1.1</span></div></div><b data-i18n="vdrfive">五分類</b><p class="model-list">Xception · GoogLeNet<br>EfficientNetB4 · EfficientNetV2S</p><p data-i18n="drModelOpt">優化器用 ADAM、RMSprop，不選 SGDM。</p><p data-i18n="drModelOptWhy">不選 SGDM，因為它的學習率是固定的。ADAM 和 RMSprop 會依每個參數自己調學習率。</p></article><article class="viz-card"><h2 data-i18n="drModelWhy">為什麼選這些</h2><p data-i18n="drModelSq">SqueezeNet 1.1 參數 1.24M，用來看出小模型能到什麼程度。</p><p data-i18n="drModelGo">GoogLeNet 參數 6.6M。簡報對照 APTOS 2019 前列的 Inception-ResNet-v2 55.84M、Inception-v4 42.68M。</p><p data-i18n="drModelEf">EfficientNetB4 是往更高準確率走的一版。EfficientNetV2S 是 2021 的版本，目標是訓練更快、更省資源。</p></article><article class="viz-card"><h2 data-i18n="drModelPick">選定組合</h2><div class="dr-spec"><b data-i18n="drBinBest">兩分類：SqueezeNet + ADAM</b><span data-i18n="drBinSpec">LR 1e-4｜Epoch 15｜Batch 16｜Drop 0.1／每 5 epoch｜β2 0.9｜L2 0.001</span><b data-i18n="drFiveBest">五分類：GoogLeNet + RMSprop</b><span data-i18n="drFiveSpec">LR 1e-4｜Epoch 15｜Batch 16｜Drop 0.1／每 10 epoch｜β2 0.999｜L2 0.0001</span></div></article></div></div><div id="dr-pane-sim" class="dr-pane" role="tabpanel" hidden aria-labelledby="dr-tab-sim"><div class="visual-top"><article class="viz-card"><h2 data-i18n="vsim">04 模擬</h2><div class="number-pair"><div><strong>1,098</strong><span>COMBINATIONS</span></div><div><strong>7,283</strong><span>RUNS</span></div></div><p data-i18n="v500">最佳參數 → 500 RUNS</p><div class="result-line"><span>SqueezeNet</span><strong>98.18%</strong><span>GoogLeNet</span><strong>83.65%</strong></div><small data-i18n="vmean">本研究｜500-RUN 平均</small></article><article class="viz-card"><h2 data-i18n="drSimTen">先以 10-RUN 篩選</h2><p data-i18n="drSimTenBin">兩分類 SqueezeNet + ADAM：平均 98.38%，最高 99.09%。</p><p data-i18n="drSimTenFive">五分類 GoogLeNet + RMSprop：平均 84.35%，最高 86.36%。</p><p data-i18n="drSimTenOther">五分類 EfficientNetV2S + ADAM：平均 85.51%，最高 88.73%。</p></article><article class="viz-card"><h2 data-i18n="drSimNoteTitle">怎麼讀這些數字</h2><p data-i18n="drSimNote">10-RUN 用來選組合。和文獻對照時，用的是 500-RUN 平均，不是 10-RUN，也不是單次最高。</p></article></div><div class="dr-tune"><h2 data-i18n="drPairTitle">SqueezeNet・GoogLeNet 調過的參數</h2><div class="dr-tune-wrap"><table><thead><tr><th data-i18n="drColParam">參數</th><th data-i18n="drColSq">SqueezeNet</th><th data-i18n="drColGo">GoogLeNet</th></tr></thead><tbody><tr><td data-i18n="drRowOpt">優化器</td><td data-i18n="drOptBoth">ADAM、RMSprop</td><td data-i18n="drOptBoth">ADAM、RMSprop</td></tr><tr><td data-i18n="drRowLr">Initial Learning Rate</td><td data-i18n="drSqLr">0.0001</td><td data-i18n="drGoLr">0.0001、0.001</td></tr><tr><td data-i18n="drRowEp">Max Epochs</td><td data-i18n="drSqEp">15</td><td data-i18n="drGoEp">15、30</td></tr><tr><td data-i18n="drRowBs">Mini Batch Size</td><td data-i18n="drSqBs">16</td><td data-i18n="drGoBs">16</td></tr><tr><td data-i18n="drRowDf">Learn Rate Drop Factor</td><td data-i18n="drDropF">0.5、0.1</td><td data-i18n="drDropF">0.5、0.1</td></tr><tr><td data-i18n="drRowDp">Learn Rate Drop Period</td><td data-i18n="drDropP">5、10</td><td data-i18n="drDropP">5、10</td></tr><tr><td data-i18n="drRowB">Squared Gradient Decay Factor（β）</td><td data-i18n="drSqB">0.9、0.999</td><td data-i18n="drGoB">0.9、0.999</td></tr><tr><td data-i18n="drRowL2">L2 Regularization</td><td data-i18n="drL2">0.001、0.0001</td><td data-i18n="drL2">0.001、0.0001</td></tr><tr><td data-i18n="drRowLoss">損失函數</td><td data-i18n="drSqLoss">cross-entropy</td><td data-i18n="drGoLoss">cross-entropy、focal loss γ 2／3.5／8</td></tr></tbody></table></div><h3 data-i18n="drTuneChosen">選進 500 次</h3><div class="dr-chosen"><article><b data-i18n="drBinBest">兩分類：SqueezeNet + ADAM</b><p data-i18n="drBinSpec">LR 0.0001｜Epoch 15｜Batch 16｜Drop 0.1／每 5 epoch｜β 0.9｜L2 0.001</p></article><article><b data-i18n="drFiveBest">五分類：GoogLeNet + RMSprop</b><p data-i18n="drFiveSpec">LR 0.0001｜Epoch 15｜Batch 16｜Drop 0.1／每 10 epoch｜β 0.999｜L2 0.0001</p></article></div></div><div class="dr-tune"><h2 data-i18n="drTuneTitle">其他模型</h2><div class="dr-tune-wrap"><table><thead><tr><th data-i18n="drColParam">參數</th><th data-i18n="drColEf">EfficientNetB4・V2S</th><th data-i18n="drColXc">Xception</th></tr></thead><tbody><tr><td data-i18n="drRowLr">Initial Learning Rate</td><td data-i18n="drEfLr">0.0001、0.001</td><td data-i18n="drXcLr">0.0001、0.001、0.01</td></tr><tr><td data-i18n="drRowEp">Max Epochs</td><td data-i18n="drEfEp">15</td><td data-i18n="drXcEp">15、30</td></tr><tr><td data-i18n="drRowBs">Mini Batch Size</td><td data-i18n="drEfBs">16</td><td data-i18n="drXcBs">8、16、32</td></tr><tr><td data-i18n="drRowDf">Learn Rate Drop Factor</td><td data-i18n="drDropF">0.5、0.1</td><td data-i18n="drDropF">0.5、0.1</td></tr><tr><td data-i18n="drRowDp">Learn Rate Drop Period</td><td data-i18n="drDropP">5、10</td><td data-i18n="drDropP">5、10</td></tr><tr><td data-i18n="drRowB">Squared Gradient Decay Factor（β）</td><td data-i18n="drEfB">0.9、0.999</td><td data-i18n="drXcB">0.99、0.97、0.95</td></tr><tr><td data-i18n="drRowL2">L2 Regularization</td><td data-i18n="drL2">0.001、0.0001</td><td data-i18n="drXcL2">—</td></tr><tr><td data-i18n="drRowLoss">損失函數</td><td data-i18n="drEfLoss">focal loss γ 2／3.5／8</td><td data-i18n="drXcLoss">cross-entropy。可加 64／128</td></tr></tbody></table></div></div></div><div id="dr-pane-analysis" class="dr-pane" role="tabpanel" hidden aria-labelledby="dr-tab-analysis"><article class="viz-card"><h2 data-i18n="vanalysis">05 分析</h2><p class="dr-point" data-i18n="drPoint">準確率接近文獻，參數少 94.6%／71.1%</p><div class="dr-focus"><div><span data-i18n="drAcc">準確率</span><p class="dr-row"><i data-i18n="drBin">兩分類</i><b>98.18%</b><em data-i18n="drPaperBin">文獻 98.36%</em></p><p class="dr-row"><i data-i18n="drFive">五分類</i><b>83.65%</b><em data-i18n="drPaperFive">文獻 84.36%</em></p></div><div><span data-i18n="vreduction">參數減少</span><p class="dr-row"><i data-i18n="drBin">兩分類</i><b>94.6%</b><em>1.24M vs 22.8M</em></p><p class="dr-row"><i data-i18n="drFive">五分類</i><b>71.1%</b><em>6.6M vs 22.8M</em></p></div></div><div class="chart-grid"><div><div class="bar-group"><b data-i18n="drChartParBin">參數量 · 兩分類</b><div class="bar-line ours"><i style="width:5.438596491228069%"></i><strong>1.24M</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>22.8M</strong></div></div><div class="bar-group"><b data-i18n="drChartParFive">參數量 · 五分類</b><div class="bar-line ours"><i style="width:28.947368421052627%"></i><strong>6.6M</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>22.8M</strong></div></div></div></div><div class="legend"><span class="ours-dot"><span data-i18n="vmean">本研究｜500-RUN 平均</span></span><span class="paper-dot"><span data-i18n="vbest">文獻｜單次最高</span></span></div><p class="dr-who" data-i18n="drWho">兩分類 SqueezeNet 1.24M。五分類 GoogLeNet 6.6M。</p><p data-i18n="drLimit">五分類第 3、4 級較難分。無病變約 49.3%，重度約 5.3%，相鄰等級容易混淆。</p></article><footer class="visual-foot"><p data-i18n="dr19">[1] Islam et al., Computers in Biology and Medicine, 146, 105602 (2022)。人口：IDF Diabetes Atlas 2025。</p><p data-i18n="dr18">本研究為 500 次平均，文獻為單次最佳；依簡報所列數據對照，非相同實驗流程下的重跑比較。</p></footer></div></div></div></section>
+<section id="prostate-panel" class="liver-panel" data-liver-page="prostate" aria-labelledby="prostate-title"><div class="visual-slide"><header class="visual-header"><a class="lc-back" href="#intro" data-liver-tab="intro" data-i18n="dr0">返回自我介紹</a><h1 id="prostate-title"><span data-i18n="pc1">攝護腺影像辨識｜研究成果</span></h1></header><div class="visual-top"><article class="viz-card "><h2 data-i18n="vapp">01 應用</h2><strong class="hero-number" data-i18n="vpopulationpc">150 萬</strong><p data-i18n="vpcpeople">全球新病例（2022）</p><p data-i18n="vpcgoal">輕量化影像分類，輔助早期評估</p></article><article class="viz-card "><h2 data-i18n="vdata">02 資料</h2><strong class="dataset-total">5,272</strong><p>TCIA · Prostate-MRI-US-Biopsy</p><div class="split-bar"><i>70%</i><i>30%</i></div><p class="split-label"><span data-i18n="vtrain">訓練</span> 3,690　<span data-i18n="vtest">測試</span> 1,582</p><div class="grade-strip"><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b></div><small data-i18n="vgrades">ROI 1–5｜五級影像分類</small></article><article class="viz-card "><h2 data-i18n="vmodel">03 建模</h2><div class="model-flow"><div>VGG-16<br>MobileNet-V2<br>Inception-V3</div><span class="arrow">→</span><div>ADAM<br>RMSprop<br>SGDM</div></div><p class="selected">MobileNet-V2<br>＋ RMSprop</p></article></div><div class="visual-bottom"><article class="viz-card "><h2 data-i18n="vsim">04 模擬</h2><div class="number-pair"><div><strong>164</strong><span>PARAMETER SETS</span></div><div><strong>1,514</strong><span>RUNS</span></div></div><p data-i18n="v500">最佳參數 → 500 RUNS</p><strong class="hero-number">94.29%<small>±3.53%</small></strong><small data-i18n="vmean">本研究｜500-RUN 平均</small></article><article class="viz-card "><h2 data-i18n="vanalysis">05 分析</h2><div class="legend"><span class="ours-dot"><span data-i18n="vmean">本研究｜500-RUN 平均</span></span><span class="paper-dot"><span data-i18n="vpaper">文獻</span></span></div><div class="chart-grid"><div><div class="bar-group"><b>Accuracy</b><div class="bar-line ours"><i style="width:100.0%"></i><strong>94.29%</strong></div><div class="bar-line paper"><i style="width:86.96574398133417%"></i><strong>82%</strong></div></div></div><div><div class="bar-group"><b>Parameters</b><div class="bar-line ours"><i style="width:2.536231884057971%"></i><strong>3.5M</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>138M</strong></div></div></div></div><div class="number-pair accent"><div><strong>+12.29</strong><span>ACCURACY · pp</span></div><div><strong>−97.5%</strong><span>PARAMETERS</span></div></div></article></div><footer class="visual-foot"><p data-i18n="pc18">對照文獻期刊：Future Generation Computer Systems（Q1）。</p><p data-i18n="pc19">發明專利證書號：I895233</p></footer></div></section><section id="dental-panel" class="liver-panel" data-liver-page="dental" aria-labelledby="dental-title"><div class="visual-slide"><div id="dental-overview"><header class="visual-header"><a class="lc-back" href="#intro" data-liver-tab="intro" data-i18n="dr0">返回自我介紹</a><h1 id="dental-title"><button type="button" class="dr-open" id="dental-open" aria-expanded="false" aria-controls="dental-detail" data-i18n="senior">大四專題</button><span data-i18n="dt1tail">｜輕量化 AI 全景 X 光病症偵測</span></h1></header><div class="visual-top"><article class="viz-card "><h2 data-i18n="vapp">01 應用</h2><strong class="hero-number" data-i18n="vpopulationdental">逾 35 億</strong><p>Oral diseases</p><p data-i18n="vdentalgoal">牙齒定位＋四病症辨識，輔助全口判讀</p></article><article class="viz-card "><h2 data-i18n="vdata">02 資料</h2><div class="data-duo"><div><b>OdontoAI</b><strong>1,819 → 1,598</strong><small>IMAGES · FILTERED</small></div><div><b>DENTEX</b><strong>705</strong><small>IMAGES</small></div></div><div class="split-bar"><i style="width:80%">80%</i><i style="width:20%">20%</i></div><span data-i18n="vtrain">訓練</span> / <span data-i18n="vtest">測試</span><p class="small-copy" data-i18n="opgUsed">模擬用 688 張 OPG、7,160 個 ROI</p></article><article class="viz-card "><h2 data-i18n="vmodel">03 建模</h2><svg viewBox="0 0 240 100" role="img" aria-label="牙齒分割流程示意"><path d="M15 20 Q120 140 225 20" fill="none" stroke="#465971" stroke-width="35"/><rect x="20" y="22" width="22" height="33" rx="8" fill="#e6edf2" stroke="#64d9bf" stroke-width="3"/><rect x="49" y="42" width="22" height="33" rx="8" fill="#e6edf2" stroke="#64d9bf" stroke-width="3"/><rect x="78" y="55" width="22" height="33" rx="8" fill="#e6edf2" stroke="#64d9bf" stroke-width="3"/><rect x="108" y="60" width="22" height="33" rx="8" fill="#e6edf2" stroke="#64d9bf" stroke-width="3"/><rect x="138" y="55" width="22" height="33" rx="8" fill="#e6edf2" stroke="#64d9bf" stroke-width="3"/><rect x="167" y="42" width="22" height="33" rx="8" fill="#e6edf2" stroke="#64d9bf" stroke-width="3"/><rect x="196" y="22" width="22" height="33" rx="8" fill="#e6edf2" stroke="#64d9bf" stroke-width="3"/></svg><div class="model-flow"><div>YOLOv8m-seg</div><span class="arrow">→</span><div>Swin-T</div></div><p>AdamW</p><p class="small-copy"><span data-i18n="vtooth">牙齒定位／分割</span> → <span data-i18n="vdisease">四種病症辨識</span></p><small data-i18n="vdiagram">流程示意</small></article></div><div class="visual-bottom"><article class="viz-card "><h2 data-i18n="vsim">04 模擬</h2><div class="sim-counts"><b>72 × 10</b><span>STAGE 1</span><b>108 / 54 × 10</b><span>STAGE 2</span></div><p data-i18n="v500">最佳參數 → 500 RUNS</p><div class="metric-row"><div><b>93.14%</b><small>ACC ±0.36%</small></div><div><b>63.35%</b><small>F1 ±2.92%</small></div><div><b>91.44%</b><small>AUC ±1.29%</small></div></div><small data-i18n="vmean">本研究｜500-RUN 平均</small></article><article class="viz-card "><h2 data-i18n="vanalysis">05 分析</h2><div class="legend"><span class="ours-dot"><span data-i18n="vmean">本研究｜500-RUN 平均</span></span><span class="paper-dot"><span data-i18n="vpaper">文獻</span></span></div><div class="chart-grid"><div><div class="bar-group"><b>Accuracy</b><div class="bar-line ours"><i style="width:98.37346852555977%"></i><strong>93.14%</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>94.68%</strong></div></div><div class="bar-group"><b>F1</b><div class="bar-line ours"><i style="width:88.93724554260845%"></i><strong>63.35%</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>71.23%</strong></div></div><div class="bar-group"><b>AUC</b><div class="bar-line ours"><i style="width:95.96977329974811%"></i><strong>91.44%</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>95.28%</strong></div></div></div><div><div class="bar-group"><b>Stage 1 · Parameters</b><div class="bar-line ours"><i style="width:59.34782608695652%"></i><strong>27.3M</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>46M</strong></div></div><div class="bar-group"><b>Stage 2 · Parameters</b><div class="bar-line ours"><i style="width:6.363636363636363%"></i><strong>28M</strong></div><div class="bar-line paper"><i style="width:100.0%"></i><strong>440M</strong></div></div><small>28M vs 5 models / 440M</small><p class="takeaway">−40.7% / −93.6%</p></div></div></article></div><footer class="visual-foot"><p data-i18n="dt22">系統實作｜3D Slicer：Box／Mask 切換、人工覆核、圖片與 CSV 匯出。</p><p data-i18n="dt23">文獻：van Nistelrooij et al., BMC Oral Health (2024)。文獻為交叉驗證平均；資料及切分不同。</p></footer></div><div id="dental-detail" hidden><header class="visual-header"><button type="button" class="lc-back" id="dental-detail-back" data-i18n="drBackOverview">返回研究成果</button><a class="lc-back" href="#intro" data-liver-tab="intro" data-i18n="dr0">返回自我介紹</a><h1><span data-i18n="dt1">大四專題｜輕量化 AI 全景 X 光病症偵測</span></h1></header><div class="dr-switch" role="tablist"><button type="button" role="tab" id="opg-tab-app" aria-selected="true" data-opg-pane="app" data-i18n="vapp">01 應用</button><button type="button" role="tab" id="opg-tab-data" aria-selected="false" data-opg-pane="data" data-i18n="vdata">02 資料</button><button type="button" role="tab" id="opg-tab-model" aria-selected="false" data-opg-pane="model" data-i18n="vmodel">03 建模</button><button type="button" role="tab" id="opg-tab-sim" aria-selected="false" data-opg-pane="sim" data-i18n="vsim">04 模擬</button><button type="button" role="tab" id="opg-tab-analysis" aria-selected="false" data-opg-pane="analysis" data-i18n="vanalysis">05 分析</button></div><div id="opg-pane-app" class="dr-pane" role="tabpanel"><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgWhyH">為什麼做</h2><ul class="dr-facts"><li><b data-i18n="opgWhy1L">人口</b><span data-i18n="opgWhy1V">全球逾 35 億人受口腔疾病影響。蛀牙最常見。</span></li><li><b data-i18n="opgWhy2L">惡化</b><span data-i18n="opgWhy2V">沒治療可能變成牙髓炎、根尖病灶，甚至掉牙。</span></li><li><b data-i18n="opgWhy3L">難處</b><span data-i18n="opgWhy3V">解析度低、結構重疊，靠經驗，容易漏診、誤診。</span></li><li><b data-i18n="opgWhy4L">時間</b><span data-i18n="opgWhy4V">判讀平均約 67.89 秒。</span></li><li><b data-i18n="opgWhy5L">醫師</b><span data-i18n="opgWhy5V">經驗較豐富的牙醫，整體診斷效能 63.9%。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgDoH">這套程式</h2><ul class="dr-facts"><li><b data-i18n="opgDo1L">用途</b><span data-i18n="opgDo1V">一鍵看完整口。彩色框標出病灶。</span></li><li><b data-i18n="opgDo2L">介面</b><span data-i18n="opgDo2V">3D Slicer：載入、辨識、Box／Mask、改病症、匯出圖片與 CSV。</span></li><li><b data-i18n="opgDo3L">裝置</b><span data-i18n="opgDo3V">GPU 優先，也可改用 CPU。</span></li><li><b data-i18n="opgDo4L">時間</b><span data-i18n="opgDo4V">架構圖標示推論約 2.89 秒。</span></li><li><b data-i18n="opgGrayL">灰色</b><span data-i18n="opgGrayV">沒過病症門檻，不是健康。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgTwoH">兩階段</h2><ul class="dr-facts"><li><b data-i18n="opgS1h">第一階段</b><span data-i18n="opgS1b">YOLOv8m-seg。框出並分割每顆牙。主排名不看牙號。</span></li><li><b data-i18n="opgS2h">第二階段</b><span data-i18n="opgS2b">Swin-T。蛀牙、深層蛀牙、阻生牙、根尖病灶。</span></li><li><b data-i18n="opgMainL">主線</b><span data-i18n="opgMainV">Combo 14，含未診斷牙，80 epoch。</span></li><li><b data-i18n="opgCtrlL">對照</b><span data-i18n="opgCtrlV">Combo 2，只有病症牙。</span></li><li><b data-i18n="opgWhyTwoL">原因</b><span data-i18n="opgWhyTwoV">先找到牙，再分病症。定位和分類分開。</span></li></ul></article></div><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgDxH">四種病症</h2><ul class="dr-facts"><li><b data-i18n="opgLabCar">蛀牙</b><span data-i18n="opgDxCar">咬合面或鄰接面的病變。</span></li><li><b data-i18n="opgLabDeep">深層蛀牙</b><span data-i18n="opgDxDeep">範圍較大，接近牙髓。</span></li><li><b data-i18n="opgLabImp">阻生牙</b><span data-i18n="opgDxImp">智齒沒有正常萌發。</span></li><li><b data-i18n="opgLabPer">根尖病灶</b><span data-i18n="opgDxPer">牙根尖周圍透光，可能是發炎或囊腫。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgUndxH">未診斷牙</h2><p class="opg-note" data-i18n="opgUndxP">牙號有標、四種病症都沒標，才算未診斷。不是醫師確認的健康牙，訓練時也沒把它當成健康牙。</p><p class="opg-note" data-i18n="opgUndxP2">論文的第三子集本身不是未診斷牙。要比對牙號和病症兩份標註，才對得出來。</p></article><article class="viz-card"><h2 data-i18n="opgCiteH">出處</h2><p class="opg-note" data-i18n="opgCiteApp">人口：GBD 2017，Journal of Dental Research，2020。時間：Pornprasertsuk-Damrongsri 等，BMC Medical Education，2026。醫師效能：Biçengil 等，Diagnostics，2026。</p></article></div></div><div id="opg-pane-data" class="dr-pane" role="tabpanel" hidden><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgD1H">第一階段｜OdontoAI</h2><ul class="dr-facts"><li><b>1,819</b><span data-i18n="opgD1a">張全景片，51,651 顆牙。</span></li><li><b>221</b><span data-i18n="opgD1b">張排除：混合齒列 214、無牙齒標註 7。</span></li><li><b>1,598</b><span data-i18n="opgD1c">張留下。80% 訓練、20% 測試。</span></li><li><b>50,919</b><span data-i18n="opgD1d">顆恆牙。已扣除乳牙與混合齒列。牙位用 FDI。</span></li><li><b data-i18n="opgFromL">來源</b><span data-i18n="opgD1e">巴西臨床。沒有標人種。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgD2H">第二階段｜DENTEX</h2><ul class="dr-facts"><li><b>705</b><span data-i18n="opgD2a">張全景片，9,158 顆牙。</span></li><li><b>80／20</b><span data-i18n="opgD2b">訓練／測試。</span></li><li><b data-i18n="opgFromL">來源</b><span data-i18n="opgD2c">土耳其、瑞士的合作中心。沒有標人種。</span></li><li><b>0.25</b><span data-i18n="opgD2d">牙框和病症框的 IoU 達到才保留。</span></li><li><b>384</b><span data-i18n="opgD2e">外接框加 10% 留白，最短邊 160，存成 384×384。訓練輸入 224×224。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgD3H">模擬用到的筆數</h2><ul class="dr-facts"><li><b>688</b><span data-i18n="opgLabOpg">張 OPG</span></li><li><b>7,160</b><span data-i18n="opgLabRoi">個 ROI</span></li><li><b>3,850</b><span data-i18n="opgLabUndx">未診斷牙</span></li><li><b>3,310</b><span data-i18n="opgLabDis">病症牙</span></li></ul><p class="opg-note" data-i18n="opgFold">十折都是訓練 550 張、測試 138 張。</p></article></div><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgMarkH">標註次數</h2><p class="opg-note" data-i18n="opgMulti">一顆牙可以有多個病症，加總不是 3,310。</p><ul class="dr-facts"><li><b>2,139</b><span data-i18n="opgLabCar">蛀牙</span></li><li><b>499</b><span data-i18n="opgLabDeep">深度蛀牙</span></li><li><b>581</b><span data-i18n="opgLabImp">阻生牙</span></li><li><b>149</b><span data-i18n="opgLabPer">根尖病變</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgMultiH">同一顆牙的多種病</h2><ul class="dr-facts"><li><b>33</b><span data-i18n="opgM1">深層蛀牙＋根尖病灶</span></li><li><b>10</b><span data-i18n="opgM2">蛀牙＋根尖病灶</span></li><li><b>8</b><span data-i18n="opgM3">蛀牙＋深層蛀牙</span></li><li><b>5</b><span data-i18n="opgM4">蛀牙＋阻生牙</span></li><li><b>1</b><span data-i18n="opgM5">蛀牙＋深層蛀牙＋根尖病灶</span></li></ul><p class="opg-note" data-i18n="opgMsum">合計 57 顆：56 顆兩種病，1 顆三種病。</p></article><article class="viz-card"><h2 data-i18n="opgTestH">測試集</h2><p class="opg-note" data-i18n="opgSeed">seed 42：1,429 個 ROI。未診斷 768、蛀牙 430、深度蛀牙 96、阻生牙 120、根尖病變 30。</p><p class="opg-note" data-i18n="opgPaperAug">比較論文有做左右翻轉、縮放，以及把牙齒貼到對側同一牙位。這次沒做。</p></article></div></div><div id="opg-pane-model" class="dr-pane" role="tabpanel" hidden><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgWhyMH">為什麼選這些</h2><ul class="dr-facts"><li><b>YOLOv8m-seg</b><span data-i18n="opgWhyY">DENTEX 冠軍 Sjtu-seiee-426 用的同款。</span></li><li><b>Swin-T</b><span data-i18n="opgWhyS">論文用 Swin-B。這裡用同家族較小的模型。</span></li><li><b>AdamW</b><span data-i18n="opgWhyA">和比較論文用同一個優化器。</span></li><li><b data-i18n="opgOneL">一個模型</b><span data-i18n="opgOneV">同時判四種病。論文是四個單病症模型，再加一個多病症模型。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgDiffH">和論文的差別</h2><ul class="dr-facts"><li><b data-i18n="opgS1h">第一階段</b><span data-i18n="opgDiff1">YOLO 預測牙齒多邊形。論文是 Mask DINO。</span></li><li><b>27.3M</b><span data-i18n="opgDiff2">對論文 46M，少 40.65%。</span></li><li><b>28M</b><span data-i18n="opgDiff3">對論文五個 Swin-B 合計 440M，少 93.64%。</span></li><li><b data-i18n="opgUndxL">未診斷</b><span data-i18n="opgDiff4">沒有當成健康牙放進訓練。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgPickH">選定的組合</h2><ul class="dr-facts"><li><b>Combo 12</b><span data-i18n="opgC12">Box 7.5、LR 0.001、WD 0.1、動量 0.937、cosine、100 epoch。</span></li><li><b data-i18n="opgC12rL">名次</b><span data-i18n="opgC12r">15 種指標搭配，平均名次 1.07。前五名 15／15，第一名 14／15。</span></li><li><b>Combo 14</b><span data-i18n="opgC14">80 epoch、two_hidden、Batch 64、LR 0.0001、WD 0.1、β1 0.85、β2 0.999。</span></li><li><b data-i18n="opgC14rL">名次</b><span data-i18n="opgC14r">4,095 種搭配，平均名次 4.75。第一名 2,056／4,095，前五名 2,301／4,095。</span></li></ul><p class="opg-note" data-i18n="opgC2">對照 Combo 2 是 108 組裡，最弱病症平均 F1 最高的一組，50.84%。Combo 68 平均 F1 72.03%，比 71.88% 高約 0.15，但深度蛀牙較差，所以當備選。</p></article></div><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgG1H">第一階段搜過的參數</h2><p class="opg-note" data-i18n="opgG1n">72 組，每組 10 次，100 epoch。</p><ul class="dr-facts"><li><b>Box</b><span>7.5、10</span></li><li><b>LR</b><span>0.01、0.001、0.0001</span></li><li><b data-i18n="opgMomL">動量</b><span>(0.937, 0.999)、(0.9, 0.999)</span></li><li><b>WD</b><span>0.1、0.01、0.001</span></li><li><b data-i18n="opgSchL">排程</b><span data-i18n="opgSchV">linear、cosine</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgG2H">第二階段搜過的參數</h2><p class="opg-note" data-i18n="opgG2n">只有病症牙 108 組。加入未診斷牙時 Batch 固定 64，54 組。每組 10 次，記錄 40 和 80 epoch。</p><ul class="dr-facts"><li><b>Batch</b><span>64、128</span></li><li><b data-i18n="opgHeadL">分類頭</b><span data-i18n="opgHeadV">linear，或 two_hidden：768 → 384 → 四病症</span></li><li><b>LR</b><span>0.0001、0.001、0.01</span></li><li><b>WD</b><span>0.001、0.01、0.1</span></li><li><b>β1／β2</b><span data-i18n="opgBetaV">0.85、0.90、0.95。β2 固定 0.999。</span></li></ul><p class="opg-note" data-i18n="opgGridN">108＝2×2×3×3×3。54＝1×2×3×3×3。</p></article><article class="viz-card"><h2 data-i18n="opgHideH">分類頭</h2><p class="opg-note" data-i18n="opgHideP">linear 沒有隱藏層，直接輸出四種病。two_hidden 先到 768，再減半到 384，然後輸出。768 對齊 Swin-T 的特徵長度。</p><p class="opg-note" data-i18n="opgBetaP">β1 以 0.90 為中心，上下各 0.05。係數要在 0 和 1 之間，所以沒有用十倍級距。</p></article></div></div><div id="opg-pane-sim" class="dr-pane" role="tabpanel" hidden><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgRunH">跑了多少</h2><ul class="dr-facts"><li><b>72 × 10</b><span data-i18n="opgRun1">第一階段，100 epoch。</span></li><li><b>108 × 10</b><span data-i18n="opgRun2">第二階段，只有病症牙。</span></li><li><b>54 × 10</b><span data-i18n="opgRun3">第二階段，加入未診斷牙。</span></li><li><b>500</b><span data-i18n="opgRun4">次。沿用 Combo 14，不是把 54 組再各跑 500 次。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgSimSh">小規模・含未診斷牙</h2><ul class="dr-facts"><li><b>93.04 ± 0.57</b><span>Accuracy</span></li><li><b>63.33 ± 3.68</b><span>F1</span></li><li><b>91.16 ± 1.52</b><span>AUC</span></li></ul><p class="opg-note" data-i18n="opgSimSnote">10 次平均。單位是 %。</p></article><article class="viz-card"><h2 data-i18n="opgSimBh">大規模・500 次</h2><ul class="dr-facts"><li><b>93.14 ± 0.36</b><span>Accuracy</span></li><li><b>63.35 ± 2.92</b><span>F1</span></li><li><b>91.44 ± 1.29</b><span>AUC</span></li></ul><p class="opg-note" data-i18n="opgSimBnote">論文是 94.68、71.23、95.28。標準差是樣本標準差。</p></article></div><div class="opg-wide"><article class="viz-card"><h2 data-i18n="opgS1tab">第一階段・10 次・不看牙號</h2><table class="opg-table"><thead><tr><th data-i18n="opgThM">指標</th><th data-i18n="opgThO">本研究</th><th data-i18n="opgThP">文獻</th></tr></thead><tbody><tr><td>Class-agnostic FROC</td><td>98.91 ± 0.36</td><td>99.80</td></tr><tr><td>mAP@0.50</td><td>99.57 ± 0.15</td><td>99.00</td></tr><tr><td>mAP@0.75</td><td>95.29 ± 0.72</td><td>98.90</td></tr><tr><td>mAP@0.50–0.95</td><td>73.52 ± 0.59</td><td>84.90</td></tr></tbody></table><h3 data-i18n="opgS1fdi">同一組，但要認對牙號</h3><table class="opg-table"><thead><tr><th data-i18n="opgThM">指標</th><th data-i18n="opgThO">本研究</th><th data-i18n="opgThP">文獻</th></tr></thead><tbody><tr><td>FDI FROC</td><td>57.47 ± 7.15</td><td>98.80</td></tr><tr><td>FDI mAP@0.50</td><td>85.10 ± 3.18</td><td>99.30</td></tr><tr><td>FDI mAP@0.75</td><td>81.43 ± 3.07</td><td>98.50</td></tr><tr><td>FDI mAP@0.50–0.95</td><td>63.29 ± 2.29</td><td>84.80</td></tr></tbody></table><p class="opg-note" data-i18n="opgS1note">Combo 12。論文是 5 折交叉驗證的平均。資料和切分不同。</p></article></div><div class="opg-wide"><article class="viz-card"><h2 data-i18n="opgS2tab">第二階段・10 次・只有病症牙</h2><table class="opg-table"><thead><tr><th data-i18n="opgThM">指標</th><th data-i18n="opgThO">本研究</th><th data-i18n="opgThP">文獻</th></tr></thead><tbody><tr><td>Accuracy</td><td>92.37 ± 0.79</td><td>94.68</td></tr><tr><td>F1</td><td>71.88 ± 3.68</td><td>71.23</td></tr><tr><td>AUC</td><td>91.74 ± 0.96</td><td>95.28</td></tr></tbody></table><h3 data-i18n="opgS2cls">各病症</h3><table class="opg-table"><thead><tr><th data-i18n="opgThD">病症</th><th>Accuracy</th><th>F1</th><th>AUC</th><th data-i18n="opgThPF">文獻 F1</th></tr></thead><tbody><tr><td data-i18n="opgLabCar">蛀牙</td><td>86.10 ± 1.63</td><td>89.88 ± 1.18</td><td>91.57 ± 1.69</td><td>66.20</td></tr><tr><td data-i18n="opgLabDeep">深層蛀牙</td><td>88.67 ± 1.30</td><td>52.09 ± 6.28</td><td>84.42 ± 2.41</td><td>68.30</td></tr><tr><td data-i18n="opgLabImp">阻生牙</td><td>98.13 ± 0.54</td><td>94.72 ± 1.50</td><td>99.46 ± 0.29</td><td>90.10</td></tr><tr><td data-i18n="opgLabPer">根尖病灶</td><td>96.57 ± 0.63</td><td>50.84 ± 10.31</td><td>91.51 ± 3.26</td><td>60.30</td></tr></tbody></table></article></div><div class="opg-wide"><article class="viz-card"><h2 data-i18n="opgS5tab">第二階段・500 次・各病症</h2><p class="opg-note" data-i18n="opgS5note">Combo 14、80 epoch。標準差是 500 次的樣本標準差。</p><table class="opg-table"><thead><tr><th data-i18n="opgThD">病症</th><th>Accuracy</th><th>F1</th><th>AUC</th><th data-i18n="opgThPF">文獻 F1</th></tr></thead><tbody><tr><td data-i18n="opgLabCar">蛀牙</td><td>81.44 ± 1.17</td><td>69.92 ± 1.88</td><td>88.43 ± 1.08</td><td>66.20</td></tr><tr><td data-i18n="opgLabDeep">深層蛀牙</td><td>94.57 ± 0.48</td><td>50.49 ± 5.21</td><td>89.24 ± 2.31</td><td>68.30</td></tr><tr><td data-i18n="opgLabImp">阻生牙</td><td>98.27 ± 0.34</td><td>89.41 ± 2.14</td><td>99.27 ± 0.31</td><td>90.10</td></tr><tr><td data-i18n="opgLabPer">根尖病灶</td><td>98.26 ± 0.24</td><td>43.57 ± 9.65</td><td>88.84 ± 4.05</td><td>60.30</td></tr></tbody></table><p class="opg-note" data-i18n="opgClassF1">小規模、含未診斷牙的各病症 F1 另列：蛀牙 0.6926、深度蛀牙 0.5071、阻生牙 0.8775、根尖病變 0.4562。未診斷牙 0.8436。</p></article></div></div><div id="opg-pane-analysis" class="dr-pane" role="tabpanel" hidden><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgReadH">怎麼讀</h2><p class="opg-note" data-i18n="opgRead1">整體沒有高過論文。論文有資料增強，模型也比較大，而且是 5 折平均。</p><p class="opg-note" data-i18n="opgRead2">只有病症牙的 F1 71.88，和含未診斷牙的 63.33，不是同一種條件。</p><p class="opg-note" data-i18n="opgRead3">論文四病症平均 F1 約 71.23。這裡不把不同條件的數字說成我們比較高。</p></article><article class="viz-card"><h2 data-i18n="opgToothH">牙號</h2><p class="opg-note" data-i18n="opgTooth1">不看牙號時，mAP@0.50 是 99.57，論文 99.00。</p><p class="opg-note" data-i18n="opgTooth2">要認對牙號時，FDI FROC 是 57.47，論文 98.80。這是第一階段差最多的地方。</p><p class="opg-note" data-i18n="opgTooth3">10 次的標準差大，是因為各次分到的難易不一樣。</p></article><article class="viz-card"><h2 data-i18n="opgWeakH">哪些病比較弱</h2><p class="opg-note" data-i18n="opgWeak1">500 次裡，蛀牙 F1 69.92，高於論文 66.20。阻生牙接近。</p><p class="opg-note" data-i18n="opgWeak2">深層蛀牙 50.49 對 68.30。根尖病灶 43.57 對 60.30。這兩類比較弱，根尖的標準差也有 9.65。</p><p class="opg-note" data-i18n="opgWeak3">單看一次（Combo 14、Run 64）：根尖準確率 98.34%，但只判對 13 次、漏 18 次，F1 53.06%。準確率高仍會漏。</p></article></div><div class="visual-top"><article class="viz-card"><h2 data-i18n="opgImpH">哪個參數影響大</h2><p class="opg-note" data-i18n="opgImp1">第一階段，平均差距（百分點）：學習率 1.26、框損失 0.61、權重衰減 0.19、排程 0.05、動量 0.003。</p><p class="opg-note" data-i18n="opgImp2">第二階段：學習率 27.10、分類頭 1.71、β1 1.53、權重衰減 1.16。Batch 固定 64，沒有比較。</p><p class="opg-note" data-i18n="opgImp3">這是固定其他參數、只動一項的差距。不把各項較好的設定拼成新組合。</p></article><article class="viz-card"><h2 data-i18n="opgSmallH">小模型</h2><ul class="dr-facts"><li><b>40.65%</b><span data-i18n="opgSm1">第一階段參數較少。</span></li><li><b>93.64%</b><span data-i18n="opgSm2">第二階段參數較少。</span></li><li><b data-i18n="opgSm3L">取捨</b><span data-i18n="opgSm3">訓練比較快、推論比較快。準確率換這個。</span></li></ul></article><article class="viz-card"><h2 data-i18n="opgLimH">限制</h2><p class="opg-note" data-i18n="opgLim1">未診斷牙沒有獨立的醫師真值。和論文對照的四病症平均，不含這一類。</p><p class="opg-note" data-i18n="opgLim2">比較論文：van Nistelrooij 等，BMC Oral Health，2024。</p></article></div></div></div></div></section><section id="oral-panel" class="liver-panel" data-liver-page="oral" aria-labelledby="oral-title"><div class="visual-slide"><header class="visual-header"><a class="lc-back" href="#intro" data-liver-tab="intro" data-i18n="dr0">返回自我介紹</a><h1 id="oral-title"><span data-i18n="or1">手持式口腔裝置</span></h1></header><div class="oral-status"><span data-i18n="voralstage">目前：尋找與評估資料集</span></div><div class="oral-count"><strong data-i18n="vfound">已整理 22 項候選資料來源</strong><span data-i18n="vfounddetail">公開資料 6 項｜需向作者申請 16 項</span></div><h2 class="oral-data-heading"><span data-i18n="voraldata">資料｜三種光源與候選資料集</span></h2><div class="oral-gallery"><article class="viz-card"><h2 data-i18n="vwhite">白光</h2><p data-i18n="vwhitedata">Ahmed 2,180 張／Liu 1,540 張蛀牙；LABDEN 10,374 張牙菌斑。</p></article><article class="viz-card"><h2 data-i18n="vblue">藍光螢光</h2><p data-i18n="vbluedata">公開：目前未找到。Park QLF 蛀牙 1,701 張，需作者申請。</p></article><article class="viz-card"><h2 data-i18n="vnir">近紅外</h2><p data-i18n="vnirdat">ODSI-DB：蛀牙 39 張、牙菌斑 8 張。</p></article></div><div class="oral-filter"><span data-i18n="voralcheck">資料篩選：取得方式・張數・標註・醫師審查・分級標準</span></div><footer class="visual-foot"><p data-i18n="or19">資料集仍在篩選，尚未定案；作者申請資料的張數不代表已取得。</p><p data-i18n="vcountnote">同一研究跨光源或跨病症只計一次；目前持續尋找與評估資料集。</p></footer></div></section></main>
+    <script>
+      (function () {
+        var copy = {
+          zh: {
+            title: "輕量化人工智慧肝癌CT影像與病理分析之研究",
+            description: "朝陽科技大學資通碩一。自我介紹是一棵樹。",
+            skip: "跳到內容",
+            langZh: "中文",
+            langEn: "English",
+            langJa: "日本語",
+            tabsLabel: "內容分頁",
+            tabCover: "封面",
+            backCover: "回封面",
+            tabIntro: "自我介紹",
+            coverTitle: "輕量化人工智慧肝癌CT影像與病理分析之研究",
+            coverName: "研究生：鍾勛名",
+            coverAdvisor: "指導教授：彭俊澄",
+            coverLine: "大三開始接觸人工智慧，目前在軟體面學習智慧醫療，希望有機會學習，請指導。",
+            past: "過去",
+            now: "現在",
+            future: "未來",
+            retina: "糖尿病視網膜病變",
+            contest: "2026 全國專題競賽・生技醫農群第三名",
+            iihmspDr: "IIHMSP-2025 會議論文",
+            iihmsp: "IIHMSP-2025 會議論文",
+            prostate: "攝護腺影像辨識",
+            taichuang: "台創比賽",
+            survey: "撰寫 survey 論文",
+            vtca: "VTCA-2026 會議論文",
+            tooth: "彤心牙科",
+            senior: "大四專題",
+            site: "網站建置",
+            hand: "手持式口腔裝置",
+            liver: "肝癌",
+            ct: "CT影像偵測",
+            pathology: "病理影像分級",
+            japan: "未來：希望去日本交換留學"
+          },
+          en: {
+            title: "Lightweight Artificial Intelligence for Liver Cancer CT Imaging and Pathology Analysis",
+            description: "A first-year master's student at Chaoyang University of Technology. The introduction is a tree.",
+            skip: "Skip to content",
+            langZh: "Chinese",
+            langEn: "English",
+            langJa: "Japanese",
+            tabsLabel: "Sections",
+            tabCover: "Cover",
+            backCover: "Back to cover",
+            tabIntro: "Introduction",
+            coverTitle: "Lightweight Artificial Intelligence for Liver Cancer CT Imaging and Pathology Analysis",
+            coverName: "Graduate Student: Hsun Ming Chung",
+            coverAdvisor: "Advisor: Jun-Cheng Peng",
+            coverLine: "I only began learning artificial intelligence in my junior year. I am learning intelligent healthcare on the software side. I hope for a chance to learn, and I would be grateful for your guidance.",
+            past: "Past",
+            now: "Present",
+            future: "Future",
+            retina: "Diabetic Retinopathy",
+            contest: "2026 National Project Contest · Biotech Group, 3rd",
+            iihmspDr: "IIHMSP-2025 conference paper",
+            iihmsp: "IIHMSP-2025 conference paper",
+            prostate: "Prostate Image Recognition",
+            taichuang: "Taiwan Innotech Expo",
+            survey: "Writing a survey paper",
+            vtca: "VTCA-2026 conference paper",
+            tooth: "Tongxin Dental",
+            senior: "Senior Project",
+            site: "Website",
+            hand: "Handheld Oral Device",
+            liver: "Liver Cancer",
+            ct: "CT Image Detection",
+            pathology: "Pathology Image Grading",
+            japan: "Future: I hope to study abroad in Japan"
+          },
+          ja: {
+            title: "軽量人工知能による肝がんCT画像と病理分析の研究",
+            description: "朝陽科技大学、情報通信の修士1年です。自己紹介は一つの樹です。",
+            skip: "内容へ",
+            langZh: "中国語",
+            langEn: "English",
+            langJa: "日本語",
+            tabsLabel: "ページ",
+            tabCover: "表紙",
+            backCover: "表紙に戻る",
+            tabIntro: "自己紹介",
+            coverTitle: "軽量人工知能による肝がんCT画像と病理分析の研究",
+            coverName: "大学院生：Hsun Ming Chung",
+            coverAdvisor: "指導教員：Jun-Cheng Peng",
+            coverLine: "大学3年で人工知能を学び始めたばかりです。いまはソフトウェアの面からスマート医療を学んでおり、学ぶ機会を希望し、ご指導をお願いいたします。",
+            past: "これまで",
+            now: "いま",
+            future: "これから",
+            retina: "糖尿病網膜症",
+            contest: "2026 全国課題コンテスト・バイオ部門 第3位",
+            iihmspDr: "IIHMSP-2025 会議論文",
+            iihmsp: "IIHMSP-2025 会議論文",
+            prostate: "前立腺画像の識別",
+            taichuang: "台湾イノテック博覧会",
+            survey: "サーベイ論文を執筆",
+            vtca: "VTCA-2026 会議論文",
+            tooth: "トンシン歯科",
+            senior: "4年次の課題",
+            site: "サイト構築",
+            hand: "手持ち式口腔装置",
+            liver: "肝がん",
+            ct: "CT画像検出",
+            pathology: "病理画像の分類",
+            japan: "未来：日本への交換留学を希望します"
+          }
+        };
+        Object.assign(copy.zh,{"lc0": "返回自我介紹", "lc1": "肝癌｜研究方向總覽", "lc2": "文獻回顧與發現", "lc3": "整理 2013–2025 年間的 67 篇肝癌 AI 論文後，我發現研究多聚焦於個別任務，較少考量 CT 與病理分析在診療流程中的銜接。", "lc4": "研究目標", "lc5": "以輕量化與模組化設計，探索 CT 與病理分析的互補性，並降低運算需求。", "lc6": "第一階段｜CT 影像分析", "lc7": "肝臟與腫瘤定位、分割", "lc8": "體積測量與病灶分類", "lc9": "第二階段｜病理影像分析", "lc10": "組織特徵分析與病理分級", "lc11": "探索預後與復發風險評估", "lc12": "目前進度", "lc13": "撰寫 Survey 論文，規劃兩階段研究架構。", "lc14": "未來規劃", "lc15": "希望赴日本交換留學，進一步學習病理影像分析與輕量化 AI。", "lc16": "研究規劃"});
+Object.assign(copy.en,{"lc0": "Back to introduction", "lc1": "Liver Cancer | Research Overview", "lc2": "Literature review and findings", "lc3": "After reviewing 67 liver cancer AI papers from 2013–2025, I found that studies often focus on individual tasks, with limited attention to linking CT and pathology analysis across the care pathway.", "lc4": "Research objective", "lc5": "Explore complementary CT and pathology analysis using lightweight, modular AI to reduce computational demands.", "lc6": "Stage 1 | CT imaging", "lc7": "Liver and tumor localization and segmentation", "lc8": "Volume measurement and lesion classification", "lc9": "Stage 2 | Pathology imaging", "lc10": "Tissue feature analysis and histological grading", "lc11": "Explore prognosis and recurrence risk assessment", "lc12": "Current progress", "lc13": "Writing a survey paper and planning a two-stage research framework.", "lc14": "Future plans", "lc15": "Pursue an exchange in Japan to further study pathology image analysis and lightweight AI.", "lc16": "Research plan"});
+Object.assign(copy.ja,{"lc0": "自己紹介に戻る", "lc1": "肝がん｜研究構想", "lc2": "文献レビューと気づき", "lc3": "2013〜2025年の肝がんAI関連論文67編を整理した結果、個別の課題に焦点を当てた研究が多く、診療の流れにおけるCTと病理分析の連携は十分に検討されていないと考えました。", "lc4": "研究目的", "lc5": "軽量・モジュール型AIにより、CTと病理分析の相補性を探り、計算負荷の低減を目指します。", "lc6": "第1段階｜CT画像分析", "lc7": "肝臓・腫瘍の位置特定と領域分割", "lc8": "体積計測と病変分類", "lc9": "第2段階｜病理画像分析", "lc10": "組織特徴の分析と組織学的グレード分類", "lc11": "予後・再発リスク評価の検討", "lc12": "現在の進捗", "lc13": "サーベイ論文の執筆と2段階の研究構想の策定。", "lc14": "今後の計画", "lc15": "日本への交換留学を通じて、病理画像分析と軽量AIをさらに学びたいと考えています。", "lc16": "研究計画"});
+Object.assign(copy.zh,{"dr0": "返回自我介紹", "dr1": "糖尿病視網膜病變｜研究成果", "dr2": "應用｜為什麼做", "dr3": "2024 年全球約 5.89 億名成人（20–79 歲）罹患糖尿病，2050 年預估達 8.53 億。以 AI 輔助眼底篩檢與分級，因應判讀需求。", "dr4": "資料｜APTOS 2019", "dr5": "3,662 張眼底影像，含無病變至增殖性病變共五級標籤。", "dr6": "建模｜兩分類與五分類", "dr7": "兩分類：SqueezeNet 1.1。", "dr8": "五分類：Xception、GoogLeNet、EfficientNetB4、EfficientNetV2S。", "dr9": "模擬｜1,098 種組合・7,283 runs", "dr10": "500 次平均測試準確率", "dr11": "兩分類 SqueezeNet", "dr12": "98.18%", "dr13": "五分類 GoogLeNet", "dr14": "83.65%", "dr15": "分析｜本研究 500-RUN 平均 vs 文獻單次最高", "dr16": "兩分類：本研究平均 98.18% vs 文獻最高 98.36%；1.24M vs 22.8M，參數少 94.6%。", "dr17": "五分類：本研究平均 83.65% vs 文獻最高 84.36%；6.6M vs 22.8M，參數少 71.1%。", "dr18": "本研究為 500 次平均，文獻為單次最佳；依簡報所列數據對照，非相同實驗流程下的重跑比較。", "dr19": "[1] Islam et al., Computers in Biology and Medicine, 146, 105602 (2022)。人口：IDF Diabetes Atlas 2025。", "dr20": "以接近文獻的準確率，大幅降低模型參數量。"});
+Object.assign(copy.en,{"dr0": "Back to introduction", "dr1": "Diabetic Retinopathy | Research Results", "dr2": "Application | Why", "dr3": "589 million adults (20–79) had diabetes worldwide in 2024, projected to reach 853 million by 2050. AI-assisted fundus screening and grading aim to address growing review needs.", "dr4": "Data | APTOS 2019", "dr5": "3,662 fundus images with five labels: no DR, mild, moderate, severe and proliferative DR.", "dr6": "Models | Binary and five-class", "dr7": "Binary: SqueezeNet 1.1.", "dr8": "Five-class: Xception, GoogLeNet, EfficientNetB4 and EfficientNetV2S.", "dr9": "Simulation | 1,098 combinations · 7,283 runs", "dr10": "Mean test accuracy over 500 runs", "dr11": "Binary · SqueezeNet", "dr12": "98.18%", "dr13": "Five-class · GoogLeNet", "dr14": "83.65%", "dr15": "Analysis | Our 500-RUN mean vs literature single best", "dr16": "Binary: our mean 98.18% vs paper best 98.36%; 1.24M vs 22.8M parameters (94.6% fewer).", "dr17": "Five-class: our mean 83.65% vs paper best 84.36%; 6.6M vs 22.8M parameters (71.1% fewer).", "dr18": "Our 500-run mean vs literature single best; figures from the supplied slides, not a matched-protocol replication.", "dr19": "[1] Islam et al., Computers in Biology and Medicine, 146, 105602 (2022). Population: IDF Diabetes Atlas 2025.", "dr20": "Similar accuracy with substantially fewer model parameters."});
+Object.assign(copy.ja,{"dr0": "自己紹介に戻る", "dr1": "糖尿病網膜症｜研究成果", "dr2": "応用｜研究の目的", "dr3": "2024年の世界の糖尿病人口は20〜79歳で約5.89億人、2050年には8.53億人と予測されています。AIによる眼底検診・重症度分類で判読需要への対応を目指します。", "dr4": "データ｜APTOS 2019", "dr5": "眼底画像3,662枚。病変なし・軽度・中等度・重度・増殖性の5段階ラベル。", "dr6": "モデル｜2クラス・5クラス分類", "dr7": "2クラス：SqueezeNet 1.1。", "dr8": "5クラス：Xception、GoogLeNet、EfficientNetB4、EfficientNetV2S。", "dr9": "実験｜1,098通り・計7,283回", "dr10": "500回の平均テスト正解率", "dr11": "2クラス SqueezeNet", "dr12": "98.18%", "dr13": "5クラス GoogLeNet", "dr14": "83.65%", "dr15": "分析｜本研究500回平均 vs 文献の単一最高値", "dr16": "2クラス：本研究平均98.18% vs 文献最高98.36%。1.24M vs 22.8M、パラメータ94.6%削減。", "dr17": "5クラス：本研究平均83.65% vs 文献最高84.36%。6.6M vs 22.8M、パラメータ71.1%削減。", "dr18": "本研究は500回の平均、文献は単一の最高値。提供スライドの数値比較であり、同一実験条件での再現比較ではありません。", "dr19": "[1] Islam et al., Computers in Biology and Medicine, 146, 105602 (2022)。人口：IDF Diabetes Atlas 2025。", "dr20": "文献に近い正解率で、モデルのパラメータ数を大幅に削減。"});
+Object.assign(copy.zh,{"pc0": "返回自我介紹", "pc1": "攝護腺影像辨識｜研究成果", "pc2": "應用｜為什麼做", "pc3": "2022 年全球約 150 萬例攝護腺癌新病例。以輕量化 AI 輔助影像分類，支援早期評估並減輕判讀負擔。", "pc4": "資料｜TCIA", "pc5": "Prostate-MRI-US-Biopsy：5,272 張影像，分為 ROI 1–5 五級。訓練 3,690 張（70%）、測試 1,582 張（30%）。", "pc6": "建模｜三種模型 × 三種優化器", "pc7": "模型：VGG-16、MobileNet-V2、Inception-V3。", "pc8": "優化器：ADAM、RMSprop、SGDM。", "pc9": "模擬｜164 組參數・1,514 runs", "pc10": "選用 MobileNet-V2＋RMSprop，進行 500 次模擬。", "pc11": "500-RUN 平均測試準確率", "pc12": "94.29%", "pc13": "標準差", "pc14": "±3.53%", "pc15": "分析｜準確率提升，模型更輕量", "pc16": "準確率：本研究 500-RUN 平均 94.29% vs 文獻 82%，高 12.29 個百分點。", "pc17": "參數量：本研究 3.5M vs 文獻 138M，減少約 97.5%。", "pc18": "對照文獻期刊：Future Generation Computer Systems（Q1）。", "pc19": "發明專利證書號：I895233"});
+Object.assign(copy.en,{"pc0": "Back to introduction", "pc1": "Prostate Imaging | Research Results", "pc2": "Application | Why", "pc3": "Around 1.5 million new prostate cancer cases worldwide in 2022. Lightweight AI aims to assist image classification, support early assessment and reduce review workload.", "pc4": "Data | TCIA", "pc5": "Prostate-MRI-US-Biopsy: 5,272 images across ROI levels 1–5. Training: 3,690 (70%); testing: 1,582 (30%).", "pc6": "Models | Three architectures × three optimizers", "pc7": "Models: VGG-16, MobileNet-V2 and Inception-V3.", "pc8": "Optimizers: ADAM, RMSprop and SGDM.", "pc9": "Simulation | 164 parameter sets · 1,514 runs", "pc10": "Selected MobileNet-V2 + RMSprop for 500 repeated runs.", "pc11": "500-RUN mean test accuracy", "pc12": "94.29%", "pc13": "Standard deviation", "pc14": "±3.53%", "pc15": "Analysis | Higher accuracy, fewer parameters", "pc16": "Accuracy: our 500-RUN mean 94.29% vs paper 82%; +12.29 percentage points.", "pc17": "Parameters: 3.5M vs paper 138M; approximately 97.5% fewer.", "pc18": "Comparison journal: Future Generation Computer Systems (Q1).", "pc19": "Invention patent certificate: I895233"});
+Object.assign(copy.ja,{"pc0": "自己紹介に戻る", "pc1": "前立腺画像の識別｜研究成果", "pc2": "応用｜研究の目的", "pc3": "2022年の世界の前立腺がん新規症例は約150万例。軽量AIで画像分類を支援し、早期評価と判読負担の軽減を目指します。", "pc4": "データ｜TCIA", "pc5": "Prostate-MRI-US-Biopsy：5,272枚、ROI 1〜5の5段階。訓練3,690枚（70%）、テスト1,582枚（30%）。", "pc6": "モデル｜3種のモデル × 3種の最適化手法", "pc7": "モデル：VGG-16、MobileNet-V2、Inception-V3。", "pc8": "最適化：ADAM、RMSprop、SGDM。", "pc9": "実験｜164組のパラメータ・計1,514回", "pc10": "MobileNet-V2＋RMSpropを選定し、500回の実験を実施。", "pc11": "500回の平均テスト正解率", "pc12": "94.29%", "pc13": "標準偏差", "pc14": "±3.53%", "pc15": "分析｜高い正解率・軽量モデル", "pc16": "正解率：本研究500回平均94.29% vs 文献82%。12.29ポイント向上。", "pc17": "パラメータ：本研究3.5M vs 文献138M。約97.5%削減。", "pc18": "比較文献の掲載誌：Future Generation Computer Systems（Q1）。", "pc19": "発明特許証書番号：I895233"});
+Object.assign(copy.zh,{"dt0": "返回自我介紹", "dt1": "大四專題｜輕量化 AI 全景 X 光病症偵測", "dt2": "應用｜為什麼做", "dt3": "全球逾 35 億人受口腔疾病影響。結合牙齒定位與四病症辨識，輔助全口判讀與醫病溝通。", "dt4": "資料｜OdontoAI ＋ DENTEX", "dt5": "OdontoAI：1,819 張，篩選後 1,598 張；DENTEX：705 張。訓練／測試採 80%／20%。", "dt6": "建模｜兩階段・AdamW", "dt7": "① YOLOv8m-seg：牙齒分割與定位 → ② Swin-T：蛀牙、深層蛀牙、阻生牙、根尖病灶。", "dt8": "模擬｜搜尋參數 → 500 RUNS", "dt9": "第一階段 72 組；第二階段 108／54 組，每組 10 次。找到最佳參數，再跑 500 次。", "dt10": "Accuracy", "dt11": "93.14%", "dt12": "±0.36%", "dt13": "F1 Score", "dt14": "63.35%", "dt15": "±2.92%", "dt16": "AUC", "dt17": "91.44%", "dt18": "±1.29%", "dt19": "分析｜本研究 500-RUN 平均 vs 文獻", "dt20": "文獻 Accuracy 94.68%、F1 71.23%、AUC 95.28%；本研究較低，持續改善少數病症辨識。", "dt21": "第一階段：27.3M vs 46M，少 40.7%。第二階段：28M vs 文獻五模型總計 440M，少 93.6%。", "dt22": "系統實作｜3D Slicer：Box／Mask 切換、人工覆核、圖片與 CSV 匯出。", "dt23": "文獻：van Nistelrooij et al., BMC Oral Health (2024)。文獻為交叉驗證平均；資料及切分不同。"});
+Object.assign(copy.en,{"dt0": "Back to introduction", "dt1": "Senior Project | Lightweight AI for Panoramic X-rays", "dt2": "Application | Why", "dt3": "Over 3.5 billion people are affected by oral diseases. Combine tooth localization and four-condition detection to assist review and patient communication.", "dt4": "Data | OdontoAI + DENTEX", "dt5": "OdontoAI: 1,819 images, 1,598 retained; DENTEX: 705 images. Training/test split: 80%/20%.", "dt6": "Models | Two stages · AdamW", "dt7": "① YOLOv8m-seg: tooth segmentation/localization → ② Swin-T: caries, deep caries, impacted teeth and periapical lesions.", "dt8": "Simulation | Parameter search → 500 RUNS", "dt9": "Stage 1: 72 sets; stage 2: 108/54 sets, 10 runs each. Identified the best parameters, then performed 500 runs.", "dt10": "Accuracy", "dt11": "93.14%", "dt12": "±0.36%", "dt13": "F1 Score", "dt14": "63.35%", "dt15": "±2.92%", "dt16": "AUC", "dt17": "91.44%", "dt18": "±1.29%", "dt19": "Analysis | Our 500-RUN mean vs literature", "dt20": "Paper: accuracy 94.68%, F1 71.23%, AUC 95.28%. Our scores are lower; minority-condition recognition needs improvement.", "dt21": "Stage 1: 27.3M vs 46M (40.7% fewer). Stage 2: 28M vs 440M across five paper models (93.6% fewer).", "dt22": "3D Slicer interface: Box/Mask views, manual review, image and CSV export.", "dt23": "Reference: van Nistelrooij et al., BMC Oral Health (2024). Paper: cross-validation mean; data and splits differ."});
+Object.assign(copy.ja,{"dt0": "自己紹介に戻る", "dt1": "卒業研究｜軽量AIによるパノラマX線病変検出", "dt2": "応用｜研究の目的", "dt3": "世界で35億人以上が口腔疾患の影響を受けています。歯の位置特定と4病変の識別で、判読と患者への説明を支援します。", "dt4": "データ｜OdontoAI ＋ DENTEX", "dt5": "OdontoAI：1,819枚から1,598枚を採用。DENTEX：705枚。訓練／テスト＝80%／20%。", "dt6": "モデル｜2段階・AdamW", "dt7": "① YOLOv8m-seg：歯の分割・位置特定 → ② Swin-T：う蝕、深在性う蝕、埋伏歯、根尖病変。", "dt8": "実験｜パラメータ探索 → 500回", "dt9": "第1段階72組、第2段階108／54組、各10回。最適なパラメータを選定し、500回の実験を実施。", "dt10": "Accuracy", "dt11": "93.14%", "dt12": "±0.36%", "dt13": "F1 Score", "dt14": "63.35%", "dt15": "±2.92%", "dt16": "AUC", "dt17": "91.44%", "dt18": "±1.29%", "dt19": "分析｜本研究500回平均 vs 文献", "dt20": "文献：Accuracy 94.68%、F1 71.23%、AUC 95.28%。本研究はこれらを下回り、少数病変の識別改善を継続。", "dt21": "第1段階：27.3M対46M、40.7%削減。第2段階：28M対文献5モデル合計440M、93.6%削減。", "dt22": "3D Slicer：Box／Mask表示、手動確認、画像・CSVの出力。", "dt23": "文献：van Nistelrooij et al., BMC Oral Health (2024)。文献は交差検証平均。データと分割条件は異なります。"});
+Object.assign(copy.zh,{"or0": "返回自我介紹", "or1": "手持式口腔裝置｜研究構想", "or2": "目前進度：尋找與評估資料集", "or3": "應用｜為什麼做", "or4": "以手持設備取得口內影像，探索輕量化 AI 輔助蛀牙與牙菌斑辨識，提升檢查便利性。", "or5": "研究方向｜三種光源", "or6": "評估不同成像方式與資料標註，作為後續裝置設計及模型訓練的依據。", "or7": "白光｜口內彩色影像", "or8": "蛀牙：Ahmed 2,180 張、Liu 1,540 張。牙菌斑：AIRC LABDEN 10,374 張。", "or9": "藍光｜405 nm 螢光", "or10": "目前整理的公開資料為 0 張；候選研究多需向作者申請，例如 Park QLF 蛀牙 1,701 張。", "or11": "近紅外｜透照與反射", "or12": "ODSI-DB 候選子集：蛀牙 39 張、牙菌斑 8 張。反射與透照須分開評估。", "or13": "資料篩選重點", "or14": "取得方式、影像數量、病灶標註、醫師審查、分級標準，以及與手持設備的成像差異。", "or15": "裝置構想", "or16": "評估白光／藍光共用 RGB 相機，近紅外使用獨立相機的雙相機方案。", "or17": "下一步", "or18": "確認適用資料集與使用條件，再選擇模型、規劃訓練與裝置驗證。", "or19": "資料集仍在篩選，尚未定案；作者申請資料的張數不代表已取得。"});
+Object.assign(copy.en,{"or0": "Back to introduction", "or1": "Handheld Oral Device | Research Concept", "or2": "Current stage: finding and evaluating datasets", "or3": "Application | Why", "or4": "Capture intraoral images with a handheld device and explore lightweight AI for caries and plaque recognition to improve examination convenience.", "or5": "Research direction | Three light sources", "or6": "Evaluate imaging methods and annotations to inform future device design and model training.", "or7": "White light | RGB intraoral images", "or8": "Caries: Ahmed, 2,180 images; Liu, 1,540. Plaque: AIRC LABDEN, 10,374 images.", "or9": "Blue light | 405 nm fluorescence", "or10": "No public images identified in the current inventory. Most candidates require author requests, e.g. Park QLF: 1,701 caries images.", "or11": "Near-infrared | Transillumination and reflectance", "or12": "Candidate ODSI-DB subsets: 39 caries and 8 plaque images. Assess reflectance and transillumination separately.", "or13": "Dataset selection criteria", "or14": "Access, image counts, lesion annotations, clinician review, grading standards and imaging differences from the handheld device.", "or15": "Device concept", "or16": "Evaluate a dual-camera design: shared RGB camera for white/blue light, plus a separate near-infrared camera.", "or17": "Next steps", "or18": "Confirm suitable datasets and use conditions, then select models and plan training and device validation.", "or19": "Dataset selection is ongoing. Image counts for author-request datasets do not imply access has been obtained."});
+Object.assign(copy.ja,{"or0": "自己紹介に戻る", "or1": "手持ち式口腔装置｜研究構想", "or2": "現在の進捗：データセットの探索・評価", "or3": "応用｜研究の目的", "or4": "手持ち式装置で口腔内を撮影し、軽量AIによるう蝕・歯垢の識別を検討して、検査の利便性向上を目指します。", "or5": "研究方向｜3種類の光源", "or6": "撮影方式とアノテーションを評価し、今後の装置設計とモデル学習に役立てます。", "or7": "白色光｜口腔内カラー画像", "or8": "う蝕：Ahmed 2,180枚、Liu 1,540枚。歯垢：AIRC LABDEN 10,374枚。", "or9": "青色光｜405 nm蛍光", "or10": "現時点の調査では公開画像0枚。多くは著者への申請が必要。例：Park QLFのう蝕画像1,701枚。", "or11": "近赤外｜透過・反射", "or12": "ODSI-DB候補：う蝕39枚、歯垢8枚。透過画像と反射画像は分けて評価します。", "or13": "データ選定基準", "or14": "入手方法、画像数、病変ラベル、歯科医の確認、分類基準、手持ち装置との撮影条件の違い。", "or15": "装置構想", "or16": "白色光・青色光でRGBカメラを共用し、近赤外用に別のカメラを使う2カメラ構成を検討。", "or17": "次のステップ", "or18": "適切なデータと利用条件を確認後、モデル選定・学習・装置検証を計画します。", "or19": "データは選定中です。著者申請データの画像数は、取得済みであることを意味しません。"});
+Object.assign(copy.zh,{"vapp": "01 應用", "vdata": "02 資料", "vmodel": "03 建模", "vsim": "04 模擬", "vanalysis": "05 分析", "vmean": "本研究｜500-RUN 平均", "vbest": "文獻｜單次最高", "vpaper": "文獻", "vimages": "眼底影像範例", "vpeople": "全球糖尿病成人（20–79 歲，2024）", "vgoal": "輔助眼底篩檢與嚴重度分級", "vpcpeople": "全球新病例（2022）", "vpcgoal": "輕量化影像分類，輔助早期評估", "vtrain": "訓練", "vtest": "測試", "vgrades": "ROI 1–5｜五級影像分類", "vdrmodels": "兩分類：SqueezeNet 1.1", "vdrfive": "五分類", "vparams": "模型參數量", "vreduction": "參數減少", "vdiagram": "流程示意", "vtooth": "牙齒定位／分割", "vdisease": "蛀牙・深層蛀牙・阻生牙・根尖病灶", "vui": "3D Slicer 介面", "v500": "最佳參數 → 500 RUNS", "vwhitedata": "Ahmed 2,180 張／Liu 1,540 張蛀牙；LABDEN 10,374 張牙菌斑。", "vbluedata": "公開：目前未找到。Park QLF 蛀牙 1,701 張，需作者申請。", "vnirdat": "ODSI-DB：蛀牙 39 張、牙菌斑 8 張。", "voraldata": "資料｜三種光源與候選資料集", "vwhite": "白光", "vblue": "藍光螢光", "vnir": "近紅外", "vtrans": "透照", "vreflect": "反射", "vnoteimages": "影像來自提供文件；各光源範例不全為同一顆牙。", "vdentalgoal": "牙齒定位＋四病症辨識，輔助全口判讀", "voralstage": "目前：尋找與評估資料集", "voralcheck": "資料篩選：取得方式・張數・標註・醫師審查・分級標準"});
+Object.assign(copy.en,{"vapp": "01 Application", "vdata": "02 Data", "vmodel": "03 Models", "vsim": "04 Simulation", "vanalysis": "05 Analysis", "vmean": "Ours | 500-RUN mean", "vbest": "Paper | single best", "vpaper": "Paper", "vimages": "Fundus image examples", "vpeople": "Adults with diabetes worldwide (20–79, 2024)", "vgoal": "Assist screening and severity grading", "vpcpeople": "New cases worldwide (2022)", "vpcgoal": "Lightweight imaging AI for early assessment", "vtrain": "Train", "vtest": "Test", "vgrades": "ROI 1–5 | Five-level classification", "vdrmodels": "Binary: SqueezeNet 1.1", "vdrfive": "Five-class", "vparams": "Model parameters", "vreduction": "Fewer parameters", "vdiagram": "Workflow illustration", "vtooth": "Tooth localization / segmentation", "vdisease": "Caries · deep caries · impacted · periapical lesions", "vui": "3D Slicer interface", "v500": "Best parameters → 500 RUNS", "vwhitedata": "Caries: Ahmed 2,180 / Liu 1,540 images. Plaque: LABDEN 10,374.", "vbluedata": "No public images found in current search. Park QLF: 1,701 caries images; author request.", "vnirdat": "ODSI-DB: 39 caries and 8 plaque images.", "voraldata": "Data | Three light sources and candidate datasets", "vwhite": "White light", "vblue": "Blue-light fluorescence", "vnir": "Near-infrared", "vtrans": "Transillumination", "vreflect": "Reflectance", "vnoteimages": "Images from supplied document; examples are not all the same tooth.", "vdentalgoal": "Tooth localization + four-condition recognition", "voralstage": "Current stage: finding and evaluating datasets", "voralcheck": "Selection: access · counts · annotations · clinician review · grading"});
+Object.assign(copy.ja,{"vapp": "01 応用", "vdata": "02 データ", "vmodel": "03 モデル", "vsim": "04 実験", "vanalysis": "05 分析", "vmean": "本研究｜500回平均", "vbest": "文献｜単一最高値", "vpaper": "文献", "vimages": "眼底画像の例", "vpeople": "世界の糖尿病成人（20〜79歳、2024年）", "vgoal": "眼底検診と重症度分類を支援", "vpcpeople": "世界の新規症例（2022年）", "vpcgoal": "軽量画像AIで早期評価を支援", "vtrain": "訓練", "vtest": "テスト", "vgrades": "ROI 1〜5｜5段階分類", "vdrmodels": "2クラス：SqueezeNet 1.1", "vdrfive": "5クラス", "vparams": "パラメータ数", "vreduction": "パラメータ削減", "vdiagram": "処理の模式図", "vtooth": "歯の位置特定・分割", "vdisease": "う蝕・深在性う蝕・埋伏歯・根尖病変", "vui": "3D Slicer画面", "v500": "最適パラメータ → 500回", "vwhitedata": "う蝕：Ahmed 2,180枚／Liu 1,540枚。歯垢：LABDEN 10,374枚。", "vbluedata": "現在の調査では公開画像なし。Park QLFのう蝕1,701枚は著者申請が必要。", "vnirdat": "ODSI-DB：う蝕39枚、歯垢8枚。", "voraldata": "データ｜3種類の光源と候補データセット", "vwhite": "白色光", "vblue": "青色光蛍光", "vnir": "近赤外", "vtrans": "透過", "vreflect": "反射", "vnoteimages": "提供資料の画像です。各光源の例はすべて同じ歯ではありません。", "vdentalgoal": "歯の位置特定＋4病変の識別で判読を支援", "voralstage": "現在：データセットの探索・評価", "voralcheck": "選定：入手方法・画像数・ラベル・歯科医確認・分類基準"});
+Object.assign(copy.zh,{"vpopulationdr": "5.89 億", "vpopulationpc": "150 萬", "vpopulationdental": "逾 35 億"});
+Object.assign(copy.en,{"vpopulationdr": "589 million", "vpopulationpc": "1.5 million", "vpopulationdental": "Over 3.5 billion"});
+Object.assign(copy.ja,{"vpopulationdr": "5億8,900万人", "vpopulationpc": "150万人", "vpopulationdental": "35億人以上"});
+Object.assign(copy.zh,{"or1": "手持式口腔裝置", "vfound": "已整理 22 項候選資料來源", "vfounddetail": "公開資料 6 項｜需向作者申請 16 項", "vcountnote": "同一研究跨光源或跨病症只計一次；目前持續尋找與評估資料集。"});
+Object.assign(copy.en,{"or1": "Handheld Oral Device", "vfound": "22 candidate data sources identified", "vfounddetail": "6 public sources | 16 requiring author requests", "vcountnote": "Each study is counted once across light sources and conditions. Dataset search and evaluation are ongoing."});
+Object.assign(copy.ja,{"or1": "手持ち式口腔装置", "vfound": "候補データソース22件を整理", "vfounddetail": "公開6件｜著者への申請が必要16件", "vcountnote": "複数の光源・病変にまたがる同一研究は1件と集計。現在もデータ探索・評価を継続中です。"});
+copy.zh.langCn = "簡中";
+copy.en.langCn = "简中";
+copy.ja.langCn = "简中";
+copy.zhHans = {"title":"轻量化人工智能肝癌CT影像与病理分析之研究","description":"朝阳科技大学资通硕一。自我介绍是一棵树。","skip":"跳到内容","langZh":"中文","langEn":"English","langJa":"日本語","tabsLabel":"内容分页","tabCover":"封面","backCover":"回封面","tabIntro":"自我介绍","coverTitle":"轻量化人工智能肝癌CT影像与病理分析之研究","coverName":"研究生：钟勋名","coverAdvisor":"指导教授：彭俊澄","coverLine":"大三开始接触人工智能，目前在软件方面学习智能医疗，希望有机会学习，请指导。","past":"过去","now":"现在","future":"未来","retina":"糖尿病视网膜病变","contest":"2026 全国专题竞赛・生技医农群第三名","iihmspDr":"IIHMSP-2025 会议论文","iihmsp":"IIHMSP-2025 会议论文","prostate":"前列腺影像识别","taichuang":"台创比赛","survey":"撰写 survey 论文","vtca":"VTCA-2026 会议论文","tooth":"彤心牙科","senior":"大四专题","site":"网站建设","hand":"手持式口腔设备","liver":"肝癌","ct":"CT影像侦测","pathology":"病理影像分级","japan":"未来：希望去日本交换留学","lc0":"返回自我介绍","lc1":"肝癌｜研究方向总览","lc2":"文献回顾与发现","lc3":"整理 2013–2025 年间的 67 篇肝癌 AI 论文后，我发现研究多聚焦于个别任务，较少考量 CT 与病理分析在诊疗流程中的衔接。","lc4":"研究目标","lc5":"以轻量化与模块化设计，探索 CT 与病理分析的互补性，并降低运算需求。","lc6":"第一阶段｜CT 影像分析","lc7":"肝脏与肿瘤定位、分割","lc8":"体积测量与病灶分类","lc9":"第二阶段｜病理影像分析","lc10":"组织特征分析与病理分级","lc11":"探索预后与复发风险评估","lc12":"目前进度","lc13":"撰写 Survey 论文，规划两阶段研究架构。","lc14":"未来规划","lc15":"希望赴日本交换留学，进一步学习病理影像分析与轻量化 AI。","lc16":"研究规划","dr0":"返回自我介绍","dr1":"糖尿病视网膜病变｜研究成果","dr2":"应用｜为什么做","dr3":"2024 年全球约 5.89 亿名成人（20–79 岁）罹患糖尿病，2050 年预估达 8.53 亿。以 AI 辅助眼底筛检与分级，因应判读需求。","dr4":"数据｜APTOS 2019","dr5":"3,662 张眼底影像，含无病变至增殖性病变共五级标签。","dr6":"建模｜两分类与五分类","dr7":"两分类：SqueezeNet 1.1。","dr8":"五分类：Xception、GoogLeNet、EfficientNetB4、EfficientNetV2S。","dr9":"模拟｜1,098 种组合・7,283 runs","dr10":"500 次平均测试准确率","dr11":"两分类 SqueezeNet","dr12":"98.18%","dr13":"五分类 GoogLeNet","dr14":"83.65%","dr15":"分析｜本研究 500-RUN 平均 vs 文献单次最高","dr16":"两分类：本研究平均 98.18% vs 文献最高 98.36%；1.24M vs 22.8M，参数少 94.6%。","dr17":"五分类：本研究平均 83.65% vs 文献最高 84.36%；6.6M vs 22.8M，参数少 71.1%。","dr18":"本研究为 500 次平均，文献为单次最佳；依简报所列数据对照，非相同实验流程下的重跑比较。","dr19":"[1] Islam et al., Computers in Biology and Medicine, 146, 105602 (2022)。人口：IDF Diabetes Atlas 2025。","dr20":"以接近文献的准确率，大幅降低模型参数量。","pc0":"返回自我介绍","pc1":"前列腺影像识别｜研究成果","pc2":"应用｜为什么做","pc3":"2022 年全球约 150 万例前列腺癌新病例。以轻量化 AI 辅助影像分类，支持早期评估并减轻判读负担。","pc4":"数据｜TCIA","pc5":"Prostate-MRI-US-Biopsy：5,272 张影像，分为 ROI 1–5 五级。训练 3,690 张（70%）、测试 1,582 张（30%）。","pc6":"建模｜三种模型 × 三种优化器","pc7":"模型：VGG-16、MobileNet-V2、Inception-V3。","pc8":"优化器：ADAM、RMSprop、SGDM。","pc9":"模拟｜164 组参数・1,514 runs","pc10":"选用 MobileNet-V2＋RMSprop，进行 500 次模拟。","pc11":"500-RUN 平均测试准确率","pc12":"94.29%","pc13":"标准差","pc14":"±3.53%","pc15":"分析｜准确率提升，模型更轻量","pc16":"准确率：本研究 500-RUN 平均 94.29% vs 文献 82%，高 12.29 个百分点。","pc17":"参数量：本研究 3.5M vs 文献 138M，减少约 97.5%。","pc18":"对照文献期刊：Future Generation Computer Systems（Q1）。","pc19":"发明专利证书号：I895233","dt0":"返回自我介绍","dt1":"大四专题｜轻量化 AI 全景 X 光病症侦测","dt2":"应用｜为什么做","dt3":"全球逾 35 亿人受口腔疾病影响。结合牙齿定位与四病症识别，辅助全口判读与医病沟通。","dt4":"数据｜OdontoAI ＋ DENTEX","dt5":"OdontoAI：1,819 张，筛选后 1,598 张；DENTEX：705 张。训练／测试采 80%／20%。","dt6":"建模｜两阶段・AdamW","dt7":"① YOLOv8m-seg：牙齿分割与定位 → ② Swin-T：蛀牙、深层蛀牙、阻生牙、根尖病灶。","dt8":"模拟｜搜索参数 → 500 RUNS","dt9":"第一阶段 72 组；第二阶段 108／54 组，每组 10 次。找到最佳参数，再跑 500 次。","dt10":"Accuracy","dt11":"93.14%","dt12":"±0.36%","dt13":"F1 Score","dt14":"63.35%","dt15":"±2.92%","dt16":"AUC","dt17":"91.44%","dt18":"±1.29%","dt19":"分析｜本研究 500-RUN 平均 vs 文献","dt20":"文献 Accuracy 94.68%、F1 71.23%、AUC 95.28%；本研究较低，持续改善少数病症识别。","dt21":"第一阶段：27.3M vs 46M，少 40.7%。第二阶段：28M vs 文献五模型总计 440M，少 93.6%。","dt22":"系统实现｜3D Slicer：Box／Mask 切换、人工复核、图片与 CSV 导出。","dt23":"文献：van Nistelrooij et al., BMC Oral Health (2024)。文献为交叉验证平均；数据及切分不同。","or0":"返回自我介绍","or1":"手持式口腔设备","or2":"目前进度：寻找与评估数据集","or3":"应用｜为什么做","or4":"以手持设备取得口内影像，探索轻量化 AI 辅助蛀牙与牙菌斑识别，提升检查便利性。","or5":"研究方向｜三种光源","or6":"评估不同成像方式与数据标注，作为后续设备设计及模型训练的依据。","or7":"白光｜口内彩色影像","or8":"蛀牙：Ahmed 2,180 张、Liu 1,540 张。牙菌斑：AIRC LABDEN 10,374 张。","or9":"蓝光｜405 nm 荧光","or10":"目前整理的公开数据为 0 张；候选研究多需向作者申请，例如 Park QLF 蛀牙 1,701 张。","or11":"近红外｜透照与反射","or12":"ODSI-DB 候选子集：蛀牙 39 张、牙菌斑 8 张。反射与透照须分开评估。","or13":"数据筛选重点","or14":"取得方式、影像数量、病灶标注、医师审查、分级标准，以及与手持设备的成像差异。","or15":"设备构想","or16":"评估白光／蓝光共用 RGB 相机，近红外使用独立相机的双相机方案。","or17":"下一步","or18":"确认适用数据集与使用条件，再选择模型、规划训练与设备验证。","or19":"数据集仍在筛选，尚未确定；作者申请数据的张数不代表已取得。","vapp":"01 应用","vdata":"02 数据","vmodel":"03 建模","vsim":"04 模拟","vanalysis":"05 分析","vmean":"本研究｜500-RUN 平均","vbest":"文献｜单次最高","vpaper":"文献","vimages":"眼底影像范例","vpeople":"全球糖尿病成人（20–79 岁，2024）","vgoal":"辅助眼底筛检与严重度分级","vpcpeople":"全球新病例（2022）","vpcgoal":"轻量化影像分类，辅助早期评估","vtrain":"训练","vtest":"测试","vgrades":"ROI 1–5｜五级影像分类","vdrmodels":"两分类：SqueezeNet 1.1","vdrfive":"五分类","vparams":"模型参数量","vreduction":"参数减少","vdiagram":"流程示意","vtooth":"牙齿定位／分割","vdisease":"蛀牙・深层蛀牙・阻生牙・根尖病灶","vui":"3D Slicer 界面","v500":"最佳参数 → 500 RUNS","vwhitedata":"Ahmed 2,180 张／Liu 1,540 张蛀牙；LABDEN 10,374 张牙菌斑。","vbluedata":"公开：目前未找到。Park QLF 蛀牙 1,701 张，需作者申请。","vnirdat":"ODSI-DB：蛀牙 39 张、牙菌斑 8 张。","voraldata":"数据｜三种光源与候选数据集","vwhite":"白光","vblue":"蓝光荧光","vnir":"近红外","vtrans":"透照","vreflect":"反射","vnoteimages":"影像来自提供文档；各光源范例不全为同一颗牙。","vdentalgoal":"牙齿定位＋四病症识别，辅助全口判读","voralstage":"目前：寻找与评估数据集","voralcheck":"数据筛选：取得方式・张数・标注・医师审查・分级标准","vpopulationdr":"5.89 亿","vpopulationpc":"150 万","vpopulationdental":"逾 35 亿","vfound":"已整理 22 项候选数据源","vfounddetail":"公开数据 6 项｜需向作者申请 16 项","vcountnote":"同一研究跨光源或跨病症只计一次；目前持续寻找与评估数据集。","langCn":"简中"};
+var htmlLang = { zh: "zh-Hant", zhHans: "zh-Hans", en: "en", ja: "ja" };
+        Object.assign(copy.zh, {
+          coverTitleLead: "輕量化人工智慧",
+          coverHit: "肝癌",
+          coverTitleTail: "CT影像與病理分析之研究",
+          lc17: "手動 CT 輪廓勾勒與體積計算：35 分鐘 → 2.1 分鐘",
+          lc18: "對標 TCGA-LIHC，病理切片（WSI）審閱：10 分鐘 → 每區塊 7 秒",
+          drAcc: "準確率",
+          drBin: "兩分類",
+          drFive: "五分類",
+          drPaperBin: "文獻 98.36%",
+          drPaperFive: "文獻 84.36%",
+          drChartAccBin: "準確率 · 兩分類",
+          drChartAccFive: "準確率 · 五分類",
+          drChartParBin: "參數量 · 兩分類",
+          drChartParFive: "參數量 · 五分類",
+          drG0: "0 無病變",
+          drG1: "1 輕度",
+          drG2: "2 中度",
+          drG3: "3 重度",
+          drG4: "4 增殖性",
+          vfundus: "眼底影像",
+          drPoint: "準確率接近文獻，參數少 94.6%／71.1%",
+          pathNote: "希望把前面的輕量化概念繼續用在這裡。",
+          pathBase: "要對比論文：PaSegNet 約 2,300 萬",
+          pathHalf: "希望可以減少約一半",
+          coverStatBtn: "肝癌數據",
+          coverStatKicker: "2024 · GLOBOCAN",
+          coverStatCases: "新病例",
+          coverStatDeaths: "死亡",
+          coverStatWorld: "全世界",
+          coverStatJapan: "日本",
+          coverStatWorldCaseRank: "第 7",
+          coverStatWorldDeathRank: "第 3",
+          coverStatJapanCaseRank: "第 8",
+          coverStatJapanDeathRank: "第 5"
+        , "opgC2": "對照 Combo 2 是 108 組裡，最弱病症平均 F1 最高的一組，50.84%。Combo 68 平均 F1 72.03%，比 71.88% 高約 0.15，但深度蛀牙較差，所以當備選。"});
+        Object.assign(copy.en, {
+          coverTitleLead: "Lightweight Artificial Intelligence for ",
+          coverHit: "Liver Cancer",
+          coverTitleTail: " CT Imaging and Pathology Analysis",
+          lc17: "Manual CT contouring and volume calculation: 35 min → 2.1 min",
+          lc18: "Against TCGA-LIHC, whole-slide (WSI) review: 10 min → 7 sec per patch",
+          drAcc: "Accuracy",
+          drBin: "Binary",
+          drFive: "5-class",
+          drPaperBin: "Paper 98.36%",
+          drPaperFive: "Paper 84.36%",
+          drChartAccBin: "Accuracy · Binary",
+          drChartAccFive: "Accuracy · 5-class",
+          drChartParBin: "Parameters · Binary",
+          drChartParFive: "Parameters · 5-class",
+          drG0: "0 No DR",
+          drG1: "1 Mild",
+          drG2: "2 Moderate",
+          drG3: "3 Severe",
+          drG4: "4 Proliferative",
+          vfundus: "Fundus images",
+          drPoint: "Accuracy close to the paper, 94.6% / 71.1% fewer parameters",
+          coverStatBtn: "Liver cancer figures",
+          coverStatKicker: "2024 · GLOBOCAN",
+          coverStatCases: "New cases",
+          coverStatDeaths: "Deaths",
+          coverStatWorld: "World",
+          coverStatJapan: "Japan",
+          coverStatWorldCaseRank: "7th",
+          coverStatWorldDeathRank: "3rd",
+          coverStatJapanCaseRank: "8th",
+          coverStatJapanDeathRank: "5th",
+          pathNote: "I hope to carry the earlier lightweight idea into this step.",
+          pathBase: "Paper: PaSegNet, about 23 million",
+          pathHalf: "I hope it can be reduced by about half."
+        , "opgC2": "The control, Combo 2, has the highest weakest-condition mean F1 among the 108 setups, 50.84%. Combo 68's mean F1 is 72.03%, about 0.15 above 71.88%, but deep caries is worse, so it stays the backup."});
+        Object.assign(copy.ja, {
+          coverTitleLead: "軽量人工知能による",
+          coverHit: "肝がん",
+          coverTitleTail: "CT画像と病理分析の研究",
+          lc17: "手動CT輪郭描出と体積計算：35分 → 2.1分",
+          lc18: "TCGA-LIHCを基準に、病理スライド（WSI）確認：10分 → 1領域7秒",
+          drAcc: "正解率",
+          drBin: "2クラス",
+          drFive: "5クラス",
+          drPaperBin: "文献 98.36%",
+          drPaperFive: "文献 84.36%",
+          drChartAccBin: "正解率 · 2クラス",
+          drChartAccFive: "正解率 · 5クラス",
+          drChartParBin: "パラメータ · 2クラス",
+          drChartParFive: "パラメータ · 5クラス",
+          drG0: "0 病変なし",
+          drG1: "1 軽度",
+          drG2: "2 中等度",
+          drG3: "3 重度",
+          drG4: "4 増殖性",
+          vfundus: "眼底画像",
+          drPoint: "正解率は文献に近く、パラメータ 94.6%／71.1% 削減",
+          coverStatBtn: "肝がんのデータ",
+          coverStatKicker: "2024 · GLOBOCAN",
+          coverStatCases: "新規",
+          coverStatDeaths: "死亡",
+          coverStatWorld: "世界",
+          coverStatJapan: "日本",
+          coverStatWorldCaseRank: "7位",
+          coverStatWorldDeathRank: "3位",
+          coverStatJapanCaseRank: "8位",
+          coverStatJapanDeathRank: "5位",
+          pathNote: "これまでの軽量化の考え方をここでも続けたいです。",
+          pathBase: "比較論文：PaSegNet 約2,300万",
+          pathHalf: "半分くらい減らせたらいいです。"
+        , "opgC2": "対照の Combo 2 は、108組の中で最も弱い病変の平均 F1 が一番高く、50.84%。Combo 68 の平均 F1 は 72.03% で 71.88% より約 0.15 高いが、深在性う蝕が劣るので予備にする。"});
+        Object.assign(copy.zhHans, {
+          coverTitleLead: "轻量化人工智能",
+          coverHit: "肝癌",
+          coverTitleTail: "CT影像与病理分析之研究",
+          lc17: "手动 CT 轮廓勾勒与体积计算：35 分钟 → 2.1 分钟",
+          lc18: "对标 TCGA-LIHC，病理切片（WSI）审阅：10 分钟 → 每区块 7 秒",
+          drAcc: "准确率",
+          drBin: "两分类",
+          drFive: "五分类",
+          drPaperBin: "文献 98.36%",
+          drPaperFive: "文献 84.36%",
+          drChartAccBin: "准确率 · 两分类",
+          drChartAccFive: "准确率 · 五分类",
+          drChartParBin: "参数量 · 两分类",
+          drChartParFive: "参数量 · 五分类",
+          drG0: "0 无病变",
+          drG1: "1 轻度",
+          drG2: "2 中度",
+          drG3: "3 重度",
+          drG4: "4 增殖性",
+          vfundus: "眼底影像",
+          drPoint: "准确率接近文献，参数少 94.6%／71.1%",
+          pathNote: "希望把前面的轻量化概念继续用在这里。",
+          pathBase: "要对比论文：PaSegNet 约 2,300 万",
+          pathHalf: "希望可以减少约一半",
+          coverStatCases: "新病例",
+          coverStatDeaths: "死亡",
+          coverStatWorld: "全世界",
+          coverStatJapan: "日本",
+          coverStatWorldCaseRank: "第 7",
+          coverStatWorldDeathRank: "第 3",
+          coverStatJapanCaseRank: "第 8",
+          coverStatJapanDeathRank: "第 5"
+        , "opgC2": "对照 Combo 2 是 108 组里，最弱病症平均 F1 最高的一组，50.84%。Combo 68 平均 F1 72.03%，比 71.88% 高约 0.15，但深层蛀牙较差，所以当备选。"});
+
+
+        Object.assign(copy.zh, {
+          drAppGoal: "偵測是否有糖尿病視網膜病變，輔助眼底篩檢與五級分級。",
+          drAppWhy: "為什麼做",
+          drAppDoc: "一般眼科醫師準確率 46.3%，視網膜專科 62.3%。",
+          drAppTime: "完全依專業知識判讀約 50.92 秒。",
+          drAppPrevent: "簡報所寫：早期檢測可預防 95% 的嚴重視力喪失。",
+          drAppScale: "病變規模",
+          drAppWorld: "全球糖尿病視網膜病變患者約 1.03 億，2045 年預估 1.6 億。",
+          drAppAfrica: "非洲盛行率 35.90%，2045 年患者推估約 5,500 萬。",
+          drAppFoot: "醫師判讀：Sayres et al., Ophthalmology, 2019。病變人口：Teo et al., Ophthalmology, 2021。糖尿病成人：IDF Diabetes Atlas 2025。",
+          drDataWhat: "Kaggle 公開眼底影像，含醫師認可的圖像與五級標籤，用於訓練與測試。",
+          drDataHow: "影像尺寸與模型輸入不同，於程式中縮放對齊，並提升對比與細節。",
+          drDataGrades: "五級",
+          drDataBalance: "無病變約 49.3%，重度約 5.3%。",
+          drDataWhy: "為什麼用這份",
+          drDataSource: "APTOS 2019 由亞太遠程眼科學會發起，影像來自印度農村的臨床環境。",
+          drDataStd: "分級採用國際臨床糖尿病視網膜病變嚴重度標準，由醫師團隊標註。",
+          drModelWhy: "為什麼選這些",
+          drModelSq: "1.24M。MATLAB 裡最小，當基準。",
+          drModelGo: "6.6M。前列是 55.84M、42.68M。",
+          drModelOpt: "ADAM、RMSprop。不用 SGDM。",
+          drModelPick: "選定組合",
+          drBinBest: "兩分類：SqueezeNet + ADAM",
+          drBinSpec: "LR 0.0001｜Epoch 15｜Batch 16｜Drop 0.1／每 5 epoch｜β 0.9｜L2 0.001",
+          drFiveBest: "五分類：GoogLeNet + RMSprop",
+          drFiveSpec: "LR 0.0001｜Epoch 15｜Batch 16｜Drop 0.1／每 10 epoch｜β 0.999｜L2 0.0001",
+          drSimTen: "先以 10-RUN 篩選",
+          drSimTenBin: "兩分類 SqueezeNet + ADAM：平均 98.38%，最高 99.09%。",
+          drSimTenFive: "五分類 GoogLeNet + RMSprop：平均 84.35%，最高 86.36%。",
+          drSimTenOther: "五分類 EfficientNetV2S + ADAM：平均 85.51%，最高 88.73%。",
+          drSimNoteTitle: "怎麼讀這些數字",
+          drSimNote: "10-RUN 用來選組合。和文獻對照時，用的是 500-RUN 平均，不是 10-RUN，也不是單次最高。",
+          drLimit: "五分類第 3、4 級較難分。無病變約 49.3%，重度約 5.3%，相鄰等級容易混淆。",
+          drModelOptWhy: "SGDM 的學習率是固定的。",
+          drModelEf: "B4 追準確率。V2S 訓練更快。",
+          drTuneTitle: "其他模型",
+          drPairTitle: "SqueezeNet・GoogLeNet 調過的參數",
+          drRowOpt: "優化器",
+          drOptBoth: "ADAM、RMSprop",
+          drAppBin: "兩分類",
+          drAppBinV: "有沒有病變",
+          drAppFive: "五分類",
+          drAppFiveV: "0–4 嚴重度",
+          drAppHow: "做法",
+          drAppHowV: "輕量化模型，大規模篩檢",
+          drLabPlat: "平台",
+          drDataPlat: "Kaggle",
+          drLabPlace: "場景",
+          drDataPlace: "印度農村診所",
+          drLabPrep: "處理",
+          drDataPrep: "縮放對齊，加強對比",
+          drLabOrg: "發起",
+          drDataOrg: "亞太遠程眼科學會",
+          drLabStd: "標準",
+          drDataStdS: "國際臨床 DR 嚴重度",
+          drLabMark: "標註",
+          drDataMark: "醫師團隊",
+          drWho: "兩分類 SqueezeNet 1.24M。五分類 GoogLeNet 6.6M。",
+          drTuneLead: "優化器只用 ADAM、RMSprop，不用 SGDM。各模型試的範圍不一樣，下表是簡報裡實際調過的值。",
+          drColParam: "參數",
+          drColSq: "SqueezeNet",
+          drColGo: "GoogLeNet",
+          drColEf: "EfficientNetB4・V2S",
+          drColXc: "Xception",
+          drRowLr: "Initial Learning Rate",
+          drSqLr: "0.0001",
+          drGoLr: "0.0001、0.001",
+          drEfLr: "0.0001、0.001",
+          drXcLr: "0.0001、0.001、0.01",
+          drRowEp: "Max Epochs",
+          drSqEp: "15",
+          drGoEp: "15、30",
+          drEfEp: "15",
+          drXcEp: "15、30",
+          drRowBs: "Mini Batch Size",
+          drSqBs: "16",
+          drGoBs: "16",
+          drEfBs: "16",
+          drXcBs: "8、16、32",
+          drRowDf: "Learn Rate Drop Factor",
+          drDropF: "0.5、0.1",
+          drRowDp: "Learn Rate Drop Period",
+          drDropP: "5、10",
+          drRowB: "Squared Gradient Decay Factor（β）",
+          drSqB: "0.9、0.999",
+          drGoB: "0.9、0.999",
+          drEfB: "0.9、0.999",
+          drXcB: "0.99、0.97、0.95",
+          drRowL2: "L2 Regularization",
+          drL2: "0.001、0.0001",
+          drXcL2: "—",
+          drRowLoss: "損失函數",
+          drSqLoss: "cross-entropy",
+          drGoLoss: "cross-entropy、focal loss γ 2／3.5／8",
+          drEfLoss: "focal loss γ 2／3.5／8",
+          drXcLoss: "cross-entropy。可加 64／128",
+          drTuneChosen: "選進 500 次",
+          drTuneFoot: "Xception 的設定頁沒有列 L2。組合總數仍是 1,098 種、7,283 runs，沒有用這張表重算。"
+        });
+        Object.assign(copy.en, {
+          drAppGoal: "Detect diabetic retinopathy and support fundus screening plus five-grade severity.",
+          drAppWhy: "Why this",
+          drAppDoc: "General ophthalmologists 46.3% accurate; retina specialists 62.3%.",
+          drAppTime: "About 50.92 seconds when grading from expertise alone.",
+          drAppPrevent: "As stated in the slides: early detection can prevent 95% of severe vision loss.",
+          drAppScale: "Scale of disease",
+          drAppWorld: "About 103 million people have diabetic retinopathy worldwide, projected at 160 million by 2045.",
+          drAppAfrica: "Africa has the highest prevalence, 35.90%, with about 55 million patients projected by 2045.",
+          drAppFoot: "Grading: Sayres et al., Ophthalmology, 2019. DR population: Teo et al., Ophthalmology, 2021. Adults with diabetes: IDF Diabetes Atlas 2025.",
+          drDataWhat: "Public Kaggle fundus images with clinician-accepted files and five-grade labels, used for training and testing.",
+          drDataHow: "Image size differs from the model input, so the program rescales them and increases contrast and detail.",
+          drDataGrades: "Five grades",
+          drDataBalance: "No DR is about 49.3%; severe is about 5.3%.",
+          drDataWhy: "Why this set",
+          drDataSource: "APTOS 2019 was launched by the Asia Pacific Tele-Ophthalmology Society; images come from rural clinics in India.",
+          drDataStd: "Grades follow the International Clinical Diabetic Retinopathy Severity Scale, labeled by clinicians.",
+          drModelWhy: "Why these models",
+          drModelSq: "1.24M. Smallest in MATLAB, used as the baseline.",
+          drModelGo: "6.6M. Leaders are 55.84M and 42.68M.",
+          drModelOpt: "ADAM, RMSprop. Not SGDM.",
+          drModelPick: "Selected setups",
+          drBinBest: "Binary: SqueezeNet + ADAM",
+          drBinSpec: "LR 0.0001 | Epoch 15 | Batch 16 | Drop 0.1 / 5 epochs | β 0.9 | L2 0.001",
+          drFiveBest: "5-class: GoogLeNet + RMSprop",
+          drFiveSpec: "LR 0.0001 | Epoch 15 | Batch 16 | Drop 0.1 / 10 epochs | β 0.999 | L2 0.0001",
+          drSimTen: "Screened with 10 runs",
+          drSimTenBin: "Binary SqueezeNet + ADAM: mean 98.38%, best 99.09%.",
+          drSimTenFive: "5-class GoogLeNet + RMSprop: mean 84.35%, best 86.36%.",
+          drSimTenOther: "5-class EfficientNetV2S + ADAM: mean 85.51%, best 88.73%.",
+          drSimNoteTitle: "How to read the numbers",
+          drSimNote: "The 10-run results choose the setup. The literature comparison uses the 500-run mean, not the 10-run mean and not a single best run.",
+          drLimit: "Grades 3 and 4 are harder. No DR is about 49.3% and severe about 5.3%, so neighboring grades are easy to confuse.",
+          drModelOptWhy: "SGDM keeps a fixed learning rate.",
+          drModelEf: "B4 for accuracy. V2S trains faster.",
+          drTuneTitle: "Other models",
+          drPairTitle: "Parameters tuned: SqueezeNet and GoogLeNet",
+          drRowOpt: "Optimizer",
+          drOptBoth: "ADAM, RMSprop",
+          drAppBin: "Binary",
+          drAppBinV: "DR or no DR",
+          drAppFive: "5-class",
+          drAppFiveV: "Severity 0–4",
+          drAppHow: "Approach",
+          drAppHowV: "A small model for large-scale screening",
+          drLabPlat: "Source",
+          drDataPlat: "Kaggle",
+          drLabPlace: "Setting",
+          drDataPlace: "Rural clinics in India",
+          drLabPrep: "Prep",
+          drDataPrep: "Rescale, raise contrast",
+          drLabOrg: "Organizer",
+          drDataOrg: "Asia Pacific Tele-Ophthalmology Society",
+          drLabStd: "Scale",
+          drDataStdS: "International Clinical DR Severity",
+          drLabMark: "Labels",
+          drDataMark: "Clinicians",
+          drWho: "Binary: SqueezeNet 1.24M. 5-class: GoogLeNet 6.6M.",
+          drTuneLead: "Only ADAM and RMSprop were used, not SGDM. The ranges differ by model. The table is what the slides actually tried.",
+          drColParam: "Parameter",
+          drColSq: "SqueezeNet",
+          drColGo: "GoogLeNet",
+          drColEf: "EfficientNetB4 / V2S",
+          drColXc: "Xception",
+          drRowLr: "Initial Learning Rate",
+          drSqLr: "0.0001",
+          drGoLr: "0.0001, 0.001",
+          drEfLr: "0.0001, 0.001",
+          drXcLr: "0.0001, 0.001, 0.01",
+          drRowEp: "Max Epochs",
+          drSqEp: "15",
+          drGoEp: "15, 30",
+          drEfEp: "15",
+          drXcEp: "15, 30",
+          drRowBs: "Mini Batch Size",
+          drSqBs: "16",
+          drGoBs: "16",
+          drEfBs: "16",
+          drXcBs: "8, 16, 32",
+          drRowDf: "Learn Rate Drop Factor",
+          drDropF: "0.5, 0.1",
+          drRowDp: "Learn Rate Drop Period",
+          drDropP: "5, 10",
+          drRowB: "Squared Gradient Decay Factor (β)",
+          drSqB: "0.9, 0.999",
+          drGoB: "0.9, 0.999",
+          drEfB: "0.9, 0.999",
+          drXcB: "0.99, 0.97, 0.95",
+          drRowL2: "L2 Regularization",
+          drL2: "0.001, 0.0001",
+          drXcL2: "—",
+          drRowLoss: "Loss",
+          drSqLoss: "Cross-entropy",
+          drGoLoss: "Cross-entropy, focal loss γ 2 / 3.5 / 8",
+          drEfLoss: "Focal loss γ 2 / 3.5 / 8",
+          drXcLoss: "Cross-entropy. Optional 64 / 128",
+          drTuneChosen: "Setups taken into the 500 runs",
+          drTuneFoot: "The Xception setup page does not list L2. The combination total stays 1,098 kinds and 7,283 runs; this table was not used to recount them."
+        });
+        Object.assign(copy.ja, {
+          drAppGoal: "糖尿病網膜症の有無を検出し、眼底検診と5段階分類を支援します。",
+          drAppWhy: "なぜ行うか",
+          drAppDoc: "一般眼科医の正解率 46.3%、網膜専門医 62.3%。",
+          drAppTime: "専門知識だけでの判読は約 50.92 秒。",
+          drAppPrevent: "スライドの記載：早期検出で重度の視力喪失の 95% を防げる。",
+          drAppScale: "患者規模",
+          drAppWorld: "世界の糖尿病網膜症患者は約 1.03 億人、2045 年には 1.6 億人の予測。",
+          drAppAfrica: "アフリカの有病率は 35.90% で最も高く、2045 年の患者は約 5,500 万人の推計。",
+          drAppFoot: "医師の判読：Sayres et al., Ophthalmology, 2019。患者数：Teo et al., Ophthalmology, 2021。糖尿病成人：IDF Diabetes Atlas 2025。",
+          drDataWhat: "Kaggle 公開の眼底画像。医師が認めた画像と 5 段階ラベルがあり、訓練とテストに使用。",
+          drDataHow: "画像サイズがモデル入力と異なるため、プログラムで拡大縮小し、コントラストと細部を強める。",
+          drDataGrades: "5 段階",
+          drDataBalance: "病変なし約 49.3%、重度約 5.3%。",
+          drDataWhy: "このデータを使う理由",
+          drDataSource: "APTOS 2019 はアジア太平洋遠隔眼科学会が開始。画像はインド農村の臨床現場から。",
+          drDataStd: "国際臨床糖尿病網膜症重症度基準で、医師チームがラベル付け。",
+          drModelWhy: "このモデルを選んだ理由",
+          drModelSq: "1.24M。MATLAB 内で最小。基準モデル。",
+          drModelGo: "6.6M。上位は 55.84M、42.68M。",
+          drModelOpt: "ADAM、RMSprop。SGDM は不使用。",
+          drModelPick: "選んだ組み合わせ",
+          drBinBest: "2 クラス：SqueezeNet + ADAM",
+          drBinSpec: "LR 0.0001｜Epoch 15｜Batch 16｜Drop 0.1／5 epoch｜β 0.9｜L2 0.001",
+          drFiveBest: "5 クラス：GoogLeNet + RMSprop",
+          drFiveSpec: "LR 0.0001｜Epoch 15｜Batch 16｜Drop 0.1／10 epoch｜β 0.999｜L2 0.0001",
+          drSimTen: "まず 10 回で選ぶ",
+          drSimTenBin: "2 クラス SqueezeNet + ADAM：平均 98.38%、最高 99.09%。",
+          drSimTenFive: "5 クラス GoogLeNet + RMSprop：平均 84.35%、最高 86.36%。",
+          drSimTenOther: "5 クラス EfficientNetV2S + ADAM：平均 85.51%、最高 88.73%。",
+          drSimNoteTitle: "数字の読み方",
+          drSimNote: "10 回は組み合わせ選び。文献との比較は 500 回平均であり、10 回平均でも単一最高値でもありません。",
+          drLimit: "5 クラスの 3・4 級は難しい。病変なし約 49.3%、重度約 5.3% で、隣り合う等級は混同しやすい。",
+          drModelOptWhy: "SGDM は学習率が固定。",
+          drModelEf: "B4 は精度。V2S は学習が速い。",
+          drTuneTitle: "他のモデル",
+          drPairTitle: "SqueezeNet・GoogLeNet で調整したパラメータ",
+          drRowOpt: "最適化",
+          drOptBoth: "ADAM、RMSprop",
+          drAppBin: "2クラス",
+          drAppBinV: "病変の有無",
+          drAppFive: "5クラス",
+          drAppFiveV: "重症度 0–4",
+          drAppHow: "方法",
+          drAppHowV: "軽量モデルで大規模検診",
+          drLabPlat: "出典",
+          drDataPlat: "Kaggle",
+          drLabPlace: "現場",
+          drDataPlace: "インド農村の診療所",
+          drLabPrep: "処理",
+          drDataPrep: "サイズ合わせ、コントラスト強調",
+          drLabOrg: "主催",
+          drDataOrg: "アジア太平洋遠隔眼科学会",
+          drLabStd: "基準",
+          drDataStdS: "国際臨床 DR 重症度",
+          drLabMark: "ラベル",
+          drDataMark: "医師チーム",
+          drWho: "2クラス SqueezeNet 1.24M。5クラス GoogLeNet 6.6M。",
+          drTuneLead: "最適化は ADAM と RMSprop のみ。SGDM は不使用。モデルごとに試した範囲は違います。表はスライドに実際にある値です。",
+          drColParam: "パラメータ",
+          drColSq: "SqueezeNet",
+          drColGo: "GoogLeNet",
+          drColEf: "EfficientNetB4・V2S",
+          drColXc: "Xception",
+          drRowLr: "Initial Learning Rate",
+          drSqLr: "0.0001",
+          drGoLr: "0.0001、0.001",
+          drEfLr: "0.0001、0.001",
+          drXcLr: "0.0001、0.001、0.01",
+          drRowEp: "Max Epochs",
+          drSqEp: "15",
+          drGoEp: "15、30",
+          drEfEp: "15",
+          drXcEp: "15、30",
+          drRowBs: "Mini Batch Size",
+          drSqBs: "16",
+          drGoBs: "16",
+          drEfBs: "16",
+          drXcBs: "8、16、32",
+          drRowDf: "Learn Rate Drop Factor",
+          drDropF: "0.5、0.1",
+          drRowDp: "Learn Rate Drop Period",
+          drDropP: "5、10",
+          drRowB: "Squared Gradient Decay Factor（β）",
+          drSqB: "0.9、0.999",
+          drGoB: "0.9、0.999",
+          drEfB: "0.9、0.999",
+          drXcB: "0.99、0.97、0.95",
+          drRowL2: "L2 Regularization",
+          drL2: "0.001、0.0001",
+          drXcL2: "—",
+          drRowLoss: "損失関数",
+          drSqLoss: "cross-entropy",
+          drGoLoss: "cross-entropy、focal loss γ 2／3.5／8",
+          drEfLoss: "focal loss γ 2／3.5／8",
+          drXcLoss: "cross-entropy。64／128 を追加可",
+          drTuneChosen: "500 回に進めた組み合わせ",
+          drTuneFoot: "Xception の設定ページに L2 はありません。組み合わせ総数は 1,098 種、7,283 回のままです。この表では数え直していません。"
+        });
+        Object.assign(copy.zhHans, {
+          drAppGoal: "检测是否有糖尿病视网膜病变，辅助眼底筛检与五级分级。",
+          drAppWhy: "为什么做",
+          drAppDoc: "一般眼科医师准确率 46.3%，视网膜专科 62.3%。",
+          drAppTime: "完全依专业知识判读约 50.92 秒。",
+          drAppPrevent: "简报所写：早期检测可预防 95% 的严重视力丧失。",
+          drAppScale: "病变规模",
+          drAppWorld: "全球糖尿病视网膜病变患者约 1.03 亿，2045 年预估 1.6 亿。",
+          drAppAfrica: "非洲盛行率 35.90%，2045 年患者推估约 5,500 万。",
+          drAppFoot: "医师判读：Sayres et al., Ophthalmology, 2019。病变人口：Teo et al., Ophthalmology, 2021。糖尿病成人：IDF Diabetes Atlas 2025。",
+          drDataWhat: "Kaggle 公开眼底影像，含医师认可的图像与五级标签，用于训练与测试。",
+          drDataHow: "影像尺寸与模型输入不同，于程序中缩放对齐，并提升对比与细节。",
+          drDataGrades: "五级",
+          drDataBalance: "无病变约 49.3%，重度约 5.3%。",
+          drDataWhy: "为什么用这份",
+          drDataSource: "APTOS 2019 由亚太远程眼科学会发起，影像来自印度农村的临床环境。",
+          drDataStd: "分级采用国际临床糖尿病视网膜病变严重度标准，由医师团队标注。",
+          drModelWhy: "为什么选这些",
+          drModelSq: "1.24M。MATLAB 里最小，当基准。",
+          drModelGo: "6.6M。前列是 55.84M、42.68M。",
+          drModelOpt: "ADAM、RMSprop。不用 SGDM。",
+          drModelPick: "选定组合",
+          drBinBest: "两分类：SqueezeNet + ADAM",
+          drBinSpec: "LR 0.0001｜Epoch 15｜Batch 16｜Drop 0.1／每 5 epoch｜β 0.9｜L2 0.001",
+          drFiveBest: "五分类：GoogLeNet + RMSprop",
+          drFiveSpec: "LR 0.0001｜Epoch 15｜Batch 16｜Drop 0.1／每 10 epoch｜β 0.999｜L2 0.0001",
+          drSimTen: "先以 10-RUN 筛选",
+          drSimTenBin: "两分类 SqueezeNet + ADAM：平均 98.38%，最高 99.09%。",
+          drSimTenFive: "五分类 GoogLeNet + RMSprop：平均 84.35%，最高 86.36%。",
+          drSimTenOther: "五分类 EfficientNetV2S + ADAM：平均 85.51%，最高 88.73%。",
+          drSimNoteTitle: "怎么读这些数字",
+          drSimNote: "10-RUN 用来选组合。和文献对照时，用的是 500-RUN 平均，不是 10-RUN，也不是单次最高。",
+          drLimit: "五分类第 3、4 级较难分。无病变约 49.3%，重度约 5.3%，相邻等级容易混淆。",
+          drModelOptWhy: "SGDM 的学习率是固定的。",
+          drModelEf: "B4 追准确率。V2S 训练更快。",
+          drTuneTitle: "其他模型",
+          drPairTitle: "SqueezeNet・GoogLeNet 调过的参数",
+          drRowOpt: "优化器",
+          drOptBoth: "ADAM、RMSprop",
+          drAppBin: "两分类",
+          drAppBinV: "有没有病变",
+          drAppFive: "五分类",
+          drAppFiveV: "0–4 严重度",
+          drAppHow: "做法",
+          drAppHowV: "轻量化模型，大规模筛检",
+          drLabPlat: "平台",
+          drDataPlat: "Kaggle",
+          drLabPlace: "场景",
+          drDataPlace: "印度农村诊所",
+          drLabPrep: "处理",
+          drDataPrep: "缩放对齐，加强对比",
+          drLabOrg: "发起",
+          drDataOrg: "亚太远程眼科学会",
+          drLabStd: "标准",
+          drDataStdS: "国际临床 DR 严重度",
+          drLabMark: "标注",
+          drDataMark: "医师团队",
+          drWho: "两分类 SqueezeNet 1.24M。五分类 GoogLeNet 6.6M。",
+          drTuneLead: "优化器只用 ADAM、RMSprop，不用 SGDM。各模型试的范围不一样，下表是简报里实际调过的值。",
+          drColParam: "参数",
+          drColSq: "SqueezeNet",
+          drColGo: "GoogLeNet",
+          drColEf: "EfficientNetB4・V2S",
+          drColXc: "Xception",
+          drRowLr: "Initial Learning Rate",
+          drSqLr: "0.0001",
+          drGoLr: "0.0001、0.001",
+          drEfLr: "0.0001、0.001",
+          drXcLr: "0.0001、0.001、0.01",
+          drRowEp: "Max Epochs",
+          drSqEp: "15",
+          drGoEp: "15、30",
+          drEfEp: "15",
+          drXcEp: "15、30",
+          drRowBs: "Mini Batch Size",
+          drSqBs: "16",
+          drGoBs: "16",
+          drEfBs: "16",
+          drXcBs: "8、16、32",
+          drRowDf: "Learn Rate Drop Factor",
+          drDropF: "0.5、0.1",
+          drRowDp: "Learn Rate Drop Period",
+          drDropP: "5、10",
+          drRowB: "Squared Gradient Decay Factor（β）",
+          drSqB: "0.9、0.999",
+          drGoB: "0.9、0.999",
+          drEfB: "0.9、0.999",
+          drXcB: "0.99、0.97、0.95",
+          drRowL2: "L2 Regularization",
+          drL2: "0.001、0.0001",
+          drXcL2: "—",
+          drRowLoss: "损失函数",
+          drSqLoss: "cross-entropy",
+          drGoLoss: "cross-entropy、focal loss γ 2／3.5／8",
+          drEfLoss: "focal loss γ 2／3.5／8",
+          drXcLoss: "cross-entropy。可加 64／128",
+          drTuneChosen: "选进 500 次",
+          drTuneFoot: "Xception 的设定页没有列 L2。组合总数仍是 1,098 种、7,283 runs，没有用这张表重算。"
+        });
+
+        Object.assign(copy.zh, { dr1tail: "｜研究成果", drBackOverview: "返回研究成果" });
+        Object.assign(copy.en, { dr1tail: " | Results", drBackOverview: "Back to results" });
+        Object.assign(copy.ja, { dr1tail: "｜研究成果", drBackOverview: "研究成果に戻る" });
+        Object.assign(copy.zhHans, { dr1tail: "｜研究成果", drBackOverview: "返回研究成果" });
+        Object.assign(copy.zh, {
+          drLabSmall: "小規模", drDataSmall: "每類平均約 150 張", drLabFull: "完整", drDataFull: "3,662 張",
+          dt1tail: "｜輕量化 AI 全景 X 光病症偵測", opgUsed: "模擬用 688 張 OPG、7,160 個 ROI",
+          opgAppLead: "讀一張全口牙片。先把牙齒分出來，再判斷蛀牙、深層蛀牙、阻生牙、根尖病灶。",
+          opgUiL: "介面", opgUiV: "載入、辨識、改框、改病症、匯出", opgGrayL: "灰色", opgGrayV: "沒過病症門檻，不是健康",
+          opgS1h: "第一階段", opgS1v: "整張牙片分割牙齒。排名不看牙號。", opgS2h: "第二階段", opgS2v: "每顆牙裁成 ROI，做四種病症。",
+          opgModelL: "模型", opgJobL: "工作", opgMainL: "主線", opgMainV: "含未診斷牙", opgCtrlL: "對照", opgCtrlV: "只有病症牙",
+          opgUndxL: "未診斷", opgUndxV: "四種病症都沒標註，不是確認健康",
+          opgLabOpg: "張 OPG", opgLabRoi: "個 ROI", opgLabUndx: "未診斷牙", opgLabDis: "病症牙",
+          opgLabCar: "蛀牙", opgLabDeep: "深度蛀牙", opgLabImp: "阻生牙", opgLabPer: "根尖病變",
+          opgMarkH: "標註次數", opgMulti: "一顆牙可以有多個病症，加總不是 3,310。",
+          opgTestH: "測試集", opgFold: "十折都是訓練 550 張、測試 138 張。",
+          opgSeed: "seed 42：1,429 個 ROI。未診斷 768、蛀牙 430、深度蛀牙 96、阻生牙 120、根尖病變 30。",
+          opgCrop: "裁切 384×384，方形 1.20 倍，最短 160 像素，IoU 0.25。",
+          opgOpt: "AdamW",
+          opgSimSh: "小規模・含未診斷牙", opgSimBh: "大規模・500 次", opgSimOh: "另外兩組",
+          opgCtrlF1: "對照・只有病症牙的 F1", opgMap: "第一階段 mAP50",
+          opgClassF1: "小規模、含未診斷牙的各病症 F1 另列：蛀牙 0.6926、深度蛀牙 0.5071、阻生牙 0.8775、根尖病變 0.4562。未診斷牙 0.8436。",
+          opgCant: "0.633 和 0.719 不是同一條件，不能直接比。",
+          opgPaper: "論文四病症平均 F1 是 0.712。這裡不能說整體較高。",
+          opgParamH: "參數量", opgP1: "第一階段，對照 46M", opgP2: "第二階段，對照 440M",
+          opgStdH: "大規模波動", opgPerStd: "根尖病變 F1 標準差"
+        });
+        Object.assign(copy.en, {
+          drLabSmall: "Small set", drDataSmall: "about 150 images per class", drLabFull: "Full set", drDataFull: "3,662 images",
+          dt1tail: " | Lightweight AI for panoramic X-rays", opgUsed: "Simulation set: 688 OPGs, 7,160 ROIs",
+          opgAppLead: "Read one panoramic image. Segment the teeth, then check caries, deep caries, impaction and periapical lesions.",
+          opgUiL: "UI", opgUiV: "Load, detect, edit boxes, edit labels, export", opgGrayL: "Gray", opgGrayV: "Below the condition threshold, not healthy",
+          opgS1h: "Stage 1", opgS1v: "Segment teeth on the full image. Rank does not use tooth number.", opgS2h: "Stage 2", opgS2v: "Crop each tooth to an ROI and classify four conditions.",
+          opgModelL: "Model", opgJobL: "Task", opgMainL: "Main", opgMainV: "Includes undiagnosed teeth", opgCtrlL: "Control", opgCtrlV: "Teeth with a condition only",
+          opgUndxL: "Undiagnosed", opgUndxV: "None of the four conditions was labeled. Not confirmed healthy.",
+          opgLabOpg: "OPG images", opgLabRoi: "ROIs", opgLabUndx: "undiagnosed teeth", opgLabDis: "teeth with a condition",
+          opgLabCar: "caries", opgLabDeep: "deep caries", opgLabImp: "impacted", opgLabPer: "periapical lesions",
+          opgMarkH: "Label counts", opgMulti: "One tooth can have more than one condition, so the total is not 3,310.",
+          opgTestH: "Test split", opgFold: "Every fold uses 550 training images and 138 test images.",
+          opgSeed: "seed 42: 1,429 ROIs. Undiagnosed 768, caries 430, deep caries 96, impacted 120, periapical 30.",
+          opgCrop: "Crop 384×384, square ×1.20, minimum 160 px, IoU 0.25.",
+          opgOpt: "AdamW",
+          opgSimSh: "Small scale · with undiagnosed teeth", opgSimBh: "Large scale · 500 runs", opgSimOh: "Two other results",
+          opgCtrlF1: "Control F1, condition-only teeth", opgMap: "Stage 1 mAP50",
+          opgClassF1: "Separate small-scale F1 with undiagnosed teeth: caries 0.6926, deep caries 0.5071, impacted 0.8775, periapical 0.4562. Undiagnosed 0.8436.",
+          opgCant: "0.633 and 0.719 are not the same condition, so they are not compared directly.",
+          opgPaper: "The paper's mean F1 across the four conditions is 0.712. This page does not claim a higher overall score.",
+          opgParamH: "Parameters", opgP1: "Stage 1, against 46M", opgP2: "Stage 2, against 440M",
+          opgStdH: "Large-scale spread", opgPerStd: "Periapical F1 standard deviation"
+        });
+        Object.assign(copy.ja, {
+          drLabSmall: "小規模", drDataSmall: "各クラス平均約150枚", drLabFull: "全体", drDataFull: "3,662枚",
+          dt1tail: "｜軽量AIによるパノラマX線", opgUsed: "実験に使ったのは OPG 688枚、ROI 7,160",
+          opgAppLead: "パノラマ1枚を読む。歯を分けてから、う蝕・深在性う蝕・埋伏・根尖病変を判断する。",
+          opgUiL: "画面", opgUiV: "読込、識別、枠の修正、病名の修正、書き出し", opgGrayL: "灰色", opgGrayV: "病変の閾値未満。健康の確認ではない",
+          opgS1h: "第1段階", opgS1v: "画像全体で歯を分割。順位に歯番号は使わない。", opgS2h: "第2段階", opgS2v: "歯ごとに ROI を切り、4病変を判定。",
+          opgModelL: "モデル", opgJobL: "作業", opgMainL: "主結果", opgMainV: "未診断の歯を含む", opgCtrlL: "対照", opgCtrlV: "病変のある歯だけ",
+          opgUndxL: "未診断", opgUndxV: "4病変ともラベルがない。健康と確認したわけではない",
+          opgLabOpg: "枚の OPG", opgLabRoi: "個の ROI", opgLabUndx: "未診断の歯", opgLabDis: "病変のある歯",
+          opgLabCar: "う蝕", opgLabDeep: "深在性う蝕", opgLabImp: "埋伏", opgLabPer: "根尖病変",
+          opgMarkH: "ラベル回数", opgMulti: "1本に複数の病変があり得るので、合計は 3,310 にならない。",
+          opgTestH: "テスト", opgFold: "各分割は訓練 550枚、テスト 138枚。",
+          opgSeed: "seed 42：ROI 1,429。未診断 768、う蝕 430、深在性う蝕 96、埋伏 120、根尖病変 30。",
+          opgCrop: "切り出し 384×384、正方形 1.20倍、最短 160px、IoU 0.25。",
+          opgOpt: "AdamW",
+          opgSimSh: "小規模・未診断を含む", opgSimBh: "大規模・500回", opgSimOh: "ほかの2件",
+          opgCtrlF1: "対照・病変歯のみの F1", opgMap: "第1段階 mAP50",
+          opgClassF1: "小規模で未診断を含む病変別 F1 は別に、う蝕 0.6926、深在性う蝕 0.5071、埋伏 0.8775、根尖病変 0.4562。未診断 0.8436。",
+          opgCant: "0.633 と 0.719 は条件が違うので、そのまま比べない。",
+          opgPaper: "論文の4病変平均 F1 は 0.712。ここでは全体で上回ったとは書かない。",
+          opgParamH: "パラメータ数", opgP1: "第1段階。対照は 46M", opgP2: "第2段階。対照は 440M",
+          opgStdH: "大規模のばらつき", opgPerStd: "根尖病変 F1 の標準偏差"
+        });
+        Object.assign(copy.zhHans, {
+          drLabSmall: "小规模", drDataSmall: "每类平均约 150 张", drLabFull: "完整", drDataFull: "3,662 张",
+          dt1tail: "｜轻量化 AI 全景 X 光病症侦测", opgUsed: "模拟用 688 张 OPG、7,160 个 ROI",
+          opgAppLead: "读一张全口牙片。先把牙齿分出来，再判断蛀牙、深层蛀牙、阻生牙、根尖病灶。",
+          opgUiL: "界面", opgUiV: "载入、辨识、改框、改病症、导出", opgGrayL: "灰色", opgGrayV: "没过病症门槛，不是健康",
+          opgS1h: "第一阶段", opgS1v: "整张牙片分割牙齿。排名不看牙号。", opgS2h: "第二阶段", opgS2v: "每颗牙裁成 ROI，做四种病症。",
+          opgModelL: "模型", opgJobL: "工作", opgMainL: "主线", opgMainV: "含未诊断牙", opgCtrlL: "对照", opgCtrlV: "只有病症牙",
+          opgUndxL: "未诊断", opgUndxV: "四种病症都没标注，不是确认健康",
+          opgLabOpg: "张 OPG", opgLabRoi: "个 ROI", opgLabUndx: "未诊断牙", opgLabDis: "病症牙",
+          opgLabCar: "蛀牙", opgLabDeep: "深度蛀牙", opgLabImp: "阻生牙", opgLabPer: "根尖病变",
+          opgMarkH: "标注次数", opgMulti: "一颗牙可以有多个病症，加总不是 3,310。",
+          opgTestH: "测试集", opgFold: "十折都是训练 550 张、测试 138 张。",
+          opgSeed: "seed 42：1,429 个 ROI。未诊断 768、蛀牙 430、深度蛀牙 96、阻生牙 120、根尖病变 30。",
+          opgCrop: "裁切 384×384，方形 1.20 倍，最短 160 像素，IoU 0.25。",
+          opgOpt: "AdamW",
+          opgSimSh: "小规模・含未诊断牙", opgSimBh: "大规模・500 次", opgSimOh: "另外两组",
+          opgCtrlF1: "对照・只有病症牙的 F1", opgMap: "第一阶段 mAP50",
+          opgClassF1: "小规模、含未诊断牙的各病症 F1 另列：蛀牙 0.6926、深度蛀牙 0.5071、阻生牙 0.8775、根尖病变 0.4562。未诊断牙 0.8436。",
+          opgCant: "0.633 和 0.719 不是同一条件，不能直接比。",
+          opgPaper: "论文四病症平均 F1 是 0.712。这里不能说整体较高。",
+          opgParamH: "参数量", opgP1: "第一阶段，对照 46M", opgP2: "第二阶段，对照 440M",
+          opgStdH: "大规模波动", opgPerStd: "根尖病变 F1 标准差"
+        });
+
+        Object.assign(copy.zh, {"opgWhyH": "為什麼做", "opgWhy1L": "人口", "opgWhy1V": "全球逾 35 億人受口腔疾病影響。蛀牙最常見。", "opgWhy2L": "惡化", "opgWhy2V": "沒治療可能變成牙髓炎、根尖病灶，甚至掉牙。", "opgWhy3L": "難處", "opgWhy3V": "解析度低、結構重疊，靠經驗，容易漏診、誤診。", "opgWhy4L": "時間", "opgWhy4V": "判讀平均約 67.89 秒。", "opgWhy5L": "醫師", "opgWhy5V": "經驗較豐富的牙醫，整體診斷效能 63.9%。", "opgDoH": "這套程式", "opgDo1L": "用途", "opgDo1V": "一鍵看完整口。彩色框標出病灶。", "opgDo2L": "介面", "opgDo2V": "3D Slicer：載入、辨識、Box／Mask、改病症、匯出圖片與 CSV。", "opgDo3L": "裝置", "opgDo3V": "GPU 優先，也可改用 CPU。", "opgDo4L": "時間", "opgDo4V": "架構圖標示推論約 2.89 秒。", "opgTwoH": "兩階段", "opgS1b": "YOLOv8m-seg。框出並分割每顆牙。主排名不看牙號。", "opgS2b": "Swin-T。蛀牙、深層蛀牙、阻生牙、根尖病灶。", "opgMainV": "Combo 14，含未診斷牙，80 epoch。", "opgCtrlV": "Combo 2，只有病症牙。", "opgWhyTwoL": "原因", "opgWhyTwoV": "先找到牙，再分病症。定位和分類分開。", "opgDxH": "四種病症", "opgDxCar": "咬合面或鄰接面的病變。", "opgDxDeep": "範圍較大，接近牙髓。", "opgDxImp": "智齒沒有正常萌發。", "opgDxPer": "牙根尖周圍透光，可能是發炎或囊腫。", "opgUndxH": "未診斷牙", "opgUndxP": "牙號有標、四種病症都沒標，才算未診斷。不是醫師確認的健康牙，訓練時也沒把它當成健康牙。", "opgUndxP2": "論文的第三子集本身不是未診斷牙。要比對牙號和病症兩份標註，才對得出來。", "opgCiteH": "出處", "opgCiteApp": "人口：GBD 2017，Journal of Dental Research，2020。時間：Pornprasertsuk-Damrongsri 等，BMC Medical Education，2026。醫師效能：Biçengil 等，Diagnostics，2026。", "opgD1H": "第一階段｜OdontoAI", "opgD1a": "張全景片，51,651 顆牙。", "opgD1b": "張排除：混合齒列 214、無牙齒標註 7。", "opgD1c": "張留下。80% 訓練、20% 測試。", "opgD1d": "顆恆牙。已扣除乳牙與混合齒列。牙位用 FDI。", "opgFromL": "來源", "opgD1e": "巴西臨床。沒有標人種。", "opgD2H": "第二階段｜DENTEX", "opgD2a": "張全景片，9,158 顆牙。", "opgD2b": "訓練／測試。", "opgD2c": "土耳其、瑞士的合作中心。沒有標人種。", "opgD2d": "牙框和病症框的 IoU 達到才保留。", "opgD2e": "外接框加 10% 留白，最短邊 160，存成 384×384。訓練輸入 224×224。", "opgD3H": "模擬用到的筆數", "opgMultiH": "同一顆牙的多種病", "opgM1": "深層蛀牙＋根尖病灶", "opgM2": "蛀牙＋根尖病灶", "opgM3": "蛀牙＋深層蛀牙", "opgM4": "蛀牙＋阻生牙", "opgM5": "蛀牙＋深層蛀牙＋根尖病灶", "opgMsum": "合計 57 顆：56 顆兩種病，1 顆三種病。", "opgPaperAug": "比較論文有做左右翻轉、縮放，以及把牙齒貼到對側同一牙位。這次沒做。", "opgWhyMH": "為什麼選這些", "opgWhyY": "DENTEX 冠軍 Sjtu-seiee-426 用的同款。", "opgWhyS": "論文用 Swin-B。這裡用同家族較小的模型。", "opgWhyA": "和比較論文用同一個優化器。", "opgOneL": "一個模型", "opgOneV": "同時判四種病。論文是四個單病症模型，再加一個多病症模型。", "opgDiffH": "和論文的差別", "opgDiff1": "YOLO 預測牙齒多邊形。論文是 Mask DINO。", "opgDiff2": "對論文 46M，少 40.65%。", "opgDiff3": "對論文五個 Swin-B 合計 440M，少 93.64%。", "opgDiff4": "沒有當成健康牙放進訓練。", "opgPickH": "選定的組合", "opgC12": "Box 7.5、LR 0.001、WD 0.1、動量 0.937、cosine、100 epoch。", "opgC12rL": "名次", "opgC12r": "15 種指標搭配，平均名次 1.07。前五名 15／15，第一名 14／15。", "opgC14": "80 epoch、two_hidden、Batch 64、LR 0.0001、WD 0.1、β1 0.85、β2 0.999。", "opgC14rL": "名次", "opgC14r": "4,095 種搭配，平均名次 4.75。第一名 2,056／4,095，前五名 2,301／4,095。", "opgG1H": "第一階段搜過的參數", "opgG1n": "72 組，每組 10 次，100 epoch。", "opgMomL": "動量", "opgSchL": "排程", "opgSchV": "linear、cosine", "opgG2H": "第二階段搜過的參數", "opgG2n": "只有病症牙 108 組。加入未診斷牙時 Batch 固定 64，54 組。每組 10 次，記錄 40 和 80 epoch。", "opgHeadL": "分類頭", "opgHeadV": "linear，或 two_hidden：768 → 384 → 四病症", "opgBetaV": "0.85、0.90、0.95。β2 固定 0.999。", "opgGridN": "108＝2×2×3×3×3。54＝1×2×3×3×3。", "opgHideH": "分類頭", "opgHideP": "linear 沒有隱藏層，直接輸出四種病。two_hidden 先到 768，再減半到 384，然後輸出。768 對齊 Swin-T 的特徵長度。", "opgBetaP": "β1 以 0.90 為中心，上下各 0.05。係數要在 0 和 1 之間，所以沒有用十倍級距。", "opgRunH": "跑了多少", "opgRun1": "第一階段，100 epoch。", "opgRun2": "第二階段，只有病症牙。", "opgRun3": "第二階段，加入未診斷牙。", "opgRun4": "次。沿用 Combo 14，不是把 54 組再各跑 500 次。", "opgSimSnote": "10 次平均。單位是 %。", "opgSimBnote": "論文是 94.68、71.23、95.28。標準差是樣本標準差。", "opgS1tab": "第一階段・10 次・不看牙號", "opgS1fdi": "同一組，但要認對牙號", "opgThM": "指標", "opgThO": "本研究", "opgThP": "文獻", "opgThD": "病症", "opgThPF": "文獻 F1", "opgS1note": "Combo 12。論文是 5 折交叉驗證的平均。資料和切分不同。", "opgS2tab": "第二階段・10 次・只有病症牙", "opgS2cls": "各病症", "opgS5tab": "第二階段・500 次・各病症", "opgS5note": "Combo 14、80 epoch。標準差是 500 次的樣本標準差。", "opgReadH": "怎麼讀", "opgRead1": "整體沒有高過論文。論文有資料增強，模型也比較大，而且是 5 折平均。", "opgRead2": "只有病症牙的 F1 71.88，和含未診斷牙的 63.33，不是同一種條件。", "opgRead3": "論文四病症平均 F1 約 71.23。這裡不把不同條件的數字說成我們比較高。", "opgToothH": "牙號", "opgTooth1": "不看牙號時，mAP@0.50 是 99.57，論文 99.00。", "opgTooth2": "要認對牙號時，FDI FROC 是 57.47，論文 98.80。這是第一階段差最多的地方。", "opgTooth3": "10 次的標準差大，是因為各次分到的難易不一樣。", "opgWeakH": "哪些病比較弱", "opgWeak1": "500 次裡，蛀牙 F1 69.92，高於論文 66.20。阻生牙接近。", "opgWeak2": "深層蛀牙 50.49 對 68.30。根尖病灶 43.57 對 60.30。這兩類比較弱，根尖的標準差也有 9.65。", "opgWeak3": "單看一次（Combo 14、Run 64）：根尖準確率 98.34%，但只判對 13 次、漏 18 次，F1 53.06%。準確率高仍會漏。", "opgImpH": "哪個參數影響大", "opgImp1": "第一階段，平均差距（百分點）：學習率 1.26、框損失 0.61、權重衰減 0.19、排程 0.05、動量 0.003。", "opgImp2": "第二階段：學習率 27.10、分類頭 1.71、β1 1.53、權重衰減 1.16。Batch 固定 64，沒有比較。", "opgImp3": "這是固定其他參數、只動一項的差距。不把各項較好的設定拼成新組合。", "opgSmallH": "小模型", "opgSm1": "第一階段參數較少。", "opgSm2": "第二階段參數較少。", "opgSm3L": "取捨", "opgSm3": "訓練比較快、推論比較快。準確率換這個。", "opgLimH": "限制", "opgLim1": "未診斷牙沒有獨立的醫師真值。和論文對照的四病症平均，不含這一類。", "opgLim2": "比較論文：van Nistelrooij 等，BMC Oral Health，2024。"});
+        Object.assign(copy.en, {"opgWhyH": "Why", "opgWhy1L": "People", "opgWhy1V": "Over 3.5 billion people have oral disease. Caries is the most common.", "opgWhy2L": "If untreated", "opgWhy2V": "It can become pulpitis, a periapical lesion, or tooth loss.", "opgWhy3L": "Difficulty", "opgWhy3V": "Low resolution and overlapping anatomy. Reading depends on experience, so findings are missed or miscalled.", "opgWhy4L": "Time", "opgWhy4V": "Mean reading time is about 67.89 seconds.", "opgWhy5L": "Dentists", "opgWhy5V": "More experienced dentists reached 63.9% overall diagnostic performance.", "opgDoH": "The program", "opgDo1L": "Use", "opgDo1V": "One click reviews the whole mouth. Color boxes mark findings.", "opgDo2L": "UI", "opgDo2V": "3D Slicer: load, detect, Box/Mask, edit labels, export image and CSV.", "opgDo3L": "Device", "opgDo3V": "GPU first. CPU is available.", "opgDo4L": "Time", "opgDo4V": "The workflow figure marks inference at about 2.89 seconds.", "opgTwoH": "Two stages", "opgS1b": "YOLOv8m-seg. Box and segment each tooth. The main rank ignores tooth number.", "opgS2b": "Swin-T. Caries, deep caries, impaction, periapical lesion.", "opgMainV": "Combo 14, including undiagnosed teeth, 80 epochs.", "opgCtrlV": "Combo 2, teeth with a condition only.", "opgWhyTwoL": "Why two", "opgWhyTwoV": "Find the tooth, then classify the condition. Localization and classification are separate.", "opgDxH": "Four conditions", "opgDxCar": "A lesion on the biting or contact surface.", "opgDxDeep": "A larger lesion, close to the pulp.", "opgDxImp": "A wisdom tooth that has not erupted normally.", "opgDxPer": "A radiolucency around the root tip. It may be inflammation or a cyst.", "opgUndxH": "Undiagnosed teeth", "opgUndxP": "A tooth number is labeled and none of the four conditions is labeled. That is undiagnosed. It is not a dentist-confirmed healthy tooth, and it was not trained as healthy.", "opgUndxP2": "The paper's third subset is not itself the undiagnosed set. It comes from comparing the tooth-number labels with the condition labels.", "opgCiteH": "Sources", "opgCiteApp": "Population: GBD 2017, Journal of Dental Research, 2020. Time: Pornprasertsuk-Damrongsri et al., BMC Medical Education, 2026. Dentist performance: Biçengil et al., Diagnostics, 2026.", "opgD1H": "Stage 1 | OdontoAI", "opgD1a": "panoramic images, 51,651 teeth.", "opgD1b": "excluded: 214 mixed dentition, 7 with no tooth label.", "opgD1c": "kept. 80% train, 20% test.", "opgD1d": "permanent teeth, after removing primary and mixed dentition. Tooth numbers use FDI.", "opgFromL": "Source", "opgD1e": "Clinics in Brazil. Ethnicity is not labeled.", "opgD2H": "Stage 2 | DENTEX", "opgD2a": "panoramic images, 9,158 teeth.", "opgD2b": "train / test.", "opgD2c": "Collaborating centers in Turkey and Switzerland. Ethnicity is not labeled.", "opgD2d": "A condition box is kept when its IoU with the tooth box reaches this.", "opgD2e": "Bounding box plus 10% padding, short side 160, saved at 384×384. Training input 224×224.", "opgD3H": "Counts used in the runs", "opgMultiH": "More than one condition", "opgM1": "Deep caries + periapical lesion", "opgM2": "Caries + periapical lesion", "opgM3": "Caries + deep caries", "opgM4": "Caries + impaction", "opgM5": "Caries + deep caries + periapical lesion", "opgMsum": "57 teeth: 56 with two conditions, 1 with three.", "opgPaperAug": "The comparison paper flips images, resizes them, and pastes a tooth onto the matching site on the other side. This study did not.", "opgWhyMH": "Why these models", "opgWhyY": "The same model used by the DENTEX winner, Sjtu-seiee-426.", "opgWhyS": "The paper uses Swin-B. This study uses the smaller model in that family.", "opgWhyA": "The same optimizer as the comparison paper.", "opgOneL": "One model", "opgOneV": "It scores all four conditions together. The paper uses four single-condition models plus one multi-condition model.", "opgDiffH": "Difference from the paper", "opgDiff1": "YOLO predicts a tooth polygon. The paper uses Mask DINO.", "opgDiff2": "Against the paper's 46M, 40.65% fewer.", "opgDiff3": "Against five Swin-B models totaling 440M, 93.64% fewer.", "opgDiff4": "It was not added to training as a healthy tooth.", "opgPickH": "Chosen setups", "opgC12": "Box 7.5, LR 0.001, WD 0.1, momentum 0.937, cosine, 100 epochs.", "opgC12rL": "Rank", "opgC12r": "Across 15 metric pairings, mean rank 1.07. Top five 15/15, first place 14/15.", "opgC14": "80 epochs, two_hidden, batch 64, LR 0.0001, WD 0.1, β1 0.85, β2 0.999.", "opgC14rL": "Rank", "opgC14r": "Across 4,095 pairings, mean rank 4.75. First place 2,056/4,095, top five 2,301/4,095.", "opgG1H": "Stage 1 search", "opgG1n": "72 setups, 10 runs each, 100 epochs.", "opgMomL": "Momentum", "opgSchL": "Schedule", "opgSchV": "linear, cosine", "opgG2H": "Stage 2 search", "opgG2n": "108 setups for teeth with a condition. With undiagnosed teeth, batch stays 64 and there are 54 setups. 10 runs each, recorded at 40 and 80 epochs.", "opgHeadL": "Head", "opgHeadV": "linear, or two_hidden: 768 → 384 → four conditions", "opgBetaV": "0.85, 0.90, 0.95. β2 stays 0.999.", "opgGridN": "108 = 2×2×3×3×3. 54 = 1×2×3×3×3.", "opgHideH": "Classification head", "opgHideP": "linear has no hidden layer and outputs the four conditions directly. two_hidden goes to 768, then half of that, 384, then the output. 768 matches the Swin-T feature length.", "opgBetaP": "β1 is centered on 0.90 and moves by 0.05. The value has to sit between 0 and 1, so the search does not use tenfold steps.", "opgRunH": "How many runs", "opgRun1": "Stage 1, 100 epochs.", "opgRun2": "Stage 2, teeth with a condition only.", "opgRun3": "Stage 2, with undiagnosed teeth.", "opgRun4": "runs. Combo 14 is reused. The 54 setups are not each repeated 500 times.", "opgSimSnote": "Mean of 10 runs. Values are %.", "opgSimBnote": "The paper reports 94.68, 71.23, and 95.28. The spread is the sample standard deviation.", "opgS1tab": "Stage 1 · 10 runs · tooth number ignored", "opgS1fdi": "Same setup, but the tooth number must be correct", "opgThM": "Metric", "opgThO": "Ours", "opgThP": "Paper", "opgThD": "Condition", "opgThPF": "Paper F1", "opgS1note": "Combo 12. The paper is a 5-fold mean. The data and split differ.", "opgS2tab": "Stage 2 · 10 runs · condition teeth only", "opgS2cls": "By condition", "opgS5tab": "Stage 2 · 500 runs · by condition", "opgS5note": "Combo 14, 80 epochs. The spread is the sample standard deviation over 500 runs.", "opgReadH": "How to read this", "opgRead1": "The overall scores are not higher than the paper. The paper augments the data, uses a larger model, and reports a 5-fold mean.", "opgRead2": "F1 71.88 on condition teeth only and 63.33 with undiagnosed teeth are not the same condition.", "opgRead3": "The paper's mean F1 across four conditions is about 71.23. Scores from different conditions are not described as a win.", "opgToothH": "Tooth number", "opgTooth1": "Ignoring tooth number, mAP@0.50 is 99.57. The paper is 99.00.", "opgTooth2": "When the tooth number must be correct, FDI FROC is 57.47. The paper is 98.80. This is the largest stage-1 gap.", "opgTooth3": "The 10-run spread is large because some runs drew harder cases than others.", "opgWeakH": "Weaker conditions", "opgWeak1": "Over 500 runs, caries F1 is 69.92, above the paper's 66.20. Impaction is close.", "opgWeak2": "Deep caries is 50.49 against 68.30. Periapical lesion is 43.57 against 60.30. Those two are weaker, and the periapical spread is 9.65.", "opgWeak3": "One run (Combo 14, run 64): periapical accuracy is 98.34%, with 13 correct and 18 missed, so F1 is 53.06%. A high accuracy can still miss cases.", "opgImpH": "Which setting moves the score", "opgImp1": "Stage 1, mean gap in percentage points: learning rate 1.26, box loss 0.61, weight decay 0.19, schedule 0.05, momentum 0.003.", "opgImp2": "Stage 2: learning rate 27.10, classification head 1.71, β1 1.53, weight decay 1.16. Batch stays 64, so it is not compared.", "opgImp3": "Each gap keeps the other settings fixed and changes one. The better value of each setting is not stitched into a new setup.", "opgSmallH": "Smaller models", "opgSm1": "Stage 1 uses fewer parameters.", "opgSm2": "Stage 2 uses fewer parameters.", "opgSm3L": "Tradeoff", "opgSm3": "Training is faster and inference is faster. Accuracy is what is given up.", "opgLimH": "Limit", "opgLim1": "Undiagnosed teeth have no separate dentist ground truth. The four-condition mean compared with the paper does not include that class.", "opgLim2": "Comparison paper: van Nistelrooij et al., BMC Oral Health, 2024."});
+        Object.assign(copy.ja, {"opgWhyH": "目的", "opgWhy1L": "人口", "opgWhy1V": "世界で35億人以上が口腔疾患の影響を受ける。う蝕が最も多い。", "opgWhy2L": "進行", "opgWhy2V": "治療しないと歯髄炎、根尖病変、歯の喪失になり得る。", "opgWhy3L": "難しさ", "opgWhy3V": "解像度が低く構造が重なる。経験に依存し、見落としや誤診が出る。", "opgWhy4L": "時間", "opgWhy4V": "判読の平均は約67.89秒。", "opgWhy5L": "歯科医", "opgWhy5V": "経験の多い歯科医の総合的な診断性能は63.9%。", "opgDoH": "このソフト", "opgDo1L": "用途", "opgDo1V": "ワンクリックで全顎を見る。色枠で病変を示す。", "opgDo2L": "画面", "opgDo2V": "3D Slicer：読込、識別、Box／Mask、病名修正、画像とCSVの出力。", "opgDo3L": "装置", "opgDo3V": "GPU優先。CPUにも切り替えられる。", "opgDo4L": "時間", "opgDo4V": "構成図では推論が約2.89秒。", "opgTwoH": "2段階", "opgS1b": "YOLOv8m-seg。歯を枠と領域で分ける。主な順位は歯番号を見ない。", "opgS2b": "Swin-T。う蝕、深在性う蝕、埋伏、根尖病変。", "opgMainV": "Combo 14。未診断の歯を含む。80 epoch。", "opgCtrlV": "Combo 2。病変のある歯だけ。", "opgWhyTwoL": "理由", "opgWhyTwoV": "先に歯を見つけ、その後で病変を分ける。", "opgDxH": "4病変", "opgDxCar": "咬合面または隣接面の病変。", "opgDxDeep": "範囲が広く、歯髄に近い。", "opgDxImp": "智歯が正常に萌出していない。", "opgDxPer": "根尖周囲の透過像。炎症や嚢胞のことがある。", "opgUndxH": "未診断の歯", "opgUndxP": "歯番号はあるが4病変のラベルがない歯。医師が健康と確認した歯ではなく、健康として学習させてもいない。", "opgUndxP2": "論文の第3部分集合そのものが未診断ではない。歯番号と病変のラベルを突き合わせて得る。", "opgCiteH": "出典", "opgCiteApp": "人口：GBD 2017、Journal of Dental Research、2020。時間：Pornprasertsuk-Damrongsri ら、BMC Medical Education、2026。歯科医の性能：Biçengil ら、Diagnostics、2026。", "opgD1H": "第1段階｜OdontoAI", "opgD1a": "枚のパノラマ、歯51,651本。", "opgD1b": "枚を除外。混合歯列214、歯ラベルなし7。", "opgD1c": "枚を採用。訓練80%、テスト20%。", "opgD1d": "本の永久歯。乳歯と混合歯列を除いた後。歯番号はFDI。", "opgFromL": "出所", "opgD1e": "ブラジルの臨床。人種の記載なし。", "opgD2H": "第2段階｜DENTEX", "opgD2a": "枚のパノラマ、歯9,158本。", "opgD2b": "訓練／テスト。", "opgD2c": "トルコとスイスの協力施設。人種の記載なし。", "opgD2d": "歯枠と病変枠のIoUがこの値以上のとき残す。", "opgD2e": "外接枠に10%の余白。短辺160。384×384で保存。学習入力は224×224。", "opgD3H": "実験で使った件数", "opgMultiH": "1本に複数の病変", "opgM1": "深在性う蝕＋根尖病変", "opgM2": "う蝕＋根尖病変", "opgM3": "う蝕＋深在性う蝕", "opgM4": "う蝕＋埋伏", "opgM5": "う蝕＋深在性う蝕＋根尖病変", "opgMsum": "合計57本。2病変が56本、3病変が1本。", "opgPaperAug": "比較論文は左右反転、縮小拡大、歯を反対側の同じ歯位へ貼る増強をしている。今回はしていない。", "opgWhyMH": "このモデルを選んだ理由", "opgWhyY": "DENTEX優勝のSjtu-seiee-426と同じモデル。", "opgWhyS": "論文はSwin-B。こちらは同じ系列の小さいモデル。", "opgWhyA": "比較論文と同じ最適化手法。", "opgOneL": "1モデル", "opgOneV": "4病変を同時に判定。論文は単一病変モデル4つに、複数病変モデルを1つ足している。", "opgDiffH": "論文との違い", "opgDiff1": "YOLOは歯の多角形を出す。論文はMask DINO。", "opgDiff2": "論文の46Mに対し40.65%少ない。", "opgDiff3": "Swin-Bを5つ合わせた440Mに対し93.64%少ない。", "opgDiff4": "健康な歯として学習には入れていない。", "opgPickH": "選んだ組み合わせ", "opgC12": "Box 7.5、LR 0.001、WD 0.1、運動量 0.937、cosine、100 epoch。", "opgC12rL": "順位", "opgC12r": "15通りの指標の組み合わせで平均順位1.07。5位以内15/15、1位14/15。", "opgC14": "80 epoch、two_hidden、Batch 64、LR 0.0001、WD 0.1、β1 0.85、β2 0.999。", "opgC14rL": "順位", "opgC14r": "4,095通りで平均順位4.75。1位は2,056／4,095、5位以内は2,301／4,095。", "opgG1H": "第1段階で探したパラメータ", "opgG1n": "72組、各10回、100 epoch。", "opgMomL": "運動量", "opgSchL": "スケジュール", "opgSchV": "linear、cosine", "opgG2H": "第2段階で探したパラメータ", "opgG2n": "病変のある歯だけは108組。未診断の歯を加えるときはBatchを64に固定し54組。各10回。40と80 epochを記録。", "opgHeadL": "分類頭", "opgHeadV": "linear、または two_hidden：768 → 384 → 4病変", "opgBetaV": "0.85、0.90、0.95。β2は0.999で固定。", "opgGridN": "108＝2×2×3×3×3。54＝1×2×3×3×3。", "opgHideH": "分類頭", "opgHideP": "linearは隠れ層なしで4病変を出す。two_hiddenは768、その半分の384を経て出力する。768はSwin-Tの特徴の長さに合わせている。", "opgBetaP": "β1は0.90を中心に0.05ずつ動かす。値は0と1の間なので、10倍刻みは使わない。", "opgRunH": "回数", "opgRun1": "第1段階、100 epoch。", "opgRun2": "第2段階、病変のある歯だけ。", "opgRun3": "第2段階、未診断の歯を含む。", "opgRun4": "回。Combo 14をそのまま使う。54組をそれぞれ500回はしない。", "opgSimSnote": "10回の平均。単位は%。", "opgSimBnote": "論文は94.68、71.23、95.28。ばらつきは標本標準偏差。", "opgS1tab": "第1段階・10回・歯番号を見ない", "opgS1fdi": "同じ組み合わせで、歯番号も正しい必要がある", "opgThM": "指標", "opgThO": "本研究", "opgThP": "文献", "opgThD": "病変", "opgThPF": "文献 F1", "opgS1note": "Combo 12。論文は5分割交差検証の平均。データと分割は異なる。", "opgS2tab": "第2段階・10回・病変のある歯だけ", "opgS2cls": "病変別", "opgS5tab": "第2段階・500回・病変別", "opgS5note": "Combo 14、80 epoch。ばらつきは500回の標本標準偏差。", "opgReadH": "読み方", "opgRead1": "全体では論文を上回っていない。論文はデータ増強と大きいモデルを使い、5分割の平均である。", "opgRead2": "病変歯だけのF1 71.88と、未診断を含む63.33は条件が違う。", "opgRead3": "論文の4病変平均F1は約71.23。条件の違う数字を、上回ったとは書かない。", "opgToothH": "歯番号", "opgTooth1": "歯番号を見ないmAP@0.50は99.57。論文は99.00。", "opgTooth2": "歯番号も正しい必要があるFDI FROCは57.47。論文は98.80。第1段階で差が最も大きい。", "opgTooth3": "10回のばらつきが大きいのは、回ごとに難しい例と易しい例が分かれるため。", "opgWeakH": "弱い病変", "opgWeak1": "500回では、う蝕のF1が69.92で論文の66.20より高い。埋伏は近い。", "opgWeak2": "深在性う蝕は50.49対68.30。根尖病変は43.57対60.30。この2つが弱く、根尖のばらつきは9.65。", "opgWeak3": "1回（Combo 14、Run 64）：根尖の正解率は98.34%だが、正解13、見落とし18でF1は53.06%。正解率が高くても見逃す。", "opgImpH": "影響の大きいパラメータ", "opgImp1": "第1段階の平均差（パーセントポイント）：学習率1.26、枠損失0.61、荷重減衰0.19、スケジュール0.05、運動量0.003。", "opgImp2": "第2段階：学習率27.10、分類頭1.71、β1 1.53、荷重減衰1.16。Batchは64固定なので比較しない。", "opgImp3": "他を固定して1項目だけ動かした差。各項目の良い値を継ぎ足して新しい組み合わせにはしない。", "opgSmallH": "小さいモデル", "opgSm1": "第1段階のパラメータが少ない。", "opgSm2": "第2段階のパラメータが少ない。", "opgSm3L": "引き換え", "opgSm3": "学習も推論も速い。引き換えに正解率がある。", "opgLimH": "限界", "opgLim1": "未診断の歯には独立した医師の真値がない。論文と比べる4病変の平均には、この類を入れない。", "opgLim2": "比較論文：van Nistelrooij ら、BMC Oral Health、2024。"});
+        Object.assign(copy.zhHans, {"opgWhyH": "为什么做", "opgWhy1L": "人口", "opgWhy1V": "全球逾 35 亿人受口腔疾病影响。蛀牙最常见。", "opgWhy2L": "恶化", "opgWhy2V": "没治疗可能变成牙髓炎、根尖病灶，甚至掉牙。", "opgWhy3L": "难处", "opgWhy3V": "解析度低、结构重叠，靠经验，容易漏诊、误诊。", "opgWhy4L": "时间", "opgWhy4V": "判读平均约 67.89 秒。", "opgWhy5L": "医师", "opgWhy5V": "经验较丰富的牙医，整体诊断效能 63.9%。", "opgDoH": "这套程序", "opgDo1L": "用途", "opgDo1V": "一键看完全口。彩色框标出病灶。", "opgDo2L": "界面", "opgDo2V": "3D Slicer：载入、辨识、Box／Mask、改病症、导出图片与 CSV。", "opgDo3L": "装置", "opgDo3V": "GPU 优先，也可改用 CPU。", "opgDo4L": "时间", "opgDo4V": "架构图标示推论约 2.89 秒。", "opgTwoH": "两阶段", "opgS1b": "YOLOv8m-seg。框出并分割每颗牙。主排名不看牙号。", "opgS2b": "Swin-T。蛀牙、深层蛀牙、阻生牙、根尖病灶。", "opgMainV": "Combo 14，含未诊断牙，80 epoch。", "opgCtrlV": "Combo 2，只有病症牙。", "opgWhyTwoL": "原因", "opgWhyTwoV": "先找到牙，再分病症。定位和分类分开。", "opgDxH": "四种病症", "opgDxCar": "咬合面或邻接面的病变。", "opgDxDeep": "范围较大，接近牙髓。", "opgDxImp": "智齿没有正常萌发。", "opgDxPer": "牙根尖周围透光，可能是发炎或囊肿。", "opgUndxH": "未诊断牙", "opgUndxP": "牙号有标、四种病症都没标，才算未诊断。不是医师确认的健康牙，训练时也没把它当成健康牙。", "opgUndxP2": "论文的第三子集本身不是未诊断牙。要比对牙号和病症两份标注，才对得出来。", "opgCiteH": "出处", "opgCiteApp": "人口：GBD 2017，Journal of Dental Research，2020。时间：Pornprasertsuk-Damrongsri 等，BMC Medical Education，2026。医师效能：Biçengil 等，Diagnostics，2026。", "opgD1H": "第一阶段｜OdontoAI", "opgD1a": "张全景片，51,651 颗牙。", "opgD1b": "张排除：混合齿列 214、无牙齿标注 7。", "opgD1c": "张留下。80% 训练、20% 测试。", "opgD1d": "颗恒牙。已扣除乳牙与混合齿列。牙位用 FDI。", "opgFromL": "来源", "opgD1e": "巴西临床。没有标人种。", "opgD2H": "第二阶段｜DENTEX", "opgD2a": "张全景片，9,158 颗牙。", "opgD2b": "训练／测试。", "opgD2c": "土耳其、瑞士的合作中心。没有标人种。", "opgD2d": "牙框和病症框的 IoU 达到才保留。", "opgD2e": "外接框加 10% 留白，最短边 160，存成 384×384。训练输入 224×224。", "opgD3H": "模拟用到的笔数", "opgMultiH": "同一颗牙的多种病", "opgM1": "深层蛀牙＋根尖病灶", "opgM2": "蛀牙＋根尖病灶", "opgM3": "蛀牙＋深层蛀牙", "opgM4": "蛀牙＋阻生牙", "opgM5": "蛀牙＋深层蛀牙＋根尖病灶", "opgMsum": "合计 57 颗：56 颗两种病，1 颗三种病。", "opgPaperAug": "比较论文有做左右翻转、缩放，以及把牙齿贴到对侧同一牙位。这次没做。", "opgWhyMH": "为什么选这些", "opgWhyY": "DENTEX 冠军 Sjtu-seiee-426 用的同款。", "opgWhyS": "论文用 Swin-B。这里用同家族较小的模型。", "opgWhyA": "和比较论文用同一个优化器。", "opgOneL": "一个模型", "opgOneV": "同时判四种病。论文是四个单病症模型，再加一个多病症模型。", "opgDiffH": "和论文的差别", "opgDiff1": "YOLO 预测牙齿多边形。论文是 Mask DINO。", "opgDiff2": "对论文 46M，少 40.65%。", "opgDiff3": "对论文五个 Swin-B 合计 440M，少 93.64%。", "opgDiff4": "没有当成健康牙放进训练。", "opgPickH": "选定的组合", "opgC12": "Box 7.5、LR 0.001、WD 0.1、动量 0.937、cosine、100 epoch。", "opgC12rL": "名次", "opgC12r": "15 种指标搭配，平均名次 1.07。前五名 15／15，第一名 14／15。", "opgC14": "80 epoch、two_hidden、Batch 64、LR 0.0001、WD 0.1、β1 0.85、β2 0.999。", "opgC14rL": "名次", "opgC14r": "4,095 种搭配，平均名次 4.75。第一名 2,056／4,095，前五名 2,301／4,095。", "opgG1H": "第一阶段搜过的参数", "opgG1n": "72 组，每组 10 次，100 epoch。", "opgMomL": "动量", "opgSchL": "排程", "opgSchV": "linear、cosine", "opgG2H": "第二阶段搜过的参数", "opgG2n": "只有病症牙 108 组。加入未诊断牙时 Batch 固定 64，54 组。每组 10 次，记录 40 和 80 epoch。", "opgHeadL": "分类头", "opgHeadV": "linear，或 two_hidden：768 → 384 → 四病症", "opgBetaV": "0.85、0.90、0.95。β2 固定 0.999。", "opgGridN": "108＝2×2×3×3×3。54＝1×2×3×3×3。", "opgHideH": "分类头", "opgHideP": "linear 没有隐藏层，直接输出四种病。two_hidden 先到 768，再减半到 384，然后输出。768 对齐 Swin-T 的特征长度。", "opgBetaP": "β1 以 0.90 为中心，上下各 0.05。系数要在 0 和 1 之间，所以没有用十倍级距。", "opgRunH": "跑了多少", "opgRun1": "第一阶段，100 epoch。", "opgRun2": "第二阶段，只有病症牙。", "opgRun3": "第二阶段，加入未诊断牙。", "opgRun4": "次。沿用 Combo 14，不是把 54 组再各跑 500 次。", "opgSimSnote": "10 次平均。单位是 %。", "opgSimBnote": "论文是 94.68、71.23、95.28。标准差是样本标准差。", "opgS1tab": "第一阶段・10 次・不看牙号", "opgS1fdi": "同一组，但要认对牙号", "opgThM": "指标", "opgThO": "本研究", "opgThP": "文献", "opgThD": "病症", "opgThPF": "文献 F1", "opgS1note": "Combo 12。论文是 5 折交叉验证的平均。数据和切分不同。", "opgS2tab": "第二阶段・10 次・只有病症牙", "opgS2cls": "各病症", "opgS5tab": "第二阶段・500 次・各病症", "opgS5note": "Combo 14、80 epoch。标准差是 500 次的样本标准差。", "opgReadH": "怎么读", "opgRead1": "整体没有高过论文。论文有数据增强，模型也比较大，而且是 5 折平均。", "opgRead2": "只有病症牙的 F1 71.88，和含未诊断牙的 63.33，不是同一种条件。", "opgRead3": "论文四病症平均 F1 约 71.23。这里不把不同条件的数字说成我们比较高。", "opgToothH": "牙号", "opgTooth1": "不看牙号时，mAP@0.50 是 99.57，论文 99.00。", "opgTooth2": "要认对牙号时，FDI FROC 是 57.47，论文 98.80。这是第一阶段差最多的地方。", "opgTooth3": "10 次的标准差大，是因为各次分到的难易不一样。", "opgWeakH": "哪些病比较弱", "opgWeak1": "500 次里，蛀牙 F1 69.92，高于论文 66.20。阻生牙接近。", "opgWeak2": "深层蛀牙 50.49 对 68.30。根尖病灶 43.57 对 60.30。这两类比较弱，根尖的标准差也有 9.65。", "opgWeak3": "单看一次（Combo 14、Run 64）：根尖准确率 98.34%，但只判对 13 次、漏 18 次，F1 53.06%。准确率高仍会漏。", "opgImpH": "哪个参数影响大", "opgImp1": "第一阶段，平均差距（百分点）：学习率 1.26、框损失 0.61、权重衰减 0.19、排程 0.05、动量 0.003。", "opgImp2": "第二阶段：学习率 27.10、分类头 1.71、β1 1.53、权重衰减 1.16。Batch 固定 64，没有比较。", "opgImp3": "这是固定其他参数、只动一项的差距。不把各项较好的设定拼成新组合。", "opgSmallH": "小模型", "opgSm1": "第一阶段参数较少。", "opgSm2": "第二阶段参数较少。", "opgSm3L": "取舍", "opgSm3": "训练比较快、推论比较快。准确率换这个。", "opgLimH": "限制", "opgLim1": "未诊断牙没有独立的医师真值。和论文对照的四病症平均，不含这一类。", "opgLim2": "比较论文：van Nistelrooij 等，BMC Oral Health，2024。"});
+        function applyLang(lang) {
+          var pack = copy[lang] || copy.zh;
+          lang = copy[lang] ? lang : "zh";
+          document.documentElement.lang = htmlLang[lang];
+          document.title = pack.title;
+          var meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute("content", pack.description);
+          document.querySelectorAll("[data-i18n]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n");
+            if (pack[key] != null) {
+              el.textContent = pack[key];
+              if (el.tagName === "FIGCAPTION" && el.previousElementSibling && el.previousElementSibling.tagName === "IMG") el.previousElementSibling.alt = pack[key];
+            }
+          });
+          document.querySelectorAll("[data-lang]").forEach(function (btn) {
+            btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === lang ? "true" : "false");
+          });
+          document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n-aria");
+            if (pack[key] != null) el.setAttribute("aria-label", pack[key]);
+          });
+          try { localStorage.setItem("liver-lang", lang); } catch (err) {}
+          scheduleFit();
+        }
+        function fitIntro() {
+          var tree = document.querySelector("#intro-panel .life-tree");
+          if (!tree) return;
+          if (!document.body.classList.contains("show-intro")) {
+            tree.style.zoom = "";
+            tree.style.transform = "";
+            return;
+          }
+          var panel = document.querySelector("#intro-panel");
+          tree.style.zoom = "1";
+          tree.style.transform = "none";
+          var needW = Math.max(tree.scrollWidth, tree.offsetWidth);
+          var needH = Math.max(tree.scrollHeight, tree.offsetHeight);
+          if (!needW || !needH || !panel) return;
+          var bounds = panel.getBoundingClientRect();
+          var padX = 16;
+          var padY = 8;
+          var scale = Math.min((bounds.width - padX * 2) / needW, (bounds.height - padY) / needH);
+          if (!isFinite(scale) || scale <= 0) return;
+          scale = Math.round(scale * 1000) / 1000;
+          var shiftX = (bounds.width - needW * scale) / 2;
+          tree.style.transformOrigin = "top left";
+          tree.style.transform = "translate(" + shiftX + "px, 0px) scale(" + scale + ")";
+          var nodes = tree.querySelectorAll(".node, .tree-floor, h2");
+          var minL = Infinity;
+          var nodes = tree.querySelectorAll(".node, .tree-floor, h2, .path-bubble");
+          var maxB = -Infinity;
+          nodes.forEach(function (el) {
+            var rect = el.getBoundingClientRect();
+            if (!rect.width && !rect.height) return;
+            if (rect.left < minL) minL = rect.left;
+            if (rect.right > maxR) maxR = rect.right;
+            if (rect.bottom > maxB) maxB = rect.bottom;
+          });
+          var overflowX = Math.max(0, 8 - minL, maxR - (window.innerWidth - 8));
+          var overflowY = Math.max(0, maxB - (window.innerHeight - 6));
+          if (overflowX > 1 || overflowY > 1) {
+            var fitW = (window.innerWidth - 16) / Math.max(1, maxR - minL);
+            var fitH = (window.innerHeight - 6 - bounds.top) / Math.max(1, maxB - bounds.top);
+            var fix = Math.min(1, fitW, fitH);
+            if (fix < 0.999) {
+              scale = Math.round(scale * fix * 1000) / 1000;
+              shiftX = (window.innerWidth - needW * scale) / 2;
+              tree.style.transform = "translate(" + shiftX + "px, 0px) scale(" + scale + ")";
+            }
+          }
+        }
+        function scheduleFit() {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(fitIntro);
+          });
+        }
+        var names = { cover: "cover", intro: "intro", liver: "liver", dr: "dr", prostate: "prostate", dental: "dental", oral: "oral" };
+        function show(id) {
+          var name = names[id] || "cover";
+          document.querySelectorAll("[data-liver-page]").forEach(function (el) {
+            el.classList.toggle("active", el.getAttribute("data-liver-page") === name);
+          });
+          document.querySelectorAll("[data-liver-tab]").forEach(function (el) {
+            var on = el.getAttribute("data-liver-tab") === name;
+            el.classList.toggle("active", on);
+            el.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          document.body.classList.toggle("show-intro", name === "intro");
+          document.body.classList.toggle("show-cover", name === "cover");
+          if (name !== "cover") setCoverStat(false);
+          if (name === "dr") setDrDetail(false);
+          if (name === "dental") setDentalDetail(false);
+          window.scrollTo(0, 0);
+          if (location.hash !== "#" + name) location.hash = name;
+          scheduleFit();
+        }
+        document.addEventListener("click", function (event) {
+          var langBtn = event.target.closest("[data-lang]");
+          if (langBtn) {
+            event.preventDefault();
+            applyLang(langBtn.getAttribute("data-lang"));
+            return;
+          }
+          if (event.target.closest("#cover-stat")) return;
+          var link = event.target.closest("[data-liver-tab]");
+          if (link) {
+            event.preventDefault();
+            show(link.getAttribute("data-liver-tab"));
+          }
+        });
+        window.addEventListener("hashchange", function () {
+          show(location.hash.replace("#", ""));
+        });
+        window.addEventListener("resize", function () {
+          scheduleFit();
+        });
+        var coverStat = document.getElementById("cover-stat");
+        var coverStatToggle = document.getElementById("cover-stat-toggle");
+        function setCoverStat(open) {
+          if (!coverStat || !coverStatToggle) return;
+          coverStat.hidden = !open;
+          coverStatToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+        if (coverStatToggle) {
+          coverStatToggle.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            setCoverStat(coverStat.hidden);
+          });
+        }
+        var pathBubble = document.getElementById("path-bubble");
+        var pathToggle = document.getElementById("path-toggle");
+        function setPathNote(open) {
+          if (!pathBubble || !pathToggle) return;
+          pathBubble.hidden = !open;
+          pathToggle.setAttribute("aria-expanded", open ? "true" : "false");
+          scheduleFit();
+        }
+        if (pathToggle) {
+          pathToggle.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            setPathNote(pathBubble.hidden);
+          });
+        }
+        var drOverview = document.getElementById("dr-overview");
+        var drDetail = document.getElementById("dr-detail");
+        var drOpen = document.getElementById("dr-open");
+        function setDrDetail(open) {
+          if (!drOverview || !drDetail) return;
+          drOverview.hidden = open;
+          drDetail.hidden = !open;
+          if (drOpen) drOpen.setAttribute("aria-expanded", open ? "true" : "false");
+          if (open) showDrPane("app");
+          window.scrollTo(0, 0);
+        }
+        if (drOpen) {
+          drOpen.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            setDrDetail(true);
+          });
+        }
+        var drDetailBack = document.getElementById("dr-detail-back");
+        if (drDetailBack) {
+          drDetailBack.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            setDrDetail(false);
+          });
+        }
+        var dentalOverview = document.getElementById("dental-overview");
+        var dentalDetail = document.getElementById("dental-detail");
+        var dentalOpen = document.getElementById("dental-open");
+        function setDentalDetail(open) {
+          if (!dentalOverview || !dentalDetail) return;
+          dentalOverview.hidden = open;
+          dentalDetail.hidden = !open;
+          if (dentalOpen) dentalOpen.setAttribute("aria-expanded", open ? "true" : "false");
+          if (open) showOpgPane("app");
+          window.scrollTo(0, 0);
+        }
+        if (dentalOpen) {
+          dentalOpen.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            setDentalDetail(true);
+          });
+        }
+        var dentalDetailBack = document.getElementById("dental-detail-back");
+        if (dentalDetailBack) {
+          dentalDetailBack.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            setDentalDetail(false);
+          });
+        }
+        var opgSwitch = document.querySelector("#dental-panel .dr-switch");
+        function showOpgPane(name) {
+          if (!opgSwitch) return;
+          opgSwitch.querySelectorAll("[data-opg-pane]").forEach(function (el) {
+            el.setAttribute("aria-selected", el.getAttribute("data-opg-pane") === name ? "true" : "false");
+          });
+          document.querySelectorAll("#dental-detail .dr-pane").forEach(function (pane) {
+            pane.hidden = pane.id !== "opg-pane-" + name;
+          });
+        }
+        if (opgSwitch) {
+          opgSwitch.addEventListener("click", function (event) {
+            var btn = event.target.closest("[data-opg-pane]");
+            if (!btn || !opgSwitch.contains(btn)) return;
+            event.preventDefault();
+            event.stopPropagation();
+            showOpgPane(btn.getAttribute("data-opg-pane"));
+          });
+        }
+        var drSwitch = document.querySelector("#dr-panel .dr-switch");
+        function showDrPane(name) {
+          if (!drSwitch) return;
+          drSwitch.querySelectorAll("[data-dr-pane]").forEach(function (el) {
+            el.setAttribute("aria-selected", el.getAttribute("data-dr-pane") === name ? "true" : "false");
+          });
+          document.querySelectorAll("#dr-detail .dr-pane").forEach(function (pane) {
+            pane.hidden = pane.id !== "dr-pane-" + name;
+          });
+        }
+        if (drSwitch) {
+          drSwitch.addEventListener("click", function (event) {
+            var btn = event.target.closest("[data-dr-pane]");
+            if (!btn || !drSwitch.contains(btn)) return;
+            event.preventDefault();
+            event.stopPropagation();
+            showDrPane(btn.getAttribute("data-dr-pane"));
+          });
+        }
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            setCoverStat(false);
+            setPathNote(false);
+          }
+        });
+        var saved = "zh";
+        try { saved = localStorage.getItem("liver-lang") || "zh"; } catch (err) {}
+        applyLang(saved);
+        show(location.hash.replace("#", ""));
+      })();
+    </script></body>
+</html>
