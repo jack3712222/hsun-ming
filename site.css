@@ -3000,12 +3000,25 @@ body.liver-doc.show-cover #cover-panel {
   animation: cover-stat-in 0.16s ease;
 }
 
-.cover-stat-kicker {
-  margin: 0 0 0.35rem;
+.cover-stat-kicker,
+.cover-stat-src {
   color: #f1cb88;
-  font-size: 0.82rem;
   font-weight: 700;
+  text-decoration: none;
+}
+
+.cover-stat-kicker {
+  display: inline-block;
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
   letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.cover-stat-kicker:hover,
+.cover-stat-src:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .cover-stat table {
